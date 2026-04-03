@@ -389,7 +389,8 @@ function OwnerView({bookings,onRespond,onLogout,userEmail}){
           <div className="o-sub">{tab==="pending"&&`${pending.length} request${pending.length!==1?"s":""} waiting`}{tab==="confirmed"&&`${confirmed.length} confirmed`}{tab==="declined"&&`${declined.length} declined`}{tab==="all"&&`${bookings.length} total`}</div>
         </div>
         <div className="o-stats">
-          {[{l:"Pending",v:pending.length,cls:"gold"},{l:"Confirmed",v:confirmed.length,cls:""},{l:"Declined",v:declined.length,cls:""},{l:"Total",v:bookings.length,cls:""}].map(s=>(<div className="o-stat" key={s.l}><div className="o-stat-lbl">{s.l}</div><div className={`o-stat-val ${s.cls}`}>{s.v}</div></div>))}
+        {[{l:"Pending",v:pending.length,cls:"gold",id:"pending"},{l:"Confirmed",v:confirmed.length,cls:"",id:"confirmed"},{l:"Declined",v:declined.length,cls:"",id:"declined"},{l:"Total",v:bookings.length,cls:"",id:"all"}].map(s=>(<div className="o-stat" key={s.l} onClick={()=>setTab(s.id)} style={{cursor:"pointer"}}><div className="o-stat-lbl">{s.l}</div><div className={`o-stat-val ${s.cls}`}>{s.v}</div></div>))}
+
         </div>
         <BookingList bookings={list} onRespond={onRespond}/>
       </div>
@@ -399,7 +400,19 @@ function OwnerView({bookings,onRespond,onLogout,userEmail}){
 
 function BookingList({bookings,onRespond}){
   const [busy,setBusy]=useState({})
-  const handle=async(id,dec)=>{setBusy(b=>({...b,[id]:dec}));await onRespond(id,dec);setBusy(b=>{const n={...b};delete n[id];return n})}
+  const handle=async(id,dec)=>{
+    setBusy(b=>({...b,[id]:dec}))
+    const msg=await onRespond(id,dec)
+    setBusy(b=>{const n={...b};delete n[id];return n})
+    if(msg){
+      const booking=bookings.find(b=>b.id===id)
+      const phone=booking?.phone?.replace(/\D/g,"")
+      const email=booking?.email
+      if(phone) window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank")
+      else if(email) window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
+    }
+  }
+
   if(!bookings.length)return(<div className="empty-state"><div className="empty-icon">📭</div><div className="empty-title">Nothing here yet</div><div className="empty-sub">Reservations will appear as clients book</div></div>)
   return(
     <div>
