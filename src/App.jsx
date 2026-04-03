@@ -407,7 +407,8 @@ const handle=(id,dec)=>{
     const msg=dec==="confirm"
       ?`Hi ${booking.name}! Your booking for ${booking.service} on ${showDate(booking.date)} at ${booking.time} has been confirmed. We look forward to seeing you at Elixir Beauty. Please arrive with clean, dry hair. See you soon!`
       :`Hi ${booking.name}, unfortunately the time slot you requested on ${showDate(booking.date)} at ${booking.time} is not available. We apologize for the inconvenience. Please visit our booking page to choose another time. Elixir Beauty`
-    const phone=booking?.phone?.replace(/\D/g,"")
+   let phone=booking?.phone?.replace(/\D/g,"")
+    if(phone&&!phone.startsWith("1")&&phone.length===10) phone="1"+phone
     const email=booking?.email
     if(phone) window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank")
     else if(email) window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
