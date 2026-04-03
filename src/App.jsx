@@ -357,7 +357,8 @@ const submitPin = () => {
         : <OwnerView bookings={bookings} onRespond={respond} />
       }
       {toast && <div className="toast">🔔 {toast}</div>}
-      <button className="portal-btn" onClick={() => setPortal(p => p === "customer" ? "owner" : "customer")}>
+      <button className="portal-btn" onClick= onClick={handleOwnerAccess}
+> setPortal(p => p === "customer" ? "owner" : "customer")}>
         {portal === "customer" ? "🔑 Owner" : "🌸 Booking Page"}
         {portal === "customer" && pending.length > 0 && (
           <span style={{background:"var(--gold)",color:"#fff",borderRadius:20,padding:"1px 7px",fontSize:10}}>{pending.length}</span>
