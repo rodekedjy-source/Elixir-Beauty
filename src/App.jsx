@@ -400,18 +400,22 @@ function OwnerView({bookings,onRespond,onLogout,userEmail}){
 
 function BookingList({bookings,onRespond}){
   const [busy,setBusy]=useState({})
-  const handle=async(id,dec)=>{
+const handle=(id,dec)=>{
+    const booking=bookings.find(b=>b.id===id)
+    const months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+    const showDate=iso=>{if(!iso)return iso;const[y,m,d]=iso.split("-");return`${months[+m-1]} ${+d}, ${y}`}
+    const msg=dec==="confirm"
+      ?`Hi ${booking.name}! Your booking for ${booking.service} on ${showDate(booking.date)} at ${booking.time} has been confirmed. We look forward to seeing you at Elixir Beauty. Please arrive with clean, dry hair. See you soon!`
+      :`Hi ${booking.name}, unfortunately the time slot you requested on ${showDate(booking.date)} at ${booking.time} is not available. We apologize for the inconvenience. Please visit our booking page to choose another time. Elixir Beauty`
+    const phone=booking?.phone?.replace(/\D/g,"")
+    const email=booking?.email
+    if(phone) window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank")
+    else if(email) window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
     setBusy(b=>({...b,[id]:dec}))
-    const msg=await onRespond(id,dec)
-    setBusy(b=>{const n={...b};delete n[id];return n})
-    if(msg){
-      const booking=bookings.find(b=>b.id===id)
-      const phone=booking?.phone?.replace(/\D/g,"")
-      const email=booking?.email
-      if(phone) window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank")
-      else if(email) window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
-    }
+    onRespond(id,dec)
+    setTimeout(()=>setBusy(b=>{const n={...b};delete n[id];return n}),2000)
   }
+
 
   if(!bookings.length)return(<div className="empty-state"><div className="empty-icon">📭</div><div className="empty-title">Nothing here yet</div><div className="empty-sub">Reservations will appear as clients book</div></div>)
   return(
