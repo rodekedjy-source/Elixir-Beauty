@@ -330,6 +330,24 @@ export default function App() {
   )
 
   const pending = bookings.filter(b => b.status === "pending")
+  const [pinInput, setPinInput] = useState("")
+const [pinError, setPinError] = useState(false)
+const [showPin, setShowPin] = useState(false)
+const OWNER_PIN = "0000"
+
+const handleOwnerAccess = () => {
+  if (portal === "owner") { setPortal("customer"); return; }
+  setShowPin(true)
+}
+
+const submitPin = () => {
+  if (pinInput === OWNER_PIN) {
+    setPortal("owner"); setShowPin(false); setPinInput(""); setPinError(false)
+  } else {
+    setPinError(true); setPinInput("")
+  }
+}
+
 
   return (
     <>
