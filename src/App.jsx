@@ -125,6 +125,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .toast{position:fixed;top:20px;right:20px;z-index:999;background:var(--plum);color:var(--cream);border-radius:14px;padding:14px 20px;font-size:13px;box-shadow:0 8px 32px #1C0F2E40;animation:fadeUp .4s ease;display:flex;align-items:center;gap:10px;}
 .dots span{display:inline-block;width:7px;height:7px;background:var(--gold);border-radius:50%;margin:0 2px;animation:dot 1.2s infinite;}
 .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+.login-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--plum);}
+.login-card{background:var(--cream);border-radius:20px;padding:44px 36px;width:360px;text-align:center;box-shadow:0 20px 60px #1C0F2E50;}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.login-sub{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
+.login-err{color:var(--red);font-size:12px;margin-bottom:12px;}
 .empty-state{text-align:center;padding:56px 20px;}
 .empty-icon{font-size:42px;margin-bottom:14px;}
 .empty-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);margin-bottom:7px;}
@@ -152,17 +157,29 @@ const TIME_SLOTS=["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00",
 const toISO=(y,m,d)=>`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`
 const todayISO=()=>{const t=new Date();return toISO(t.getFullYear(),t.getMonth(),t.getDate())}
 const showDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return`${MONTHS[+m-1]} ${+d}, ${y}`}
-const isOwnerPage=()=>typeof window!=="undefined"&&window.location.pathname.startsWith("/owner")
 
 export default function App(){
   const [bookings,setBookings]=useState([])
   const [ready,setReady]=useState(false)
   const [toast,setToast]=useState(null)
-  const [pinOk,setPinOk]=useState(false)
-  const [pinInput,setPinInput]=useState("")
-  const [pinError,setPinError]=useState(false)
-  const OWNER_PIN="0000"
-  const ownerPage=isOwnerPage()
+  const [user,setUser]=useState(null)
+  const [authReady,setAuthReady]=useState(false)
+  const [loginEmail,setLoginEmail]=useState("")
+  const [loginPass,setLoginPass]=useState("")
+  const [loginErr,setLoginErr]=useState("")
+  const [loginBusy,setLoginBusy]=useState(false)
+  const [showLogin,setShowLogin]=useState(false)
+
+  useEffect(()=>{
+    supabase.auth.getSession().then(({data:{session}})=>{
+      setUser(session?.user||null)
+      setAuthReady(true)
+    })
+    const{data:{subscription}}=supabase.auth.onAuthStateChange((_,session)=>{
+      setUser(session?.user||null)
+    })
+    return()=>subscription.unsubscribe()
+  },[])
 
   const fetchBookings=useCallback(async()=>{
     const{data,error}=await supabase.from("bookings").select("*").order("created_at",{ascending:false})
@@ -176,13 +193,22 @@ export default function App(){
     const channel=supabase.channel("bookings-live")
       .on("postgres_changes",{event:"*",schema:"public",table:"bookings"},payload=>{
         fetchBookings()
-        if(payload.eventType==="INSERT"&&ownerPage&&pinOk){
-          setToast("New booking received!")
+        if(payload.eventType==="INSERT"&&user){
+          setToast(`New booking from ${payload.new.name}!`)
           setTimeout(()=>setToast(null),4000)
         }
       }).subscribe()
     return()=>supabase.removeChannel(channel)
-  },[fetchBookings,ownerPage,pinOk])
+  },[fetchBookings,user])
+
+  const login=async()=>{
+    setLoginBusy(true);setLoginErr("")
+    const{error}=await supabase.auth.signInWithPassword({email:loginEmail,password:loginPass})
+    if(error){setLoginErr("Wrong email or password");setLoginBusy(false)}
+    else{setShowLogin(false);setLoginBusy(false)}
+  }
+
+  const logout=async()=>{ await supabase.auth.signOut() }
 
   const addBooking=async(b)=>{
     const{error}=await supabase.from("bookings").insert([{
@@ -219,40 +245,14 @@ export default function App(){
     await fetchBookings()
   }
 
-  if(!ready)return(<div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh"}}><div className="dots"><span/><span/><span/></div></div>)
+  if(!authReady||!ready)return(<div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh"}}><div className="dots"><span/><span/><span/></div></div>)
 
-  if(ownerPage){
-    if(!pinOk){
-      return(
-        <>
-          <style>{FONT+CSS}</style>
-          <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"var(--plum)"}}>
-            <div style={{background:"var(--cream)",borderRadius:20,padding:"44px 36px",width:340,textAlign:"center",boxShadow:"0 20px 60px #1C0F2E50"}}>
-              <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:32,fontWeight:700,color:"var(--ink)",marginBottom:4}}>Elixir Beauty</div>
-              <div style={{fontSize:11,color:"var(--muted)",letterSpacing:2,textTransform:"uppercase",marginBottom:28}}>Owner Dashboard</div>
-              <div style={{fontSize:13,color:"var(--muted)",marginBottom:16}}>Enter your PIN to access</div>
-              <input type="password" maxLength={4} value={pinInput}
-                onChange={e=>{setPinInput(e.target.value);setPinError(false)}}
-                onKeyDown={e=>{if(e.key==="Enter"){if(pinInput===OWNER_PIN){setPinOk(true);setPinInput("")}else{setPinError(true);setPinInput("")}}}}
-                placeholder="0000"
-                style={{width:"100%",textAlign:"center",fontSize:32,letterSpacing:10,padding:"14px",border:pinError?"2px solid #B83232":"2px solid var(--border)",borderRadius:12,outline:"none",fontFamily:"DM Sans,sans-serif",background:"var(--cream)",marginBottom:8}}
-                autoFocus
-              />
-              {pinError&&<div style={{color:"var(--red)",fontSize:12,marginBottom:8}}>Wrong PIN — try again</div>}
-              <button onClick={()=>{if(pinInput===OWNER_PIN){setPinOk(true);setPinInput("")}else{setPinError(true);setPinInput("")}}}
-                style={{width:"100%",marginTop:12,padding:"13px",borderRadius:12,border:"none",background:"var(--ink)",color:"var(--cream)",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:14,fontWeight:600}}>
-                Enter
-              </button>
-            </div>
-          </div>
-        </>
-      )
-    }
+  if(user){
     return(
       <>
         <style>{FONT+CSS}</style>
-        {toast&&<div className="toast">{toast}</div>}
-        <OwnerView bookings={bookings} onRespond={respond}/>
+        {toast&&<div className="toast">🔔 {toast}</div>}
+        <OwnerView bookings={bookings} onRespond={respond} onLogout={logout} userEmail={user.email}/>
       </>
     )
   }
@@ -260,11 +260,32 @@ export default function App(){
   return(
     <>
       <style>{FONT+CSS}</style>
-      <CustomerView onBook={addBooking} bookedSlots={bookings.filter(b=>b.status!=="declined").map(b=>({date:b.date,time:b.time}))}/>
+      {showLogin&&(
+        <div style={{position:"fixed",inset:0,background:"#1C0F2ECC",display:"flex",alignItems:"center",justifyContent:"center",zIndex:1000,backdropFilter:"blur(6px)"}}>
+          <div className="login-card">
+            <div className="login-title">Elixir Beauty</div>
+            <div className="login-sub">Owner Access</div>
+            {loginErr&&<div className="login-err">{loginErr}</div>}
+            <div className="f-group" style={{marginBottom:14,textAlign:"left"}}>
+              <label className="f-label">Email</label>
+              <input className="f-input" type="email" value={loginEmail} onChange={e=>setLoginEmail(e.target.value)} placeholder="owner@email.com"/>
+            </div>
+            <div className="f-group" style={{marginBottom:20,textAlign:"left"}}>
+              <label className="f-label">Password</label>
+              <input className="f-input" type="password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} onKeyDown={e=>e.key==="Enter"&&login()} placeholder="••••••••"/>
+            </div>
+            <button className="btn btn-ink" style={{width:"100%",justifyContent:"center"}} onClick={login} disabled={loginBusy}>
+              {loginBusy?<span className="dots"><span/><span/><span/></span>:"Sign In"}
+            </button>
+            <button onClick={()=>{setShowLogin(false);setLoginErr("")}} style={{marginTop:12,background:"none",border:"none",color:"var(--muted)",cursor:"pointer",fontSize:13,fontFamily:"DM Sans,sans-serif"}}>Cancel</button>
+          </div>
+        </div>
+      )}
+      <CustomerView onBook={addBooking} bookedSlots={bookings.filter(b=>b.status!=="declined").map(b=>({date:b.date,time:b.time}))} onOwnerClick={()=>setShowLogin(true)}/>
     </>
   )
 }
-function CustomerView({onBook,bookedSlots}){
+function CustomerView({onBook,bookedSlots,onOwnerClick}){
   const [step,setStep]=useState(1)
   const [svc,setSvc]=useState(null)
   const [cal,setCal]=useState(()=>{const t=new Date();return{y:t.getFullYear(),m:t.getMonth()}})
@@ -293,37 +314,8 @@ function CustomerView({onBook,bookedSlots}){
         <div className="hero-sub a3">Braids, twists, locs and more — book your appointment in minutes.</div>
       </div>
       <div className="bk-body">
-        {step<5&&(
-          <div className="steps-bar a4">
-            {[1,2,3,4].map((s,i)=>(
-              <span key={s} style={{display:"contents"}}>
-                <div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>
-                {i<3&&<div className="step-line"/>}
-              </span>
-            ))}
-          </div>
-        )}
-        {step===1&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">Choose your style</div>
-              <div className="card-sub">What are you coming in for?</div>
-              <div className="svc-grid">
-                {SERVICES.map(s=>(
-                  <button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}>
-                    <span className="svc-icon">{s.icon}</span>
-                    <span className="svc-name">{s.name}</span>
-                    <span className="svc-dur">{s.dur}</span>
-                    <span className="svc-price">{s.price}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div style={{display:"flex",justifyContent:"flex-end"}}>
-              <button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>Continue</button>
-            </div>
-          </div>
-        )}
+        {step<5&&(<div className="steps-bar a4">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>)}
+        {step===1&&(<div className="a4"><div className="bk-card"><div className="card-hl">Choose your style</div><div className="card-sub">What are you coming in for?</div><div className="svc-grid">{SERVICES.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}</div></div><div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>Continue</button></div></div>)}
         {step===2&&(
           <div className="a4">
             <div className="bk-card">
@@ -346,14 +338,7 @@ function CustomerView({onBook,bookedSlots}){
                   return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||sun} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
                 })}
               </div>
-              {date&&(
-                <>
-                  <div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>Available times for <strong style={{color:"var(--ink)"}}>{showDate(date)}</strong></div>
-                  <div className="time-grid">
-                    {TIME_SLOTS.map(t=>(<button key={t} className={`time-btn ${time===t?"sel":""} ${bookedTimes.includes(t)?"booked":""}`} disabled={bookedTimes.includes(t)} onClick={()=>setTime(t)}>{t}</button>))}
-                  </div>
-                </>
-              )}
+              {date&&(<><div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>Available times for <strong style={{color:"var(--ink)"}}>{showDate(date)}</strong></div><div className="time-grid">{TIME_SLOTS.map(t=>(<button key={t} className={`time-btn ${time===t?"sel":""} ${bookedTimes.includes(t)?"booked":""}`} disabled={bookedTimes.includes(t)} onClick={()=>setTime(t)}>{t}</button>))}</div></>)}
             </div>
             <div style={{display:"flex",justifyContent:"space-between"}}>
               <button className="btn btn-out" onClick={()=>setStep(1)}>Back</button>
@@ -361,62 +346,18 @@ function CustomerView({onBook,bookedSlots}){
             </div>
           </div>
         )}
-        {step===3&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">Your information</div>
-              <div className="card-sub">So we can reach you with your confirmation</div>
-              <div className="f-grid">
-                <div className="f-group"><label className="f-label">Full Name *</label><input className="f-input" value={form.name} onChange={ff("name")} placeholder="Jane Doe"/></div>
-                <div className="f-group"><label className="f-label">Phone / WhatsApp *</label><input className="f-input" value={form.phone} onChange={ff("phone")} placeholder="+1 (514) 000-0000"/></div>
-              </div>
-              <div className="f-grid">
-                <div className="f-group"><label className="f-label">Email (optional)</label><input className="f-input" value={form.email} onChange={ff("email")} placeholder="jane@email.com"/></div>
-              </div>
-              <div className="f-grid" style={{gridTemplateColumns:"1fr"}}>
-                <div className="f-group"><label className="f-label">Hair notes / Special requests</label><textarea className="f-textarea" value={form.notes} onChange={ff("notes")} placeholder="Hair length, allergies, inspiration, style..."/></div>
-              </div>
-            </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
-              <button className="btn btn-out" onClick={()=>setStep(2)}>Back</button>
-              <button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>Review</button>
-            </div>
-          </div>
-        )}
-        {step===4&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">Confirm your booking</div>
-              <div className="card-sub">Everything look good?</div>
-              {[{l:"Service",v:svc?.name},{l:"Estimate",v:svc?.price},{l:"Duration",v:svc?.dur},{l:"Date",v:showDate(date)},{l:"Time",v:time},{l:"Name",v:form.name},{l:"Phone",v:form.phone},form.email&&{l:"Email",v:form.email},form.notes&&{l:"Notes",v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
-              <div style={{marginTop:20,padding:"14px 16px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>
-                Your request will be sent to Elixir Beauty. You will receive a WhatsApp or email confirmation once approved.
-              </div>
-            </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
-              <button className="btn btn-out" onClick={()=>setStep(3)}>Back</button>
-              <button className="btn btn-gold" disabled={busy} onClick={submit}>
-                {busy?<span className="dots"><span/><span/><span/></span>:"Send Request"}
-              </button>
-            </div>
-          </div>
-        )}
-        {step===5&&(
-          <div className="bk-card a4">
-            <div className="success">
-              <div className="suc-icon">🌿</div>
-              <div className="suc-title">Request received!</div>
-              <div className="suc-sub">Thank you <strong>{form.name}</strong>! Your request for <strong>{svc?.name}</strong> on <strong>{showDate(date)} at {time}</strong> has been sent to Elixir Beauty. You will receive a WhatsApp message once confirmed.</div>
-              <button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>Book another appointment</button>
-            </div>
-          </div>
-        )}
+        {step===3&&(<div className="a4"><div className="bk-card"><div className="card-hl">Your information</div><div className="card-sub">So we can reach you with your confirmation</div><div className="f-grid"><div className="f-group"><label className="f-label">Full Name *</label><input className="f-input" value={form.name} onChange={ff("name")} placeholder="Jane Doe"/></div><div className="f-group"><label className="f-label">Phone / WhatsApp *</label><input className="f-input" value={form.phone} onChange={ff("phone")} placeholder="+1 (514) 000-0000"/></div></div><div className="f-grid"><div className="f-group"><label className="f-label">Email (optional)</label><input className="f-input" value={form.email} onChange={ff("email")} placeholder="jane@email.com"/></div></div><div className="f-grid" style={{gridTemplateColumns:"1fr"}}><div className="f-group"><label className="f-label">Hair notes / Special requests</label><textarea className="f-textarea" value={form.notes} onChange={ff("notes")} placeholder="Hair length, allergies, inspiration, style..."/></div></div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>Back</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>Review</button></div></div>)}
+        {step===4&&(<div className="a4"><div className="bk-card"><div className="card-hl">Confirm your booking</div><div className="card-sub">Everything look good?</div>{[{l:"Service",v:svc?.name},{l:"Estimate",v:svc?.price},{l:"Duration",v:svc?.dur},{l:"Date",v:showDate(date)},{l:"Time",v:time},{l:"Name",v:form.name},{l:"Phone",v:form.phone},form.email&&{l:"Email",v:form.email},form.notes&&{l:"Notes",v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}<div style={{marginTop:20,padding:"14px 16px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>Your request will be sent to Elixir Beauty. You will receive a WhatsApp or email confirmation once approved.</div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>Back</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:"Send Request"}</button></div></div>)}
+        {step===5&&(<div className="bk-card a4"><div className="success"><div className="suc-icon">🌿</div><div className="suc-title">Request received!</div><div className="suc-sub">Thank you <strong>{form.name}</strong>! Your request for <strong>{svc?.name}</strong> on <strong>{showDate(date)} at {time}</strong> has been sent to Elixir Beauty. You will receive a WhatsApp message once confirmed.</div><button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>Book another appointment</button></div></div>)}
+        <div style={{textAlign:"center",marginTop:40}}>
+          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>owner access</button>
+        </div>
       </div>
     </div>
   )
 }
 
-function OwnerView({bookings,onRespond}){
+function OwnerView({bookings,onRespond,onLogout,userEmail}){
   const [tab,setTab]=useState("pending")
   const pending=bookings.filter(b=>b.status==="pending")
   const confirmed=bookings.filter(b=>b.status==="confirmed")
@@ -437,21 +378,18 @@ function OwnerView({bookings,onRespond}){
             </button>
           ))}
         </div>
+        <div style={{padding:"0 24px 24px",borderTop:"1px solid #FFFFFF12",paddingTop:20}}>
+          <div style={{fontSize:11,color:"#9688A4",marginBottom:10,wordBreak:"break-all"}}>{userEmail}</div>
+          <button onClick={onLogout} style={{background:"#FFFFFF12",border:"none",color:"#9688A4",padding:"8px 14px",borderRadius:9,cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,width:"100%"}}>Sign out</button>
+        </div>
       </div>
       <div className="o-main">
         <div className="o-head">
           <div className="o-title">{tab==="pending"?"Pending Requests":tab==="confirmed"?"Confirmed":tab==="declined"?"Declined":"All Reservations"}</div>
-          <div className="o-sub">
-            {tab==="pending"&&`${pending.length} request${pending.length!==1?"s":""} waiting`}
-            {tab==="confirmed"&&`${confirmed.length} confirmed`}
-            {tab==="declined"&&`${declined.length} declined`}
-            {tab==="all"&&`${bookings.length} total`}
-          </div>
+          <div className="o-sub">{tab==="pending"&&`${pending.length} request${pending.length!==1?"s":""} waiting`}{tab==="confirmed"&&`${confirmed.length} confirmed`}{tab==="declined"&&`${declined.length} declined`}{tab==="all"&&`${bookings.length} total`}</div>
         </div>
         <div className="o-stats">
-          {[{l:"Pending",v:pending.length,cls:"gold"},{l:"Confirmed",v:confirmed.length,cls:""},{l:"Declined",v:declined.length,cls:""},{l:"Total",v:bookings.length,cls:""}].map(s=>(
-            <div className="o-stat" key={s.l}><div className="o-stat-lbl">{s.l}</div><div className={`o-stat-val ${s.cls}`}>{s.v}</div></div>
-          ))}
+          {[{l:"Pending",v:pending.length,cls:"gold"},{l:"Confirmed",v:confirmed.length,cls:""},{l:"Declined",v:declined.length,cls:""},{l:"Total",v:bookings.length,cls:""}].map(s=>(<div className="o-stat" key={s.l}><div className="o-stat-lbl">{s.l}</div><div className={`o-stat-val ${s.cls}`}>{s.v}</div></div>))}
         </div>
         <BookingList bookings={list} onRespond={onRespond}/>
       </div>
@@ -461,11 +399,7 @@ function OwnerView({bookings,onRespond}){
 
 function BookingList({bookings,onRespond}){
   const [busy,setBusy]=useState({})
-  const handle=async(id,dec)=>{
-    setBusy(b=>({...b,[id]:dec}))
-    await onRespond(id,dec)
-    setBusy(b=>{const n={...b};delete n[id];return n})
-  }
+  const handle=async(id,dec)=>{setBusy(b=>({...b,[id]:dec}));await onRespond(id,dec);setBusy(b=>{const n={...b};delete n[id];return n})}
   if(!bookings.length)return(<div className="empty-state"><div className="empty-icon">📭</div><div className="empty-title">Nothing here yet</div><div className="empty-sub">Reservations will appear as clients book</div></div>)
   return(
     <div>
@@ -475,45 +409,16 @@ function BookingList({bookings,onRespond}){
             <div className="res-av">{b.name?.[0]?.toUpperCase()||"?"}</div>
             <div className="res-info">
               <div className="res-name">{b.name}</div>
-              <div className="res-meta">
-                {b.service}<br/>
-                {showDate(b.date)} at {b.time}<br/>
-                {b.phone&&`Phone: ${b.phone}`}{b.email&&`  Email: ${b.email}`}
-                {b.notes&&<><br/>Notes: {b.notes}</>}
-              </div>
+              <div className="res-meta">{b.service}<br/>{showDate(b.date)} at {b.time}<br/>{b.phone&&`Phone: ${b.phone}`}{b.email&&`  Email: ${b.email}`}{b.notes&&<><br/>Notes: {b.notes}</>}</div>
             </div>
             <div className="res-right">
               <span className={`chip chip-${b.status}`}>{b.status}</span>
               <span style={{fontSize:10,color:"var(--muted)"}}>{new Date(b.created_at).toLocaleDateString()}</span>
             </div>
           </div>
-          {b.status==="pending"&&(
-            <div className="res-actions">
-              <button className="btn btn-green btn-sm" disabled={!!busy[b.id]} onClick={()=>handle(b.id,"confirm")}>
-                {busy[b.id]==="confirm"?<span className="dots"><span/><span/><span/></span>:"Confirm"}
-              </button>
-              <button className="btn btn-red btn-sm" disabled={!!busy[b.id]} onClick={()=>handle(b.id,"decline")}>
-                {busy[b.id]==="decline"?<span className="dots"><span/><span/><span/></span>:"Decline"}
-              </button>
-            </div>
-          )}
-          {b.ai_message==="generating"&&(
-            <div className="ai-box" style={{textAlign:"center",padding:"22px"}}>
-              <div className="dots"><span/><span/><span/></div>
-              <div style={{fontSize:12,color:"var(--muted)",marginTop:9}}>Writing message...</div>
-            </div>
-          )}
-          {b.ai_message&&b.ai_message!=="generating"&&(
-            <div className="ai-box">
-              <div className="ai-lbl"><span className="ai-dot"/> Message ready — send in one click</div>
-              <div className="ai-text">{b.ai_message}</div>
-              <div className="send-btns">
-                {b.phone&&(<a className="btn-wa" href={`https://wa.me/${b.phone.replace(/\D/g,"")}?text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">Send on WhatsApp</a>)}
-                {b.email&&(<a className="btn-em" href={`mailto:${b.email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(b.ai_message)}`}>Send by Email</a>)}
-                <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
-              </div>
-            </div>
-          )}
+          {b.status==="pending"&&(<div className="res-actions"><button className="btn btn-green btn-sm" disabled={!!busy[b.id]} onClick={()=>handle(b.id,"confirm")}>{busy[b.id]==="confirm"?<span className="dots"><span/><span/><span/></span>:"Confirm"}</button><button className="btn btn-red btn-sm" disabled={!!busy[b.id]} onClick={()=>handle(b.id,"decline")}>{busy[b.id]==="decline"?<span className="dots"><span/><span/><span/></span>:"Decline"}</button></div>)}
+          {b.ai_message==="generating"&&(<div className="ai-box" style={{textAlign:"center",padding:"22px"}}><div className="dots"><span/><span/><span/></div><div style={{fontSize:12,color:"var(--muted)",marginTop:9}}>Writing message...</div></div>)}
+          {b.ai_message&&b.ai_message!=="generating"&&(<div className="ai-box"><div className="ai-lbl"><span className="ai-dot"/> Message ready — send in one click</div><div className="ai-text">{b.ai_message}</div><div className="send-btns">{b.phone&&(<a className="btn-wa" href={`https://wa.me/${b.phone.replace(/\D/g,"")}?text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">Send on WhatsApp</a>)}{b.email&&(<a className="btn-em" href={`mailto:${b.email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(b.ai_message)}`}>Send by Email</a>)}<button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button></div></div>)}
         </div>
       ))}
     </div>
