@@ -688,8 +688,8 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
         </div>
         <div style={{display:"flex",alignItems:"center",gap:8}}>
           <div style={{display:"flex",gap:4}}>
-            <button onClick={()=>setOLang("en")} style={{background:oLang==="en"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 11px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>EN</button>
-            <button onClick={()=>setOLang("fr")} style={{background:oLang==="fr"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 11px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>FR</button>
+           <button onClick={()=>setOLang("en")} style={{background:"transparent",border:"none",padding:"4px 8px",color:oLang==="en"?"#C8973A":"#FFFFFF50",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:10,fontWeight:600,letterSpacing:"1.5px"}}>EN</button>
+<button onClick={()=>setOLang("fr")} style={{background:"transparent",border:"none",padding:"4px 8px",color:oLang==="fr"?"#C8973A":"#FFFFFF50",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:10,fontWeight:600,letterSpacing:"1.5px"}}>FR</button>
           </div>
           <button onClick={()=>setMenuOpen(m=>!m)} style={{background:"#FFFFFF18",border:"1px solid #FFFFFF30",color:"#FDF8F2",padding:"7px 12px",borderRadius:8,cursor:"pointer",fontSize:16,lineHeight:1}}>☰</button>
         </div>
