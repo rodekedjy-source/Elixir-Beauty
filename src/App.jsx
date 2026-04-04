@@ -341,6 +341,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const [busy,setBusy]=useState(false)
   const [showGallery,setShowGallery]=useState(false)
   const [menuOpen,setMenuOpen]=useState(false)
+  const [lightbox,setLightbox]=useState(null)
   const MONTHS=lang==="fr"?MONTHS_FR:MONTHS_EN
   const bookedTimes=bookings.filter(b=>b.date===date&&b.status!=="declined").map(b=>b.time)
   const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
@@ -356,7 +357,6 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null});setBooking(false)}
 
   if(showGallery){
-  const [lightbox,setLightbox]=useState(null)
   const prev=()=>setLightbox(i=>(i-1+gallery.length)%gallery.length)
   const next=()=>setLightbox(i=>(i+1)%gallery.length)
   return(
