@@ -563,43 +563,47 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
           </div>
         )}
 
-        <Accordion title={oLang==="fr"?"Mes Réservations":"My Bookings"} badge={0}>
-          {[
-            {label:oLang==="fr"?"✅ Confirmées":"✅ Confirmed",list:confirmed},
-            {label:oLang==="fr"?"✕ Déclinées":"✕ Declined",list:declined},
-            {label:oLang==="fr"?"📋 Historique":"📋 All History",list:bookings},
-          ].map(section=>(
-            <div key={section.label} style={{marginBottom:8}}>
-              <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",padding:"8px 4px 6px",display:"flex",justifyContent:"space-between"}}>
-                <span>{section.label}</span>
-                <span>{section.list.length}</span>
-              </div>
-              {section.list.length===0?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune réservation":"No bookings"}</div>:
-                section.list.map(b=>(
-                  <div key={b.id} style={{background:"var(--cream)",borderRadius:10,padding:"12px 14px",marginBottom:6,border:"1px solid var(--border)"}}>
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                      <div>
-                        <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
-                        <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} at {b.time}</div>
-                        {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
-                      </div>
-                      <span className={`chip chip-${b.status}`}>{b.status}</span>
-                    </div>
-                    {b.ai_message&&b.ai_message!=="generating"&&(
-                      <div style={{marginTop:8,paddingTop:8,borderTop:"1px solid var(--border)"}}>
-                        <div style={{fontSize:11,color:"var(--muted)",marginBottom:6}}>{b.ai_message}</div>
-                        <div className="send-btns">
-                          {b.phone&&<a className="btn-wa" href={`https://api.whatsapp.com/send?phone=${b.phone.replace(/\D/g,"")}&text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">WhatsApp</a>}
-                          <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))
-              }
+       <Accordion title={oLang==="fr"?"Mes Réservations":"My Bookings"} badge={0}>
+  <Accordion title={oLang==="fr"?`Confirmées (${confirmed.length})`:`Confirmed (${confirmed.length})`} badge={0}>
+    {confirmed.length===0
+      ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
+      :confirmed.map(b=>(
+        <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div>
+              <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
+              <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
+              {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
             </div>
-          ))}
-        </Accordion>
+            <span className="chip chip-confirmed">✓</span>
+          </div>
+          {b.ai_message&&<div style={{marginTop:8,display:"flex",gap:6}}>
+            {b.phone&&<a className="btn-wa" style={{fontSize:10,padding:"4px 10px"}} href={`https://api.whatsapp.com/send?phone=${b.phone.replace(/\D/g,"")}&text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+            <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
+          </div>}
+        </div>
+      ))
+    }
+  </Accordion>
+  <Accordion title={oLang==="fr"?`Déclinées (${declined.length})`:`Declined (${declined.length})`} badge={0}>
+    {declined.length===0
+      ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
+      :declined.map(b=>(
+        <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div>
+              <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
+              <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
+              {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
+            </div>
+            <span className="chip chip-declined">✕</span>
+          </div>
+        </div>
+      ))
+    }
+  </Accordion>
+</Accordion>
+
 
         <Accordion title={oLang==="fr"?"Disponibilité":"Availability"} badge={0}>
           <AvailView avail={avail} onSave={onSaveAvail} lang={oLang}/>
