@@ -676,10 +676,10 @@ const [oLang,setOLang]=useState("en")
           <>
             <div className="o-stats-grid">
               {[
-                {l:"Pending",v:pending.length,cls:"gold",id:"pending"},
-                {l:"Confirmed",v:confirmed.length,cls:"",id:"confirmed"},
-                {l:"Declined",v:declined.length,cls:"",id:"declined"},
-                {l:"All",v:bookings.length,cls:"",id:"all"},
+  {l:oLang==="fr"?"En attente":"Pending",v:pending.length,cls:"gold",id:"pending"},
+  {l:oLang==="fr"?"Confirmés":"Confirmed",v:confirmed.length,cls:"",id:"confirmed"},
+  {l:oLang==="fr"?"Déclinés":"Declined",v:declined.length,cls:"",id:"declined"},
+  {l:oLang==="fr"?"Tous":"All",v:bookings.length,cls:"",id:"all"},
               ].map(s=>(
                 <div key={s.l} className="o-stat" onClick={()=>setView(s.id)}>
                   <div className="o-stat-lbl">{s.l}</div>
@@ -690,11 +690,11 @@ const [oLang,setOLang]=useState("en")
             <div className="o-nav-grid">
               <button className="o-nav-btn" onClick={()=>setView("availability")}>
                 <span className="o-nav-icon">📅</span>
-                <div className="o-nav-label">My Availability</div>
+               <div className="o-nav-label">{oLang==="fr"?"Disponibilité":"My Availability"}</div>
               </button>
               <button className="o-nav-btn" onClick={()=>setView("gallery")}>
                 <span className="o-nav-icon">🖼️</span>
-                <div className="o-nav-label">My Gallery</div>
+               <div className="o-nav-label">{oLang==="fr"?"Galerie":"My Gallery"}</div>
               </button>
             </div>
             {pending.length>0&&(
