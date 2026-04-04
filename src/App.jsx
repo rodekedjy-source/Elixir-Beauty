@@ -516,9 +516,11 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
           <div className="hero-line a3"/>
           {profile.bio&&<div className="hero-sub a3">{profile.bio}</div>}
           {!profile.bio&&<div className="hero-sub a3">{t.heroSub}</div>}
-          <button className="book-now-btn a4" onClick={startBooking}>
-            ✨ {t.bookNow}
-          </button>
+          <div style={{marginTop:20,position:"relative"}}>
+            <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>
+              {t.viewWork}
+            </button>
+          </div>
           <div style={{marginTop:20,position:"relative"}}>
             <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>
               {t.viewWork}
@@ -558,6 +560,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
               )}
             </div>
             <div style={{textAlign:"center",marginTop:16}}>
+              <button onClick={startBooking} style={{display:"block",margin:"0 auto 20px",background:"var(--plum)",color:"var(--gold)",border:"2px solid var(--gold)",padding:"14px 36px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:15,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite"}}>✨ {t.bookNow}</button>
               <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#FFFFFF18",fontSize:10,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
             </div>
             <div className="footer-copy">© {new Date().getFullYear()} {profile.business_name||"Elixir Beauty"}</div>
