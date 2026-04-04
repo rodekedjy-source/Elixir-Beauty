@@ -512,7 +512,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
           <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
           <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
           <div className="hero-eyebrow a1">{t.eyebrow}</div>
-          <div className="hero-title a2">{profile.business_name||"Elixir"} <em>Beauty</em></div>
+          <div className="hero-title a2">Elixir <em>Beauty</em></div>
           <div className="hero-line a3"/>
           {profile.bio&&<div className="hero-sub a3">{profile.bio}</div>}
           {!profile.bio&&<div className="hero-sub a3">{t.heroSub}</div>}
@@ -521,11 +521,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
               {t.viewWork}
             </button>
           </div>
-          <div style={{marginTop:20,position:"relative"}}>
-            <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>
-              {t.viewWork}
-            </button>
-          </div>
+         
         </div>
 
         {(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
@@ -559,8 +555,8 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
                 </a>
               )}
             </div>
-            <div style={{textAlign:"center",marginTop:16}}>
-              <button onClick={startBooking} style={{display:"block",margin:"0 auto 20px",background:"var(--plum)",color:"var(--gold)",border:"2px solid var(--gold)",padding:"14px 36px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:15,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite"}}>✨ {t.bookNow}</button>
+            <div style={{textAlign:"center",padding:"60px 20px 20px"}}>
+  <button onClick={startBooking} style={{display:"block",margin:"0 auto 32px",background:"var(--plum)",color:"var(--gold)",border:"2px solid var(--gold)",padding:"16px 44px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:16,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite"}}>✨ {t.bookNow}</button>
               <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#FFFFFF18",fontSize:10,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
             </div>
             <div className="footer-copy">© {new Date().getFullYear()} {profile.business_name||"Elixir Beauty"}</div>
