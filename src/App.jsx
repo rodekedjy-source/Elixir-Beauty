@@ -355,23 +355,39 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const submit=async()=>{setBusy(true);const ok=await onBook({...form,phone:form.phone?"+1"+form.phone:"",service:svc.name,serviceId:svc.id,date,time});setBusy(false);if(ok)setStep(5)}
   const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null});setBooking(false)}
 
-  if(showGallery)return(
+  if(showGallery){
+  const [lightbox,setLightbox]=useState(null)
+  const prev=()=>setLightbox(i=>(i-1+gallery.length)%gallery.length)
+  const next=()=>setLightbox(i=>(i+1)%gallery.length)
+  return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
+      {lightbox!==null&&(
+        <div style={{position:"fixed",inset:0,background:"#000000EE",zIndex:500,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setLightbox(null)}>
+          <button onClick={e=>{e.stopPropagation();prev()}} style={{position:"absolute",left:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>‹</button>
+          <img src={gallery[lightbox]?.image_data} alt="work" style={{maxWidth:"90vw",maxHeight:"85vh",objectFit:"contain",borderRadius:12}} onClick={e=>e.stopPropagation()}/>
+          <button onClick={e=>{e.stopPropagation();next()}} style={{position:"absolute",right:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>›</button>
+          <button onClick={()=>setLightbox(null)} style={{position:"absolute",top:16,right:16,background:"#FFFFFF20",border:"none",color:"#fff",width:36,height:36,borderRadius:"50%",fontSize:18,cursor:"pointer"}}>✕</button>
+          <div style={{position:"absolute",bottom:16,color:"#FFFFFF80",fontSize:12}}>{lightbox+1} / {gallery.length}</div>
+        </div>
+      )}
       <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,position:"sticky",top:0,zIndex:100}}>
         <button onClick={()=>setShowGallery(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:8,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
-        <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2"}}>{t.ourWork}</span>
+        <span onClick={()=>setShowGallery(false)} style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2",cursor:"pointer"}}>{t.ourWork}</span>
       </div>
       <div style={{padding:"20px 16px",maxWidth:740,margin:"0 auto"}}>
-        {gallery.length===0?<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>:<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img"/>))}</div>}
+        {gallery.length===0?<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>
+        :<div className="gallery-grid">{gallery.map((g,i)=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img" style={{cursor:"pointer"}} onClick={()=>setLightbox(i)}/>))}</div>}
       </div>
     </div>
   )
+}
+
 
   if(booking)return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
       <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,position:"sticky",top:0,zIndex:100}}>
         <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:8,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
-        <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2"}}>Elixir Beauty</span>
+      <span onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2",cursor:"pointer"}}>Elixir Beauty</span>
         <div style={{marginLeft:"auto",display:"flex",gap:2}}>
           <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
           <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
