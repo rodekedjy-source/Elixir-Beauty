@@ -104,15 +104,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .lang-btn.active{background:var(--gold);border-color:var(--gold);}
 .book-now-btn{background:var(--plum);color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;margin-top:8px;}
 .book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
-.bk-body{max-width:740px;margin:-40px auto 0;padding:0 20px 80px;}
-.steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:6px;width:fit-content;margin:0 auto 36px;box-shadow:0 2px 16px #1C0F2E0A;}
+.bk-body{max-width:740px;margin:0 auto;padding:0 16px 60px;}
+.steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:4px;width:fit-content;margin:0 auto 20px;box-shadow:0 2px 16px #1C0F2E0A;}
 .step-node{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;transition:all .3s;}
 .step-node.active{background:var(--ink);color:var(--cream);}.step-node.done{background:var(--gold);color:#fff;}
 .step-node.idle{background:transparent;color:var(--muted);}.step-line{width:32px;height:1px;background:var(--border);}
 .bk-card{background:var(--card);border-radius:22px;border:1px solid var(--border);box-shadow:0 4px 28px #1C0F2E08;padding:32px;margin-bottom:16px;}
 .card-hl{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--ink);margin-bottom:5px;}
 .card-sub{font-size:13px;color:var(--muted);margin-bottom:26px;}
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .svc-btn{border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;cursor:pointer;background:transparent;text-align:left;width:100%;transition:all .2s;display:flex;flex-direction:column;gap:4px;}
 .svc-btn:hover{border-color:var(--gold);background:var(--gold-pale);}
 .svc-btn.sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 0 0 3px #C8973A18;}
@@ -424,7 +424,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   if(booking){
     return(
       <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-        <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12}}>
+        <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,position:"sticky",top:0,zIndex:100}}>
           <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
           <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:17,color:"#FDF8F2"}}>Elixir Beauty</span>
 
