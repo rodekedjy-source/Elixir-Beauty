@@ -556,23 +556,13 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
               )}
             </div>
           <div style={{textAlign:"center",padding:"60px 20px 40px",display:"flex",flexDirection:"column",alignItems:"center",gap:20}}>
-  <button onClick={startBooking} style={{background:"#1C0F2E",color:"#C8973A",border:"2.5px solid #C8973A",padding:"18px 48px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:17,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite",boxShadow:"0 8px 32px rgba(200,151,58,0.3)"}}>✨ {t.bookNow}</button>
-  <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#D0C4B8",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
-</div>
-
-  <button onClick={startBooking} style={{display:"block",margin:"0 auto 32px",background:"#2D1B3D",color:"#C8973A",border:"2px solid #C8973A",padding:"16px 44px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:16,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite",boxShadow:"0 4px 24px #2D1B3D40"}}>✨ {t.bookNow}</button>
-              <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#FFFFFF18",fontSize:10,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
-            </div>
-            <div className="footer-copy">© {new Date().getFullYear()} {profile.business_name||"Elixir Beauty"}</div>
-          </div>
-        )}
-
-        {!(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
-          <div style={{textAlign:"center",padding:"40px 20px"}}>
-            <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
-          </div>
-        )}
+          <button onClick={startBooking} style={{background:"#1C0F2E",color:"#C8973A",border:"2.5px solid #C8973A",padding:"18px 48px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:17,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite",boxShadow:"0 8px 32px rgba(200,151,58,0.3)"}}>✨ {t.bookNow}</button>
+          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#D0C4B8",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+        </div>
       </div>
+    )
+  }
+
     )
   }
 
