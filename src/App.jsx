@@ -353,7 +353,8 @@ function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
   if(showGallery){
     return(
       <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-        <div style={{background:var(--plum),padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
+        <div style={{background:"var(--plum)",padding:"16px 20px"
+,display:"flex",alignItems:"center",gap:12}}>
           <button onClick={()=>setShowGallery(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← Back</button>
           <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>Our Work</span>
         </div>
