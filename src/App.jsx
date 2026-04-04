@@ -607,6 +607,8 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick
 }
 function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg}){
   const [view,setView]=useState("home")
+  const [menuOpen,setMenuOpen]=useState(false)
+const [oLang,setOLang]=useState("en")
   const pending=bookings.filter(b=>b.status==="pending")
   const confirmed=bookings.filter(b=>b.status==="confirmed")
   const declined=bookings.filter(b=>b.status==="declined")
@@ -626,15 +628,43 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
     if(view==="gallery")return"My Gallery"
     return"Dashboard"
   }
-  return(
+ return(
     <div className="o-shell">
       <div className="o-header">
         <div>
           <div className="o-header-title">Elixir Beauty</div>
           <div className="o-header-email">{userEmail}</div>
         </div>
-        <button onClick={onLogout} style={{background:"#FFFFFF18",border:"none",color:"#FDF8F2",padding:"8px 16px",borderRadius:9,cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>Sign out</button>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <div style={{display:"flex",gap:4}}>
+            <button onClick={()=>setOLang("en")} style={{background:oLang==="en"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>EN</button>
+            <button onClick={()=>setOLang("fr")} style={{background:oLang==="fr"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>FR</button>
+          </div>
+          <button onClick={()=>setMenuOpen(m=>!m)} style={{background:"#FFFFFF18",border:"none",color:"#FDF8F2",padding:"8px 14px",borderRadius:9,cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:18,lineHeight:1}}>☰</button>
+        </div>
       </div>
+      {menuOpen&&(
+        <div style={{position:"fixed",inset:0,zIndex:200}} onClick={()=>setMenuOpen(false)}>
+          <div style={{position:"absolute",top:64,right:0,background:"var(--plum)",width:220,borderRadius:"0 0 0 16px",padding:"12px 0",boxShadow:"0 8px 32px #1C0F2E40"}} onClick={e=>e.stopPropagation()}>
+            {[
+              {id:"pending",icon:"🔔",label:oLang==="fr"?"En attente":"Pending"},
+              {id:"confirmed",icon:"✅",label:oLang==="fr"?"Confirmés":"Confirmed"},
+              {id:"declined",icon:"✕",label:oLang==="fr"?"Déclinés":"Declined"},
+              {id:"all",icon:"📋",label:oLang==="fr"?"Tous":"All"},
+              {id:"availability",icon:"📅",label:oLang==="fr"?"Disponibilité":"Availability"},
+              {id:"gallery",icon:"🖼️",label:oLang==="fr"?"Galerie":"Gallery"},
+            ].map(n=>(
+              <button key={n.id} onClick={()=>{setView(n.id);setMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",color:view===n.id?"var(--gold-lt)":"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,textAlign:"left"}}>
+                <span>{n.icon}</span>{n.label}
+              </button>
+            ))}
+            <div style={{borderTop:"1px solid #FFFFFF12",margin:"8px 0"}}/>
+            <button onClick={onLogout} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",color:"#E8584A",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,textAlign:"left"}}>
+              <span>🚪</span>{oLang==="fr"?"Se déconnecter":"Sign out"}
+            </button>
+          </div>
+        </div>
+      )}
       {view!=="home"&&(
         <div className="detail-header">
           <button className="detail-back" onClick={()=>setView("home")}>← Home</button>
