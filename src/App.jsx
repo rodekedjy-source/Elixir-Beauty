@@ -1,6 +1,106 @@
 import { useState, useEffect, useCallback } from "react"
 import { supabase } from "./supabase.js"
 
+const FR = {
+  eyebrow: "Réservation en ligne",
+  heroSub: "Tresses, twists, locs et plus — réservez votre rendez-vous en quelques minutes.",
+  viewWork: "Voir nos créations ✨",
+  chooseStyle: "Choisissez votre style",
+  chooseStyleSub: "Pour quoi venez-vous ?",
+  pickDate: "Choisissez une date et heure",
+  pickDateSub: "Fermé le dimanche",
+  availTimes: "Heures disponibles pour",
+  notAvail: "Pas disponible ce jour — choisissez une autre date",
+  yourInfo: "Vos informations",
+  yourInfoSub: "Pour vous contacter avec votre confirmation",
+  fullName: "Nom complet *",
+  phone: "Téléphone / WhatsApp *",
+  email: "Courriel (optionnel)",
+  notes: "Notes / Demandes spéciales",
+  notesPlaceholder: "Longueur des cheveux, allergies, inspiration...",
+  photoLabel: "Photo d'inspiration (optionnel)",
+  photoTap: "Appuyez pour ajouter une photo",
+  confirm: "Confirmez votre réservation",
+  confirmSub: "Tout est correct ?",
+  service: "Service",
+  estimate: "Estimation",
+  duration: "Durée",
+  date: "Date",
+  time: "Heure",
+  name: "Nom",
+  emailLabel: "Courriel",
+  notesLabel: "Notes",
+  requestNote: "Votre demande sera envoyée à Elixir Beauty. Vous recevrez une confirmation WhatsApp une fois approuvée.",
+  sendRequest: "Envoyer la demande",
+  back: "Retour",
+  continue: "Continuer",
+  review: "Vérifier",
+  received: "Demande reçue !",
+  receivedSub: "Vous recevrez un message WhatsApp une fois confirmé.",
+  bookAnother: "Réserver un autre rendez-vous",
+  ownerAccess: "accès propriétaire",
+  services: [
+    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
+    {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"À partir de 180$"},
+    {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"À partir de 140$"},
+    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"À partir de 200$"},
+    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"À partir de 80$"},
+    {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"À partir de 90$"},
+    {id:"natural",icon:"🌸",name:"Coiffure Naturelle",dur:"1-3 hrs",price:"À partir de 75$"},
+    {id:"custom",icon:"💫",name:"Style Personnalisé",dur:"Variable",price:"Sur devis"},
+  ]
+}
+
+const EN = {
+  eyebrow: "Book online",
+  heroSub: "Braids, twists, locs and more — book your appointment in minutes.",
+  viewWork: "View Our Work ✨",
+  chooseStyle: "Choose your style",
+  chooseStyleSub: "What are you coming in for?",
+  pickDate: "Pick a date and time",
+  pickDateSub: "Sundays closed",
+  availTimes: "Available times for",
+  notAvail: "Not available this day — please choose another date",
+  yourInfo: "Your information",
+  yourInfoSub: "So we can reach you with your confirmation",
+  fullName: "Full Name *",
+  phone: "Phone / WhatsApp *",
+  email: "Email (optional)",
+  notes: "Hair notes / Special requests",
+  notesPlaceholder: "Hair length, allergies, inspiration...",
+  photoLabel: "Inspiration photo (optional)",
+  photoTap: "Tap to upload an inspiration photo",
+  confirm: "Confirm your booking",
+  confirmSub: "Everything look good?",
+  service: "Service",
+  estimate: "Estimate",
+  duration: "Duration",
+  date: "Date",
+  time: "Time",
+  name: "Name",
+  emailLabel: "Email",
+  notesLabel: "Notes",
+  requestNote: "Your request will be sent to Elixir Beauty. You will receive a WhatsApp confirmation once approved.",
+  sendRequest: "Send Request",
+  back: "Back",
+  continue: "Continue",
+  review: "Review",
+  received: "Request received!",
+  receivedSub: "You will receive a WhatsApp message once confirmed.",
+  bookAnother: "Book another appointment",
+  ownerAccess: "owner access",
+  services: [
+    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
+    {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
+    {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"Starting $140"},
+    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"Starting $200"},
+    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"Starting $80"},
+    {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"Starting $90"},
+    {id:"natural",icon:"🌸",name:"Natural Hair Styling",dur:"1-3 hrs",price:"Starting $75"},
+    {id:"custom",icon:"💫",name:"Custom Style",dur:"Varies",price:"On quote"},
+  ]
+}
+
 const FONT = `@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');`
 
 const CSS = `
@@ -29,6 +129,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .hero-title em{font-style:italic;color:var(--gold-lt);}
 .hero-line{width:40px;height:1px;background:var(--gold);margin:18px auto;position:relative;}
 .hero-sub{font-size:14px;font-weight:300;color:#C8B4D8;max-width:380px;margin:0 auto;line-height:1.7;position:relative;}
+.lang-toggle{position:absolute;top:20px;right:20px;display:flex;gap:4px;z-index:10;}
+.lang-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:20px;padding:5px 12px;color:#FDF8F2;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;transition:all .18s;}
+.lang-btn.active{background:#C8973A;border-color:#C8973A;}
+.lang-btn:hover:not(.active){background:#FFFFFF28;}
 .bk-body{max-width:740px;margin:-40px auto 0;padding:0 20px 80px;}
 .steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:6px;width:fit-content;margin:0 auto 36px;box-shadow:0 2px 16px #1C0F2E0A;}
 .step-node{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;transition:all .3s;}
@@ -152,28 +256,35 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 `
 const DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
 const DAYS_SHORT=["Su","Mo","Tu","We","Th","Fr","Sa"]
-const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"]
+const MONTHS_EN=["January","February","March","April","May","June","July","August","September","October","November","December"]
+const MONTHS_FR=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]
 const ALL_TIMES=["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
-const SERVICES=[
-  {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
-  {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
-  {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"Starting $140"},
-  {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"Starting $200"},
-  {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"Starting $80"},
-  {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"Starting $90"},
-  {id:"natural",icon:"🌸",name:"Natural Hair Styling",dur:"1-3 hrs",price:"Starting $75"},
-  {id:"custom",icon:"💫",name:"Custom Style",dur:"Varies",price:"On quote"},
-]
+
 const toISO=(y,m,d)=>`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`
 const todayISO=()=>{const t=new Date();return toISO(t.getFullYear(),t.getMonth(),t.getDate())}
-const showDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return`${MONTHS[+m-1]} ${+d}, ${y}`}
-const buildMsg=(dec,name,service,date,time)=>dec==="confirm"
-  ?`Hi ${name}! Your booking for ${service} on ${showDate(date)} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
-  :`Hi ${name}, unfortunately the time slot you requested on ${showDate(date)} at ${time} is not available. We apologize for the inconvenience. Please visit our booking page to choose another time. Elixir Beauty`
+const showDate=(iso,lang)=>{
+  if(!iso)return""
+  const[y,m,d]=iso.split("-")
+  const months=lang==="fr"?MONTHS_FR:MONTHS_EN
+  return`${months[+m-1]} ${+d}, ${y}`
+}
+const buildMsg=(dec,name,service,date,time,lang)=>{
+  const d=showDate(date,"en")
+  if(lang==="fr"){
+    return dec==="confirm"
+      ?`Bonjour ${name}! Votre rendez-vous pour ${service} le ${showDate(date,"fr")} à ${time} est confirmé. Au plaisir de vous recevoir chez Elixir Beauty. À bientôt!`
+      :`Bonjour ${name}, malheureusement le créneau du ${showDate(date,"fr")} à ${time} n'est pas disponible. Nous nous en excusons. Veuillez visiter notre page pour choisir un autre horaire. Elixir Beauty`
+  }
+  return dec==="confirm"
+    ?`Hi ${name}! Your booking for ${service} on ${d} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
+    :`Hi ${name}, unfortunately the time slot on ${d} at ${time} is not available. We apologize. Please visit our booking page to choose another time. Elixir Beauty`
+}
 
 const DEFAULT_AVAIL={days:[1,2,3,4,5,6],times:[...ALL_TIMES]}
 
 export default function App(){
+  const [lang,setLang]=useState("en")
+  const t=lang==="fr"?FR:EN
   const [bookings,setBookings]=useState([])
   const [avail,setAvail]=useState(DEFAULT_AVAIL)
   const [gallery,setGallery]=useState([])
@@ -188,9 +299,7 @@ export default function App(){
   const [showLogin,setShowLogin]=useState(false)
 
   useEffect(()=>{
-    supabase.auth.getSession().then(({data:{session}})=>{
-      setUser(session?.user||null);setAuthReady(true)
-    })
+    supabase.auth.getSession().then(({data:{session}})=>{setUser(session?.user||null);setAuthReady(true)})
     const{data:{subscription}}=supabase.auth.onAuthStateChange((_,session)=>{setUser(session?.user||null)})
     return()=>subscription.unsubscribe()
   },[])
@@ -201,9 +310,9 @@ export default function App(){
       supabase.from("app_settings").select("*").eq("key","availability").single(),
       supabase.from("gallery").select("*").order("created_at",{ascending:false})
     ])
-    if(b) setBookings(b)
-    if(s?.value) setAvail(s.value)
-    if(g) setGallery(g)
+    if(b)setBookings(b)
+    if(s?.value)setAvail(s.value)
+    if(g)setGallery(g)
     setReady(true)
   },[])
 
@@ -213,8 +322,7 @@ export default function App(){
     const channel=supabase.channel("bookings-live")
       .on("postgres_changes",{event:"*",schema:"public",table:"bookings"},()=>{
         fetchAll()
-        if(user) setToast("New booking received!")
-        setTimeout(()=>setToast(null),4000)
+        if(user){setToast("🔔 New booking received!");setTimeout(()=>setToast(null),4000)}
       }).subscribe()
     return()=>supabase.removeChannel(channel)
   },[fetchAll,user])
@@ -246,14 +354,14 @@ export default function App(){
 
   const respond=(id,dec)=>{
     const booking=bookings.find(b=>b.id===id)
-    if(!booking) return
-    const msg=buildMsg(dec,booking.name,booking.service,booking.date,booking.time)
+    if(!booking)return
+    const msg=buildMsg(dec,booking.name,booking.service,booking.date,booking.time,"en")
     let phone=booking.phone?.replace(/\D/g,"")
-    if(phone&&phone.length===10) phone="1"+phone
+    if(phone&&phone.length===10)phone="1"+phone
     const email=booking.email
     supabase.from("bookings").update({status:dec==="confirm"?"confirmed":"declined",ai_message:msg}).eq("id",id).then(()=>fetchAll())
-    if(phone) window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`,"_blank")
-    else if(email) window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
+    if(phone)window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`,"_blank")
+    else if(email)window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
   }
 
   const saveAvail=async(newAvail)=>{
@@ -264,8 +372,8 @@ export default function App(){
   const addGalleryImg=async(file)=>{
     const reader=new FileReader()
     reader.onload=async(e)=>{
-      const{error}=await supabase.from("gallery").insert([{image_data:e.target.result,caption:""}])
-      if(!error) fetchAll()
+      await supabase.from("gallery").insert([{image_data:e.target.result,caption:""}])
+      fetchAll()
     }
     reader.readAsDataURL(file)
   }
@@ -281,7 +389,7 @@ export default function App(){
     return(
       <>
         <style>{FONT+CSS}</style>
-        {toast&&<div className="toast">🔔 {toast}</div>}
+        {toast&&<div className="toast">{toast}</div>}
         <OwnerView bookings={bookings} onRespond={respond} onLogout={logout} userEmail={user.email} avail={avail} onSaveAvail={saveAvail} gallery={gallery} onAddImg={addGalleryImg} onDeleteImg={deleteGalleryImg}/>
       </>
     )
@@ -311,11 +419,11 @@ export default function App(){
           </div>
         </div>
       )}
-      <CustomerView onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} onOwnerClick={()=>setShowLogin(true)}/>
+      <CustomerView lang={lang} setLang={setLang} t={t} onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} onOwnerClick={()=>setShowLogin(true)}/>
     </>
   )
 }
-function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
+function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick}){
   const [step,setStep]=useState(1)
   const [svc,setSvc]=useState(null)
   const [cal,setCal]=useState(()=>{const t=new Date();return{y:t.getFullYear(),m:t.getMonth()}})
@@ -325,27 +433,21 @@ function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
   const [busy,setBusy]=useState(false)
   const [showGallery,setShowGallery]=useState(false)
 
+  const MONTHS=lang==="fr"?MONTHS_FR:MONTHS_EN
   const bookedTimes=bookings.filter(b=>b.date===date&&b.status!=="declined").map(b=>b.time)
- const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
-const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
-const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek):true
-const availTimes=safeAvail.times
-
+  const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
+  const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
+  const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek):true
+  const availTimes=safeAvail.times
   const daysInMonth=new Date(cal.y,cal.m+1,0).getDate()
   const firstDay=new Date(cal.y,cal.m,1).getDay()
   const todISO=todayISO()
   const prevMo=()=>setCal(c=>c.m===0?{y:c.y-1,m:11}:{...c,m:c.m-1})
   const nextMo=()=>setCal(c=>c.m===11?{y:c.y+1,m:0}:{...c,m:c.m+1})
-
-  const setPhone=(val)=>{
-    const digits=val.replace(/\D/g,"").slice(0,10)
-    setForm(p=>({...p,phone:digits}))
-  }
-
+  const setPhone=(val)=>{const digits=val.replace(/\D/g,"").slice(0,10);setForm(p=>({...p,phone:digits}))}
   const submit=async()=>{
     setBusy(true)
-    const phoneToSend=form.phone?"+1"+form.phone:""
-    const ok=await onBook({...form,phone:phoneToSend,service:svc.name,serviceId:svc.id,date,time})
+    const ok=await onBook({...form,phone:form.phone?"+1"+form.phone:"",service:svc.name,serviceId:svc.id,date,time})
     setBusy(false)
     if(ok)setStep(5)
   }
@@ -354,17 +456,15 @@ const availTimes=safeAvail.times
   if(showGallery){
     return(
       <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-        <div style={{background:"var(--plum)",padding:"16px 20px"
-,display:"flex",alignItems:"center",gap:12}}>
-          <button onClick={()=>setShowGallery(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← Back</button>
-          <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>Our Work</span>
+        <div style={{background:"var(--plum)",padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
+          <button onClick={()=>setShowGallery(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← {t.back}</button>
+          <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>{lang==="fr"?"Nos Créations":"Our Work"}</span>
         </div>
         <div style={{padding:"24px 20px",maxWidth:740,margin:"0 auto"}}>
-          {gallery.length===0?(<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">Coming soon</div><div className="empty-sub">Gallery will be updated soon</div></div>):(
-            <div className="gallery-grid">
-              {gallery.map(g=>(<img key={g.id} src={g.image_data} alt="Elixir Beauty work" className="gallery-img"/>))}
-            </div>
-          )}
+          {gallery.length===0
+            ?(<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>)
+            :(<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="Elixir Beauty work" className="gallery-img"/>))}</div>)
+          }
         </div>
       </div>
     )
@@ -373,34 +473,41 @@ const availTimes=safeAvail.times
   return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
       <div className="hero">
+        <div className="lang-toggle">
+          <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
+          <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
+        </div>
         <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
         <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
         <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
-        <div className="hero-eyebrow a1">Reservation en ligne</div>
+        <div className="hero-eyebrow a1">{t.eyebrow}</div>
         <div className="hero-title a2">Elixir <em>Beauty</em></div>
         <div className="hero-line a3"/>
-        <div className="hero-sub a3">Braids, twists, locs and more — book your appointment in minutes.</div>
-        <button onClick={()=>setShowGallery(true)} style={{marginTop:20,background:"#FFFFFF18",border:"1px solid #FFFFFF30",borderRadius:20,padding:"8px 20px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative"}}>View Our Work ✨</button>
+        <div className="hero-sub a3">{t.heroSub}</div>
+        <button onClick={()=>setShowGallery(true)} style={{marginTop:20,background:"#FFFFFF18",border:"1px solid #FFFFFF30",borderRadius:20,padding:"8px 20px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative"}}>{t.viewWork}</button>
       </div>
+
       <div className="bk-body">
         {step<5&&(<div className="steps-bar a4">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>)}
+
         {step===1&&(
           <div className="a4">
             <div className="bk-card">
-              <div className="card-hl">Choose your style</div>
-              <div className="card-sub">What are you coming in for?</div>
+              <div className="card-hl">{t.chooseStyle}</div>
+              <div className="card-sub">{t.chooseStyleSub}</div>
               <div className="svc-grid">
-                {SERVICES.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}
+                {t.services.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}
               </div>
             </div>
-            <div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>Continue</button></div>
+            <div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>{t.continue}</button></div>
           </div>
         )}
+
         {step===2&&(
           <div className="a4">
             <div className="bk-card">
-              <div className="card-hl">Pick a date and time</div>
-              <div className="card-sub">Sundays closed</div>
+              <div className="card-hl">{t.pickDate}</div>
+              <div className="card-sub">{t.pickDateSub}</div>
               <div className="cal-nav-row">
                 <div className="cal-month">{MONTHS[cal.m]} {cal.y}</div>
                 <div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div>
@@ -412,36 +519,37 @@ const availTimes=safeAvail.times
                   const iso=toISO(cal.y,cal.m,i+1)
                   const past=iso<todISO
                   const dow=new Date(cal.y,cal.m,i+1).getDay()
-                 const unavail=!safeAvail.days.map(Number).includes(dow)
+                  const unavail=!safeAvail.days.map(Number).includes(dow)
                   return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
                 })}
               </div>
               {date&&dayAvail&&(
                 <>
-                  <div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>Available times for <strong style={{color:"var(--ink)"}}>{showDate(date)}</strong></div>
+                  <div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div>
                   <div className="time-grid">
-                    {ALL_TIMES.map(t=>{
-                      const booked=bookedTimes.includes(t)
-                      const unavailTime=!availTimes.includes(t)
-                      return(<button key={t} className={`time-btn ${time===t?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t)}>{t}</button>)
+                    {ALL_TIMES.map(t2=>{
+                      const booked=bookedTimes.includes(t2)
+                      const unavailTime=!availTimes.includes(t2)
+                      return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)
                     })}
                   </div>
                 </>
               )}
-              {date&&!dayAvail&&<div style={{textAlign:"center",padding:"20px",color:"var(--muted)",fontSize:13}}>Not available this day — please choose another date</div>}
+              {date&&!dayAvail&&<div style={{textAlign:"center",padding:"20px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}
             </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>Back</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>Continue</button></div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div>
           </div>
         )}
+
         {step===3&&(
           <div className="a4">
             <div className="bk-card">
-              <div className="card-hl">Your information</div>
-              <div className="card-sub">So we can reach you with your confirmation</div>
+              <div className="card-hl">{t.yourInfo}</div>
+              <div className="card-sub">{t.yourInfoSub}</div>
               <div className="f-grid">
-                <div className="f-group"><label className="f-label">Full Name *</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div>
+                <div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div>
                 <div className="f-group">
-                  <label className="f-label">Phone / WhatsApp *</label>
+                  <label className="f-label">{t.phone}</label>
                   <div style={{display:"flex",gap:8,alignItems:"center"}}>
                     <div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:11,padding:"12px 14px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div>
                     <input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/>
@@ -449,46 +557,49 @@ const availTimes=safeAvail.times
                 </div>
               </div>
               <div className="f-grid">
-                <div className="f-group"><label className="f-label">Email (optional)</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div>
+                <div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div>
               </div>
               <div className="f-grid" style={{gridTemplateColumns:"1fr"}}>
-                <div className="f-group"><label className="f-label">Hair notes / Special requests</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder="Hair length, allergies, inspiration..."/></div>
+                <div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div>
               </div>
               <div className="f-group" style={{marginTop:4}}>
-                <label className="f-label">Inspiration photo (optional)</label>
+                <label className="f-label">{t.photoLabel}</label>
                 <div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>
-                  {form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:10}} alt="inspiration"/>:<><div style={{fontSize:32,marginBottom:8}}>📸</div><div style={{fontSize:13,color:"var(--muted)"}}>Tap to upload an inspiration photo</div></>}
+                  {form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:10}} alt="inspiration"/>:<><div style={{fontSize:32,marginBottom:8}}>📸</div><div style={{fontSize:13,color:"var(--muted)"}}>{t.photoTap}</div></>}
                 </div>
                 <input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/>
               </div>
             </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>Back</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>Review</button></div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>{t.review}</button></div>
           </div>
         )}
+
         {step===4&&(
           <div className="a4">
             <div className="bk-card">
-              <div className="card-hl">Confirm your booking</div>
-              <div className="card-sub">Everything look good?</div>
-              {[{l:"Service",v:svc?.name},{l:"Estimate",v:svc?.price},{l:"Duration",v:svc?.dur},{l:"Date",v:showDate(date)},{l:"Time",v:time},{l:"Name",v:form.name},{l:"Phone",v:"+1"+form.phone},form.email&&{l:"Email",v:form.email},form.notes&&{l:"Notes",v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
+              <div className="card-hl">{t.confirm}</div>
+              <div className="card-sub">{t.confirmSub}</div>
+              {[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
               {form.photo&&<div style={{marginTop:12}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:12}} alt="inspiration"/></div>}
-              <div style={{marginTop:20,padding:"14px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>Your request will be sent to Elixir Beauty. You will receive a WhatsApp confirmation once approved.</div>
+              <div style={{marginTop:20,padding:"14px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>{t.requestNote}</div>
             </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>Back</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:"Send Request"}</button></div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div>
           </div>
         )}
+
         {step===5&&(
           <div className="bk-card a4">
             <div className="success">
               <div className="suc-icon">🌿</div>
-              <div className="suc-title">Request received!</div>
-              <div className="suc-sub">Thank you <strong>{form.name}</strong>! Your request for <strong>{svc?.name}</strong> on <strong>{showDate(date)} at {time}</strong> has been sent. You will receive a WhatsApp message once confirmed.</div>
-              <button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>Book another appointment</button>
+              <div className="suc-title">{t.received}</div>
+              <div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div>
+              <button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>{t.bookAnother}</button>
             </div>
           </div>
         )}
+
         <div style={{textAlign:"center",marginTop:40,paddingBottom:20}}>
-          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>owner access</button>
+          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
         </div>
       </div>
     </div>
@@ -496,29 +607,25 @@ const availTimes=safeAvail.times
 }
 function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg}){
   const [view,setView]=useState("home")
-
   const pending=bookings.filter(b=>b.status==="pending")
   const confirmed=bookings.filter(b=>b.status==="confirmed")
   const declined=bookings.filter(b=>b.status==="declined")
-
   const getList=()=>{
-    if(view==="pending") return pending
-    if(view==="confirmed") return confirmed
-    if(view==="declined") return declined
-    if(view==="all") return bookings
-    return []
+    if(view==="pending")return pending
+    if(view==="confirmed")return confirmed
+    if(view==="declined")return declined
+    if(view==="all")return bookings
+    return[]
   }
-
   const getTitle=()=>{
-    if(view==="pending") return "Pending Requests"
-    if(view==="confirmed") return "Confirmed"
-    if(view==="declined") return "Declined"
-    if(view==="all") return "All Reservations"
-    if(view==="availability") return "My Availability"
-    if(view==="gallery") return "My Gallery"
-    return "Dashboard"
+    if(view==="pending")return"Pending Requests"
+    if(view==="confirmed")return"Confirmed"
+    if(view==="declined")return"Declined"
+    if(view==="all")return"All Reservations"
+    if(view==="availability")return"My Availability"
+    if(view==="gallery")return"My Gallery"
+    return"Dashboard"
   }
-
   return(
     <div className="o-shell">
       <div className="o-header">
@@ -528,14 +635,12 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
         </div>
         <button onClick={onLogout} style={{background:"#FFFFFF18",border:"none",color:"#FDF8F2",padding:"8px 16px",borderRadius:9,cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>Sign out</button>
       </div>
-
       {view!=="home"&&(
         <div className="detail-header">
           <button className="detail-back" onClick={()=>setView("home")}>← Home</button>
           <div className="detail-title">{getTitle()}</div>
         </div>
       )}
-
       <div className="o-main">
         {view==="home"&&(
           <>
@@ -565,20 +670,24 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
             {pending.length>0&&(
               <div>
                 <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:14}}>Pending Requests</div>
-                <BookingList bookings={pending} onRespond={onRespond} allBookings={bookings}/>
+                <BookingList bookings={pending} onRespond={onRespond}/>
+              </div>
+            )}
+            {pending.length===0&&(
+              <div className="empty-state">
+                <div className="empty-icon">✅</div>
+                <div className="empty-title">All clear!</div>
+                <div className="empty-sub">No pending requests right now</div>
               </div>
             )}
           </>
         )}
-
         {["pending","confirmed","declined","all"].includes(view)&&(
-          <BookingList bookings={getList()} onRespond={onRespond} allBookings={bookings}/>
+          <BookingList bookings={getList()} onRespond={onRespond}/>
         )}
-
         {view==="availability"&&(
           <AvailView avail={avail} onSave={onSaveAvail}/>
         )}
-
         {view==="gallery"&&(
           <GalleryView gallery={gallery} onAdd={onAddImg} onDelete={onDeleteImg}/>
         )}
@@ -587,7 +696,7 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
   )
 }
 
-function BookingList({bookings,onRespond,allBookings}){
+function BookingList({bookings,onRespond}){
   if(!bookings.length)return(<div className="empty-state"><div className="empty-icon">📭</div><div className="empty-title">Nothing here</div><div className="empty-sub">No reservations in this category</div></div>)
   return(
     <div>
@@ -599,7 +708,7 @@ function BookingList({bookings,onRespond,allBookings}){
               <div className="res-name">{b.name}</div>
               <div className="res-meta">
                 {b.service}<br/>
-                {showDate(b.date)} at {b.time}<br/>
+                {b.date} at {b.time}<br/>
                 {b.phone&&`Phone: ${b.phone}`}{b.email&&`  Email: ${b.email}`}
                 {b.notes&&<><br/>Notes: {b.notes}</>}
               </div>
@@ -636,19 +745,13 @@ function AvailView({avail,onSave}){
   const [days,setDays]=useState(avail.days||[1,2,3,4,5,6])
   const [times,setTimes]=useState(avail.times||[...ALL_TIMES])
   const [saved,setSaved]=useState(false)
-
-  const toggleDay=d=>{
-    setDays(prev=>prev.includes(d)?prev.filter(x=>x!==d):[...prev,d].sort())
-  }
-  const toggleTime=t=>{
-    setTimes(prev=>prev.includes(t)?prev.filter(x=>x!==t):[...prev,t].sort())
-  }
+  const toggleDay=d=>setDays(prev=>prev.includes(d)?prev.filter(x=>x!==d):[...prev,d].sort())
+  const toggleTime=t=>setTimes(prev=>prev.includes(t)?prev.filter(x=>x!==t):[...prev,t].sort())
   const save=async()=>{
     await onSave({days,times})
     setSaved(true)
     setTimeout(()=>setSaved(false),2000)
   }
-
   return(
     <div>
       <div className="bk-card" style={{marginBottom:16}}>
@@ -656,9 +759,7 @@ function AvailView({avail,onSave}){
         <div className="card-sub">Select the days you are available</div>
         <div className="avail-grid">
           {DAYS_SHORT.map((d,i)=>(
-            <button key={i} className={`avail-day ${days.includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>
-              {d}
-            </button>
+            <button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>
           ))}
         </div>
       </div>
@@ -667,9 +768,7 @@ function AvailView({avail,onSave}){
         <div className="card-sub">Select the time slots you offer</div>
         <div className="time-avail-grid">
           {ALL_TIMES.map(t=>(
-            <button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>
-              {t}
-            </button>
+            <button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>
           ))}
         </div>
       </div>
