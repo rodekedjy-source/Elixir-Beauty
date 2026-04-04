@@ -102,7 +102,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .lang-toggle{position:absolute;top:20px;right:20px;display:flex;gap:4px;z-index:10;}
 .lang-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:20px;padding:5px 12px;color:#FDF8F2;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;transition:all .18s;}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);}
-.book-now-btn{background:#1C0F2E;color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;margin-top:8px;}
+.book-now-btn{background:var(--plum);color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;margin-top:8px;}
 .book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
 .bk-body{max-width:740px;margin:-40px auto 0;padding:0 20px 80px;}
 .steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:6px;width:fit-content;margin:0 auto 36px;box-shadow:0 2px 16px #1C0F2E0A;}
@@ -559,7 +559,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         </div>
       </div>
 
-      <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"60px 20px 40px"}}>
+      <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-end",padding:"20px 20px 60px"}}>
         <button className="book-now-btn" onClick={()=>setBooking(true)}>✨ {t.bookNow}</button>
       </div>
 
