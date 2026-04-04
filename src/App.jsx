@@ -113,10 +113,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .card-hl{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--ink);margin-bottom:5px;}
 .card-sub{font-size:13px;color:var(--muted);margin-bottom:26px;}
 .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
-.svc-btn{border:1.5px solid var(--border);border-radius:16px;padding:18px 16px;cursor:pointer;background:transparent;text-align:left;width:100%;transition:all .2s;display:flex;flex-direction:column;gap:4px;}
+.svc-btn{border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;cursor:pointer;background:transparent;text-align:left;width:100%;transition:all .2s;display:flex;flex-direction:column;gap:4px;}
 .svc-btn:hover{border-color:var(--gold);background:var(--gold-pale);}
 .svc-btn.sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 0 0 3px #C8973A18;}
-.svc-icon{font-size:24px;margin-bottom:6px;}.svc-name{font-size:14px;font-weight:600;color:var(--ink);}
+.svc-icon{font-size:20px;margin-bottom:4px;}.svc-name{font-size:14px;font-weight:600;color:var(--ink);}
 .svc-dur{font-size:11px;color:var(--muted);}.svc-price{font-size:15px;font-weight:600;color:var(--gold);margin-top:4px;}
 .cal-nav-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
 .cal-month{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;}
@@ -424,9 +424,10 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   if(booking){
     return(
       <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-        <div style={{background:"var(--plum)",padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
-          <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← {t.back}</button>
-          <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>Elixir Beauty</span>
+        <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12}}>
+          <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
+          <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:17,color:"#FDF8F2"}}>Elixir Beauty</span>
+
           <div style={{marginLeft:"auto",display:"flex",gap:4}}>
             <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
             <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
