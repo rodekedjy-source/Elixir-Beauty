@@ -168,7 +168,7 @@ const toISO=(y,m,d)=>`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2
 const todayISO=()=>{const t=new Date();return toISO(t.getFullYear(),t.getMonth(),t.getDate())}
 const showDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return`${MONTHS[+m-1]} ${+d}, ${y}`}
 const buildMsg=(dec,name,service,date,time)=>dec==="confirm"
-  ?`Hi ${name}! Your booking for ${service} on ${showDate(date)} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. Please arrive with clean, dry hair. See you soon!`
+  ?`Hi ${name}! Your booking for ${service} on ${showDate(date)} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
   :`Hi ${name}, unfortunately the time slot you requested on ${showDate(date)} at ${time} is not available. We apologize for the inconvenience. Please visit our booking page to choose another time. Elixir Beauty`
 
 const DEFAULT_AVAIL={days:[1,2,3,4,5,6],times:[...ALL_TIMES]}
