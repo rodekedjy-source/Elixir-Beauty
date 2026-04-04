@@ -326,9 +326,10 @@ function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
   const [showGallery,setShowGallery]=useState(false)
 
   const bookedTimes=bookings.filter(b=>b.date===date&&b.status!=="declined").map(b=>b.time)
-  const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
-  const dayAvail=date?avail.days.includes(dayOfWeek):true
-  const availTimes=avail.times||ALL_TIMES
+ const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
+const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
+const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek):true
+const availTimes=safeAvail.times
 
   const daysInMonth=new Date(cal.y,cal.m+1,0).getDate()
   const firstDay=new Date(cal.y,cal.m,1).getDay()
@@ -411,7 +412,7 @@ function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
                   const iso=toISO(cal.y,cal.m,i+1)
                   const past=iso<todISO
                   const dow=new Date(cal.y,cal.m,i+1).getDay()
-                  const unavail=!avail.days.includes(dow)
+                 const unavail=!safeAvail.days.map(Number).includes(dow)
                   return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
                 })}
               </div>
