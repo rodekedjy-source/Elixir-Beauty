@@ -116,8 +116,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .hero-sub{font-size:14px;font-weight:300;color:#C8B4D8;max-width:380px;margin:0 auto;line-height:1.7;position:relative;}
 .hero-top-bar{position:absolute;top:16px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:10;}
 .lang-toggle{display:flex;gap:4px;}
-.lang-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:20px;padding:5px 12px;color:#FDF8F2;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;transition:all .18s;}
-.lang-btn.active{background:var(--gold);border-color:var(--gold);}
+.lang-btn{background:transparent;border:none;border-radius:6px;padding:4px 8px;color:#FFFFFF60;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;transition:all .18s;}
+.lang-btn.active{color:#C8973A;}
 .hero-menu-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:9px;padding:7px 12px;color:#FDF8F2;cursor:pointer;font-size:16px;line-height:1;}
 .hero-menu{position:fixed;inset:0;z-index:200;}
 .hero-menu-panel{position:absolute;top:52px;right:16px;background:var(--plum);border:1px solid #FFFFFF20;width:200px;border-radius:14px;padding:8px 0;box-shadow:0 8px 32px #1C0F2E50;}
@@ -126,7 +126,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .book-now-btn{background:var(--plum);color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;}
 .book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
 .social-bar{display:flex;justify-content:center;gap:16px;padding:24px 20px;flex-wrap:wrap;}
-.social-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--gold-pale);border:1.5px solid var(--gold);transition:all .2s;text-decoration:none;font-size:20px;}
+.social-link{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--gold-pale);border:1px solid #C8973A60;transition:all .2s;text-decoration:none;font-size:16px;}
 .social-link:hover{background:var(--gold);transform:translateY(-2px);}
 .bk-body{max-width:740px;margin:0 auto;padding:0 16px 60px;}
 .steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:4px;width:fit-content;margin:0 auto 20px;box-shadow:0 2px 16px #1C0F2E0A;}
@@ -614,7 +614,8 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         <div className="hero-sub a3">{profile.bio||t.heroSub}</div>
       </div>
 
-      <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"48px 20px 32px",flex:1}}>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-end",padding:"20px 20px 48px",flex:1}}>
+
         <button className="book-now-btn" onClick={()=>setBooking(true)}>✨ {t.bookNow}</button>
         {(profile.instagram||profile.tiktok||profile.whatsapp||profile.phone||profile.email)&&(
           <div className="social-bar" style={{marginTop:32}}>
