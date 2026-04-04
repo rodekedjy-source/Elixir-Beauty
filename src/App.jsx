@@ -23,25 +23,12 @@ const FR = {
   photoTap: "Appuyez pour ajouter une photo",
   confirm: "Confirmez votre réservation",
   confirmSub: "Tout est correct ?",
-  service: "Service",
-  estimate: "Estimation",
-  duration: "Durée",
-  date: "Date",
-  time: "Heure",
-  name: "Nom",
-  emailLabel: "Courriel",
-  notesLabel: "Notes",
+  service: "Service", estimate: "Estimation", duration: "Durée",
+  date: "Date", time: "Heure", name: "Nom", emailLabel: "Courriel", notesLabel: "Notes",
   requestNote: "Votre demande sera envoyée à Elixir Beauty. Vous recevrez une confirmation WhatsApp une fois approuvée.",
-  sendRequest: "Envoyer la demande",
-  back: "Retour",
-  continue: "Continuer",
-  review: "Vérifier",
-  received: "Demande reçue !",
-  receivedSub: "Vous recevrez un message WhatsApp une fois confirmé.",
-  bookAnother: "Réserver un autre rendez-vous",
-  ownerAccess: "accès propriétaire",
-  followUs: "Suivez-nous",
-  contactUs: "Contactez-nous",
+  sendRequest: "Envoyer la demande", back: "Retour", continue: "Continuer", review: "Vérifier",
+  received: "Demande reçue !", receivedSub: "Vous recevrez un message WhatsApp une fois confirmé.",
+  bookAnother: "Réserver un autre rendez-vous", ownerAccess: "accès propriétaire",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"À partir de 180$"},
@@ -55,46 +42,22 @@ const FR = {
 }
 
 const EN = {
-  eyebrow: "Book online",
-  heroSub: "Braids, twists, locs and more — book your appointment in minutes.",
-  bookNow: "Book Now",
-  viewWork: "View Our Work ✨",
-  chooseStyle: "Choose your style",
-  chooseStyleSub: "What are you coming in for?",
-  pickDate: "Pick a date and time",
-  pickDateSub: "Sundays closed",
-  availTimes: "Available times for",
-  notAvail: "Not available this day — please choose another date",
-  yourInfo: "Your information",
-  yourInfoSub: "So we can reach you with your confirmation",
-  fullName: "Full Name *",
-  phone: "Phone / WhatsApp *",
-  email: "Email (optional)",
-  notes: "Hair notes / Special requests",
-  notesPlaceholder: "Hair length, allergies, inspiration...",
-  photoLabel: "Inspiration photo (optional)",
-  photoTap: "Tap to upload an inspiration photo",
-  confirm: "Confirm your booking",
-  confirmSub: "Everything look good?",
-  service: "Service",
-  estimate: "Estimate",
-  duration: "Duration",
-  date: "Date",
-  time: "Time",
-  name: "Name",
-  emailLabel: "Email",
-  notesLabel: "Notes",
+  eyebrow: "Book online", heroSub: "Braids, twists, locs and more — book your appointment in minutes.",
+  bookNow: "Book Now", viewWork: "View Our Work ✨",
+  chooseStyle: "Choose your style", chooseStyleSub: "What are you coming in for?",
+  pickDate: "Pick a date and time", pickDateSub: "Sundays closed",
+  availTimes: "Available times for", notAvail: "Not available this day — please choose another date",
+  yourInfo: "Your information", yourInfoSub: "So we can reach you with your confirmation",
+  fullName: "Full Name *", phone: "Phone / WhatsApp *", email: "Email (optional)",
+  notes: "Hair notes / Special requests", notesPlaceholder: "Hair length, allergies, inspiration...",
+  photoLabel: "Inspiration photo (optional)", photoTap: "Tap to upload an inspiration photo",
+  confirm: "Confirm your booking", confirmSub: "Everything look good?",
+  service: "Service", estimate: "Estimate", duration: "Duration",
+  date: "Date", time: "Time", name: "Name", emailLabel: "Email", notesLabel: "Notes",
   requestNote: "Your request will be sent to Elixir Beauty. You will receive a WhatsApp confirmation once approved.",
-  sendRequest: "Send Request",
-  back: "Back",
-  continue: "Continue",
-  review: "Review",
-  received: "Request received!",
-  receivedSub: "You will receive a WhatsApp message once confirmed.",
-  bookAnother: "Book another appointment",
-  ownerAccess: "owner access",
-  followUs: "Follow us",
-  contactUs: "Contact us",
+  sendRequest: "Send Request", back: "Back", continue: "Continue", review: "Review",
+  received: "Request received!", receivedSub: "You will receive a WhatsApp message once confirmed.",
+  bookAnother: "Book another appointment", ownerAccess: "owner access",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
@@ -124,8 +87,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 @keyframes shimmer{0%,100%{opacity:.5}50%{opacity:1}}
 @keyframes dot{0%,80%,100%{transform:scale(.55);opacity:.35}40%{transform:scale(1);opacity:1}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 12px #C8973A60,0 0 24px #C8973A30}50%{box-shadow:0 0 28px #C8973A90,0 0 56px #C8973A50}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 #C8973A40}70%{box-shadow:0 0 0 8px transparent}}
-@keyframes glow{0%,100%{box-shadow:0 0 12px #C8973A60,0 0 24px #C8973A30}50%{box-shadow:0 0 24px #C8973A90,0 0 48px #C8973A50,0 0 72px #C8973A20}}
 .a1{animation:fadeUp .55s .00s both}.a2{animation:fadeUp .55s .10s both}
 .a3{animation:fadeUp .55s .20s both}.a4{animation:fadeUp .55s .30s both}
 .hero{background:var(--plum);padding:70px 24px 100px;text-align:center;position:relative;overflow:hidden;}
@@ -136,20 +99,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .hero-title em{font-style:italic;color:var(--gold-lt);}
 .hero-line{width:40px;height:1px;background:var(--gold);margin:18px auto;position:relative;}
 .hero-sub{font-size:14px;font-weight:300;color:#C8B4D8;max-width:380px;margin:0 auto;line-height:1.7;position:relative;}
-.book-now-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--gold);color:#fff;border:none;
-  padding:16px 36px;border-radius:100px;
-  font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;
-  cursor:pointer;position:relative;margin-top:28px;
-  letter-spacing:.5px;
-  animation:glow 2.5s ease-in-out infinite;
-  transition:transform .2s;
-}
-.book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
 .lang-toggle{position:absolute;top:20px;right:20px;display:flex;gap:4px;z-index:10;}
 .lang-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:20px;padding:5px 12px;color:#FDF8F2;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;transition:all .18s;}
 .lang-btn.active{background:var(--gold);border-color:var(--gold);}
+.book-now-btn{background:#1C0F2E;color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;margin-top:8px;}
+.book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
 .bk-body{max-width:740px;margin:-40px auto 0;padding:0 20px 80px;}
 .steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:6px;width:fit-content;margin:0 auto 36px;box-shadow:0 2px 16px #1C0F2E0A;}
 .step-node{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;transition:all .3s;}
@@ -204,12 +158,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .suc-icon{font-size:60px;margin-bottom:20px;animation:fadeIn .5s ease;}
 .suc-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:10px;}
 .suc-sub{font-size:14px;color:var(--muted);max-width:380px;margin:0 auto;line-height:1.65;}
-.footer{background:var(--plum);padding:40px 24px;text-align:center;margin-top:40px;}
+.footer{background:var(--plum);padding:40px 24px;text-align:center;}
 .footer-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:#FDF8F2;margin-bottom:8px;}
 .footer-bio{font-size:13px;color:#C8B4D8;max-width:320px;margin:0 auto 24px;line-height:1.6;}
-.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
-.footer-link{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:20px;background:#FFFFFF14;border:1px solid #FFFFFF20;color:#FDF8F2;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;transition:all .2s;cursor:pointer;}
-.footer-link:hover{background:#FFFFFF24;border-color:#C8973A;color:var(--gold-lt);}
+.footer-social{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.footer-link{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:20px;background:#FFFFFF14;border:1px solid #FFFFFF20;color:#FDF8F2;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;transition:all .2s;}
+.footer-link:hover{background:#FFFFFF24;border-color:var(--gold);color:var(--gold-lt);}
 .footer-copy{font-size:10px;color:#9688A4;margin-top:16px;letter-spacing:1px;}
 .o-shell{min-height:100vh;background:#F0EAE2;}
 .o-header{background:var(--plum);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
@@ -264,7 +218,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .gallery-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--border);}
 .upload-box{border:2px dashed var(--border);border-radius:14px;padding:32px;text-align:center;cursor:pointer;transition:all .2s;}
 .upload-box:hover{border-color:var(--gold);background:var(--gold-pale);}
-.profile-form{display:flex;flex-direction:column;gap:14px;}
 .login-card{background:var(--cream);border-radius:20px;padding:44px 36px;width:360px;text-align:center;box-shadow:0 20px 60px #1C0F2E50;}
 .login-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .login-sub{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
@@ -283,22 +236,15 @@ const DAYS_SHORT=["Su","Mo","Tu","We","Th","Fr","Sa"]
 const MONTHS_EN=["January","February","March","April","May","June","July","August","September","October","November","December"]
 const MONTHS_FR=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]
 const ALL_TIMES=["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
-
 const toISO=(y,m,d)=>`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`
 const todayISO=()=>{const t=new Date();return toISO(t.getFullYear(),t.getMonth(),t.getDate())}
-const showDate=(iso,lang)=>{
-  if(!iso)return""
-  const[y,m,d]=iso.split("-")
-  const months=lang==="fr"?MONTHS_FR:MONTHS_EN
-  return`${months[+m-1]} ${+d}, ${y}`
-}
+const showDate=(iso,lang)=>{if(!iso)return"";const[y,m,d]=iso.split("-");const months=lang==="fr"?MONTHS_FR:MONTHS_EN;return`${months[+m-1]} ${+d}, ${y}`}
 const buildMsg=(dec,name,service,date,time)=>{
   const d=showDate(date,"en")
   return dec==="confirm"
     ?`Hi ${name}! Your booking for ${service} on ${d} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
     :`Hi ${name}, unfortunately the time slot on ${d} at ${time} is not available. We apologize. Please visit our booking page to choose another time. Elixir Beauty`
 }
-
 const DEFAULT_AVAIL={days:[1,2,3,4,5,6],times:[...ALL_TIMES]}
 const DEFAULT_PROFILE={business_name:"Elixir Beauty",bio:"",phone:"",whatsapp:"",instagram:"",tiktok:"",email:""}
 
@@ -346,7 +292,7 @@ export default function App(){
     const channel=supabase.channel("bookings-live")
       .on("postgres_changes",{event:"*",schema:"public",table:"bookings"},()=>{
         fetchAll()
-        if(user){setToast("🔔 New booking received!");setTimeout(()=>setToast(null),4000)}
+        if(user){setToast("🔔 New booking!");setTimeout(()=>setToast(null),4000)}
       }).subscribe()
     return()=>supabase.removeChannel(channel)
   },[fetchAll,user])
@@ -368,10 +314,7 @@ export default function App(){
     }])
     if(!error){
       fetchAll()
-      try{
-        await fetch("/api/notify",{method:"POST",headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({name:b.name,phone:b.phone,email:b.email,notes:b.notes,service:b.service,date:b.date,time:b.time})})
-      }catch(_){}
+      try{await fetch("/api/notify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:b.name,phone:b.phone,email:b.email,notes:b.notes,service:b.service,date:b.date,time:b.time})})}catch(_){}
     }
     return!error
   }
@@ -382,35 +325,15 @@ export default function App(){
     const msg=buildMsg(dec,bk.name,bk.service,bk.date,bk.time)
     let phone=bk.phone?.replace(/\D/g,"")
     if(phone&&phone.length===10)phone="1"+phone
-    const email=bk.email
     supabase.from("bookings").update({status:dec==="confirm"?"confirmed":"declined",ai_message:msg}).eq("id",id).then(()=>fetchAll())
     if(phone)window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`,"_blank")
-    else if(email)window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
+    else if(bk.email)window.open(`mailto:${bk.email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
   }
 
-  const saveAvail=async(newAvail)=>{
-    setAvail(newAvail)
-    await supabase.from("app_settings").upsert({key:"availability",value:newAvail})
-  }
-
-  const saveProfile=async(newProfile)=>{
-    setProfile(newProfile)
-    await supabase.from("profile").upsert({id:1,...newProfile})
-  }
-
-  const addGalleryImg=async(file)=>{
-    const reader=new FileReader()
-    reader.onload=async(e)=>{
-      await supabase.from("gallery").insert([{image_data:e.target.result,caption:""}])
-      fetchAll()
-    }
-    reader.readAsDataURL(file)
-  }
-
-  const deleteGalleryImg=async(id)=>{
-    await supabase.from("gallery").delete().eq("id",id)
-    fetchAll()
-  }
+  const saveAvail=async(a)=>{setAvail(a);await supabase.from("app_settings").upsert({key:"availability",value:a})}
+  const saveProfile=async(p)=>{setProfile(p);await supabase.from("profile").upsert({id:1,...p})}
+  const addGalleryImg=async(file)=>{const r=new FileReader();r.onload=async(e)=>{await supabase.from("gallery").insert([{image_data:e.target.result,caption:""}]);fetchAll()};r.readAsDataURL(file)}
+  const deleteGalleryImg=async(id)=>{await supabase.from("gallery").delete().eq("id",id);fetchAll()}
 
   if(!authReady||!ready)return(<div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh"}}><div className="dots"><span/><span/><span/></div></div>)
 
@@ -467,7 +390,6 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
   const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
   const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek):true
-  const availTimes=safeAvail.times
   const daysInMonth=new Date(cal.y,cal.m+1,0).getDate()
   const firstDay=new Date(cal.y,cal.m,1).getDay()
   const todISO=todayISO()
@@ -481,7 +403,6 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
     if(ok)setStep(5)
   }
   const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null});setBooking(false)}
-  const startBooking=()=>{setBooking(true);setStep(1)}
 
   if(showGallery){
     return(
@@ -492,201 +413,179 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         </div>
         <div style={{padding:"24px 20px",maxWidth:740,margin:"0 auto"}}>
           {gallery.length===0
-            ?(<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>)
-            :(<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img"/>))}</div>)
+            ?<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>
+            :<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img"/>))}</div>
           }
         </div>
       </div>
     )
   }
 
-  if(!booking){
+  if(booking){
     return(
-      <div style={{minHeight:"100vh",background:"var(--cream)",display:"flex",flexDirection:"column"}}>
-        <div className="hero" style={{paddingBottom:120}}>
-          <div className="lang-toggle">
+      <div style={{minHeight:"100vh",background:"var(--cream)"}}>
+        <div style={{background:"var(--plum)",padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
+          <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← {t.back}</button>
+          <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>Elixir Beauty</span>
+          <div style={{marginLeft:"auto",display:"flex",gap:4}}>
             <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
             <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
           </div>
-          <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
-          <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
-          <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
-          <div className="hero-eyebrow a1">{t.eyebrow}</div>
-          <div className="hero-title a2">Elixir <em>Beauty</em></div>
-          <div className="hero-line a3"/>
-          {profile.bio&&<div className="hero-sub a3">{profile.bio}</div>}
-          {!profile.bio&&<div className="hero-sub a3">{t.heroSub}</div>}
-          <div style={{marginTop:20,position:"relative"}}>
-            <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>
-              {t.viewWork}
-            </button>
-          </div>
-         
         </div>
-
-        {(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
-          <div className="footer">
-            <div className="footer-name">{profile.business_name||"Elixir Beauty"}</div>
-            {profile.bio&&<div className="footer-bio">{profile.bio}</div>}
-            <div className="footer-social">
-              {profile.instagram&&(
-                <a className="footer-link" href={`https://instagram.com/${profile.instagram.replace("@","")}`} target="_blank" rel="noreferrer">
-                  <span>📸</span> {profile.instagram.startsWith("@")?profile.instagram:"@"+profile.instagram}
-                </a>
-              )}
-              {profile.tiktok&&(
-                <a className="footer-link" href={`https://tiktok.com/@${profile.tiktok.replace("@","")}`} target="_blank" rel="noreferrer">
-                  <span>🎵</span> {profile.tiktok.startsWith("@")?profile.tiktok:"@"+profile.tiktok}
-                </a>
-              )}
-              {profile.phone&&(
-                <a className="footer-link" href={`tel:${profile.phone}`}>
-                  <span>📞</span> {profile.phone}
-                </a>
-              )}
-              {profile.whatsapp&&(
-                <a className="footer-link" href={`https://wa.me/${profile.whatsapp.replace(/\D/g,"")}`} target="_blank" rel="noreferrer">
-                  <span>💬</span> WhatsApp
-                </a>
-              )}
-              {profile.email&&(
-                <a className="footer-link" href={`mailto:${profile.email}`}>
-                  <span>✉️</span> {profile.email}
-                </a>
-              )}
+        <div className="bk-body">
+          {step<5&&(<div className="steps-bar a4">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>)}
+          {step===1&&(
+            <div className="a4">
+              <div className="bk-card">
+                <div className="card-hl">{t.chooseStyle}</div>
+                <div className="card-sub">{t.chooseStyleSub}</div>
+                <div className="svc-grid">{t.services.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}</div>
+              </div>
+              <div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>{t.continue}</button></div>
             </div>
-          <div style={{textAlign:"center",padding:"60px 20px 40px",display:"flex",flexDirection:"column",alignItems:"center",gap:20}}>
-          <button onClick={startBooking} style={{background:"#1C0F2E",color:"#C8973A",border:"2.5px solid #C8973A",padding:"18px 48px",borderRadius:100,fontFamily:"DM Sans,sans-serif",fontSize:17,fontWeight:700,cursor:"pointer",letterSpacing:1,animation:"glow 2.5s ease-in-out infinite",boxShadow:"0 8px 32px rgba(200,151,58,0.3)"}}>✨ {t.bookNow}</button>
-          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#D0C4B8",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+          )}
+          {step===2&&(
+            <div className="a4">
+              <div className="bk-card">
+                <div className="card-hl">{t.pickDate}</div>
+                <div className="card-sub">{t.pickDateSub}</div>
+                <div className="cal-nav-row">
+                  <div className="cal-month">{MONTHS[cal.m]} {cal.y}</div>
+                  <div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div>
+                </div>
+                <div className="cal-grid">
+                  {DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}
+                  {Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}
+                  {Array(daysInMonth).fill(null).map((_,i)=>{
+                    const iso=toISO(cal.y,cal.m,i+1)
+                    const past=iso<todISO
+                    const dow=new Date(cal.y,cal.m,i+1).getDay()
+                    const unavail=!safeAvail.days.map(Number).includes(dow)
+                    return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
+                  })}
+                </div>
+                {date&&dayAvail&&(
+                  <>
+                    <div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div>
+                    <div className="time-grid">
+                      {ALL_TIMES.map(t2=>{
+                        const booked=bookedTimes.includes(t2)
+                        const unavailTime=!safeAvail.times.includes(t2)
+                        return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)
+                      })}
+                    </div>
+                  </>
+                )}
+                {date&&!dayAvail&&<div style={{textAlign:"center",padding:"20px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}
+              </div>
+              <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div>
+            </div>
+          )}
+          {step===3&&(
+            <div className="a4">
+              <div className="bk-card">
+                <div className="card-hl">{t.yourInfo}</div>
+                <div className="card-sub">{t.yourInfoSub}</div>
+                <div className="f-grid">
+                  <div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div>
+                  <div className="f-group">
+                    <label className="f-label">{t.phone}</label>
+                    <div style={{display:"flex",gap:8,alignItems:"center"}}>
+                      <div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:11,padding:"12px 14px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div>
+                      <input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/>
+                    </div>
+                  </div>
+                </div>
+                <div className="f-grid">
+                  <div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div>
+                </div>
+                <div className="f-grid" style={{gridTemplateColumns:"1fr"}}>
+                  <div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div>
+                </div>
+                <div className="f-group" style={{marginTop:4}}>
+                  <label className="f-label">{t.photoLabel}</label>
+                  <div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>
+                    {form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:10}} alt="inspiration"/>:<><div style={{fontSize:32,marginBottom:8}}>📸</div><div style={{fontSize:13,color:"var(--muted)"}}>{t.photoTap}</div></>}
+                  </div>
+                  <input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/>
+                </div>
+              </div>
+              <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>{t.review}</button></div>
+            </div>
+          )}
+          {step===4&&(
+            <div className="a4">
+              <div className="bk-card">
+                <div className="card-hl">{t.confirm}</div>
+                <div className="card-sub">{t.confirmSub}</div>
+                {[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
+                {form.photo&&<div style={{marginTop:12}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:12}} alt="inspiration"/></div>}
+                <div style={{marginTop:20,padding:"14px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>{t.requestNote}</div>
+              </div>
+              <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div>
+            </div>
+          )}
+          {step===5&&(
+            <div className="bk-card a4">
+              <div className="success">
+                <div className="suc-icon">🌿</div>
+                <div className="suc-title">{t.received}</div>
+                <div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div>
+                <button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>{t.bookAnother}</button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-    )
-  }
-
     )
   }
 
   return(
-    <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-      <div style={{background:"var(--plum)",padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
-        <button onClick={()=>setBooking(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← {t.back}</button>
-        <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>{profile.business_name||"Elixir Beauty"}</span>
-        <div style={{marginLeft:"auto",display:"flex",gap:4}}>
+    <div style={{minHeight:"100vh",background:"var(--cream)",display:"flex",flexDirection:"column"}}>
+      <div className="hero">
+        <div className="lang-toggle">
           <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
           <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
         </div>
+        <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
+        <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
+        <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
+        <div className="hero-eyebrow a1">{t.eyebrow}</div>
+        <div className="hero-title a2">Elixir <em>Beauty</em></div>
+        <div className="hero-line a3"/>
+        <div className="hero-sub a3">{profile.bio||t.heroSub}</div>
+        <div style={{marginTop:20,position:"relative"}}>
+          <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>{t.viewWork}</button>
+        </div>
       </div>
-      <div className="bk-body">
-        {step<5&&(<div className="steps-bar a4">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>)}
 
-        {step===1&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">{t.chooseStyle}</div>
-              <div className="card-sub">{t.chooseStyleSub}</div>
-              <div className="svc-grid">
-                {t.services.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}
-              </div>
-            </div>
-            <div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>{t.continue}</button></div>
-          </div>
-        )}
-
-        {step===2&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">{t.pickDate}</div>
-              <div className="card-sub">{t.pickDateSub}</div>
-              <div className="cal-nav-row">
-                <div className="cal-month">{MONTHS[cal.m]} {cal.y}</div>
-                <div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div>
-              </div>
-              <div className="cal-grid">
-                {DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}
-                {Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}
-                {Array(daysInMonth).fill(null).map((_,i)=>{
-                  const iso=toISO(cal.y,cal.m,i+1)
-                  const past=iso<todISO
-                  const dow=new Date(cal.y,cal.m,i+1).getDay()
-                  const unavail=!safeAvail.days.map(Number).includes(dow)
-                  return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
-                })}
-              </div>
-              {date&&dayAvail&&(
-                <>
-                  <div style={{fontSize:13,color:"var(--muted)",marginBottom:12}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div>
-                  <div className="time-grid">
-                    {ALL_TIMES.map(t2=>{
-                      const booked=bookedTimes.includes(t2)
-                      const unavailTime=!availTimes.includes(t2)
-                      return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)
-                    })}
-                  </div>
-                </>
-              )}
-              {date&&!dayAvail&&<div style={{textAlign:"center",padding:"20px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}
-            </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div>
-          </div>
-        )}
-
-        {step===3&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">{t.yourInfo}</div>
-              <div className="card-sub">{t.yourInfoSub}</div>
-              <div className="f-grid">
-                <div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div>
-                <div className="f-group">
-                  <label className="f-label">{t.phone}</label>
-                  <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                    <div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:11,padding:"12px 14px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div>
-                    <input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/>
-                  </div>
-                </div>
-              </div>
-              <div className="f-grid">
-                <div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div>
-              </div>
-              <div className="f-grid" style={{gridTemplateColumns:"1fr"}}>
-                <div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div>
-              </div>
-              <div className="f-group" style={{marginTop:4}}>
-                <label className="f-label">{t.photoLabel}</label>
-                <div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>
-                  {form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:10}} alt="inspiration"/>:<><div style={{fontSize:32,marginBottom:8}}>📸</div><div style={{fontSize:13,color:"var(--muted)"}}>{t.photoTap}</div></>}
-                </div>
-                <input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/>
-              </div>
-            </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>{t.review}</button></div>
-          </div>
-        )}
-
-        {step===4&&(
-          <div className="a4">
-            <div className="bk-card">
-              <div className="card-hl">{t.confirm}</div>
-              <div className="card-sub">{t.confirmSub}</div>
-              {[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
-              {form.photo&&<div style={{marginTop:12}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:160,objectFit:"cover",borderRadius:12}} alt="inspiration"/></div>}
-              <div style={{marginTop:20,padding:"14px",background:"#FBF6EE",borderRadius:12,border:"1px solid var(--border)",fontSize:13,color:"var(--muted)",lineHeight:1.65}}>{t.requestNote}</div>
-            </div>
-            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div>
-          </div>
-        )}
-
-        {step===5&&(
-          <div className="bk-card a4">
-            <div className="success">
-              <div className="suc-icon">🌿</div>
-              <div className="suc-title">{t.received}</div>
-              <div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div>
-              <button className="btn btn-ink" style={{marginTop:28}} onClick={reset}>{t.bookAnother}</button>
-            </div>
-          </div>
-        )}
+      <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"60px 20px 40px"}}>
+        <button className="book-now-btn" onClick={()=>setBooking(true)}>✨ {t.bookNow}</button>
       </div>
+
+      {(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
+        <div className="footer">
+          <div className="footer-name">Elixir Beauty</div>
+          {profile.bio&&<div className="footer-bio">{profile.bio}</div>}
+          <div className="footer-social">
+            {profile.instagram&&(<a className="footer-link" href={`https://instagram.com/${profile.instagram.replace("@","")}`} target="_blank" rel="noreferrer"><span>📸</span>{profile.instagram.startsWith("@")?profile.instagram:"@"+profile.instagram}</a>)}
+            {profile.tiktok&&(<a className="footer-link" href={`https://tiktok.com/@${profile.tiktok.replace("@","")}`} target="_blank" rel="noreferrer"><span>🎵</span>{profile.tiktok.startsWith("@")?profile.tiktok:"@"+profile.tiktok}</a>)}
+            {profile.phone&&(<a className="footer-link" href={`tel:${profile.phone}`}><span>📞</span>{profile.phone}</a>)}
+            {profile.whatsapp&&(<a className="footer-link" href={`https://wa.me/${profile.whatsapp.replace(/\D/g,"")}`} target="_blank" rel="noreferrer"><span>💬</span>WhatsApp</a>)}
+            {profile.email&&(<a className="footer-link" href={`mailto:${profile.email}`}><span>✉️</span>{profile.email}</a>)}
+          </div>
+          <div style={{textAlign:"center",marginTop:16}}>
+            <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#FFFFFF18",fontSize:10,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+          </div>
+          <div className="footer-copy">© {new Date().getFullYear()} Elixir Beauty</div>
+        </div>
+      )}
+
+      {!(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
+        <div style={{textAlign:"center",padding:"20px"}}>
+          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+        </div>
+      )}
     </div>
   )
 }
@@ -708,14 +607,16 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
   }
 
   const getTitle=()=>{
-    if(view==="pending")return oLang==="fr"?"En attente":"Pending Requests"
-    if(view==="confirmed")return oLang==="fr"?"Confirmés":"Confirmed"
-    if(view==="declined")return oLang==="fr"?"Déclinés":"Declined"
-    if(view==="all")return oLang==="fr"?"Toutes les réservations":"All Reservations"
-    if(view==="availability")return oLang==="fr"?"Disponibilité":"My Availability"
-    if(view==="gallery")return oLang==="fr"?"Galerie":"My Gallery"
-    if(view==="profile")return oLang==="fr"?"Mon Profil":"My Profile"
-    return"Dashboard"
+    const titles={
+      pending:oLang==="fr"?"En attente":"Pending",
+      confirmed:oLang==="fr"?"Confirmés":"Confirmed",
+      declined:oLang==="fr"?"Déclinés":"Declined",
+      all:oLang==="fr"?"Toutes":"All",
+      availability:oLang==="fr"?"Disponibilité":"Availability",
+      gallery:oLang==="fr"?"Galerie":"Gallery",
+      profile:oLang==="fr"?"Mon Profil":"My Profile",
+    }
+    return titles[view]||"Dashboard"
   }
 
   return(
@@ -738,16 +639,16 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
         <div style={{position:"fixed",inset:0,zIndex:200}} onClick={()=>setMenuOpen(false)}>
           <div style={{position:"absolute",top:64,right:0,background:"var(--plum)",width:240,borderRadius:"0 0 0 16px",padding:"12px 0",boxShadow:"0 8px 32px #1C0F2E40"}} onClick={e=>e.stopPropagation()}>
             {[
-              {id:"pending",icon:"🔔",labelEn:"Pending",labelFr:"En attente"},
-              {id:"confirmed",icon:"✅",labelEn:"Confirmed",labelFr:"Confirmés"},
-              {id:"declined",icon:"✕",labelEn:"Declined",labelFr:"Déclinés"},
-              {id:"all",icon:"📋",labelEn:"All",labelFr:"Tous"},
-              {id:"availability",icon:"📅",labelEn:"Availability",labelFr:"Disponibilité"},
-              {id:"gallery",icon:"🖼️",labelEn:"Gallery",labelFr:"Galerie"},
-              {id:"profile",icon:"👤",labelEn:"My Profile",labelFr:"Mon Profil"},
+              {id:"pending",icon:"🔔",en:"Pending",fr:"En attente"},
+              {id:"confirmed",icon:"✅",en:"Confirmed",fr:"Confirmés"},
+              {id:"declined",icon:"✕",en:"Declined",fr:"Déclinés"},
+              {id:"all",icon:"📋",en:"All",fr:"Tous"},
+              {id:"availability",icon:"📅",en:"Availability",fr:"Disponibilité"},
+              {id:"gallery",icon:"🖼️",en:"Gallery",fr:"Galerie"},
+              {id:"profile",icon:"👤",en:"My Profile",fr:"Mon Profil"},
             ].map(n=>(
               <button key={n.id} onClick={()=>{setView(n.id);setMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",color:view===n.id?"var(--gold-lt)":"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,textAlign:"left"}}>
-                <span>{n.icon}</span>{oLang==="fr"?n.labelFr:n.labelEn}
+                <span>{n.icon}</span>{oLang==="fr"?n.fr:n.en}
                 {n.id==="pending"&&pending.length>0&&<span style={{marginLeft:"auto",background:"var(--gold)",color:"#fff",borderRadius:20,padding:"1px 8px",fontSize:10,fontWeight:700}}>{pending.length}</span>}
               </button>
             ))}
@@ -783,41 +684,17 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
               ))}
             </div>
             <div className="o-nav-grid">
-              <button className="o-nav-btn" onClick={()=>setView("availability")}>
-                <span className="o-nav-icon">📅</span>
-                <div className="o-nav-label">{oLang==="fr"?"Disponibilité":"My Availability"}</div>
-              </button>
-              <button className="o-nav-btn" onClick={()=>setView("gallery")}>
-                <span className="o-nav-icon">🖼️</span>
-                <div className="o-nav-label">{oLang==="fr"?"Galerie":"My Gallery"}</div>
-              </button>
-              <button className="o-nav-btn" onClick={()=>setView("profile")}>
-                <span className="o-nav-icon">👤</span>
-                <div className="o-nav-label">{oLang==="fr"?"Mon Profil":"My Profile"}</div>
-              </button>
+              <button className="o-nav-btn" onClick={()=>setView("availability")}><span className="o-nav-icon">📅</span><div className="o-nav-label">{oLang==="fr"?"Disponibilité":"My Availability"}</div></button>
+              <button className="o-nav-btn" onClick={()=>setView("gallery")}><span className="o-nav-icon">🖼️</span><div className="o-nav-label">{oLang==="fr"?"Galerie":"My Gallery"}</div></button>
+              <button className="o-nav-btn" onClick={()=>setView("profile")}><span className="o-nav-icon">👤</span><div className="o-nav-label">{oLang==="fr"?"Mon Profil":"My Profile"}</div></button>
             </div>
-            {pending.length>0&&(
-              <div>
-                <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:14}}>
-                  {oLang==="fr"?"Demandes en attente":"Pending Requests"}
-                </div>
-                <BookingList bookings={pending} onRespond={onRespond}/>
-              </div>
-            )}
-            {pending.length===0&&(
-              <div className="empty-state">
-                <div className="empty-icon">✅</div>
-                <div className="empty-title">{oLang==="fr"?"Tout est à jour!":"All clear!"}</div>
-                <div className="empty-sub">{oLang==="fr"?"Aucune demande en attente":"No pending requests right now"}</div>
-              </div>
-            )}
+            {pending.length>0
+              ?<><div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:14}}>{oLang==="fr"?"En attente":"Pending Requests"}</div><BookingList bookings={pending} onRespond={onRespond}/></>
+              :<div className="empty-state"><div className="empty-icon">✅</div><div className="empty-title">{oLang==="fr"?"Tout est à jour!":"All clear!"}</div><div className="empty-sub">{oLang==="fr"?"Aucune demande en attente":"No pending requests"}</div></div>
+            }
           </>
         )}
-
-        {["pending","confirmed","declined","all"].includes(view)&&(
-          <BookingList bookings={getList()} onRespond={onRespond}/>
-        )}
-
+        {["pending","confirmed","declined","all"].includes(view)&&<BookingList bookings={getList()} onRespond={onRespond}/>}
         {view==="availability"&&<AvailView avail={avail} onSave={onSaveAvail} lang={oLang}/>}
         {view==="gallery"&&<GalleryView gallery={gallery} onAdd={onAddImg} onDelete={onDeleteImg} lang={oLang}/>}
         {view==="profile"&&<ProfileView profile={profile} onSave={onSaveProfile} lang={oLang}/>}
@@ -836,12 +713,7 @@ function BookingList({bookings,onRespond}){
             <div className="res-av">{b.name?.[0]?.toUpperCase()||"?"}</div>
             <div className="res-info">
               <div className="res-name">{b.name}</div>
-              <div className="res-meta">
-                {b.service}<br/>
-                {b.date} at {b.time}<br/>
-                {b.phone&&`Phone: ${b.phone}`}{b.email&&`  Email: ${b.email}`}
-                {b.notes&&<><br/>Notes: {b.notes}</>}
-              </div>
+              <div className="res-meta">{b.service}<br/>{b.date} at {b.time}<br/>{b.phone&&`📞 ${b.phone}`}{b.email&&`  ✉ ${b.email}`}{b.notes&&<><br/>📝 {b.notes}</>}</div>
             </div>
             <div className="res-right">
               <span className={`chip chip-${b.status}`}>{b.status}</span>
@@ -883,20 +755,14 @@ function AvailView({avail,onSave,lang}){
       <div className="bk-card" style={{marginBottom:16}}>
         <div className="card-hl">{lang==="fr"?"Jours de travail":"Working Days"}</div>
         <div className="card-sub">{lang==="fr"?"Sélectionnez vos jours disponibles":"Select the days you are available"}</div>
-        <div className="avail-grid">
-          {DAYS_SHORT.map((d,i)=>(<button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>))}
-        </div>
+        <div className="avail-grid">{DAYS_SHORT.map((d,i)=>(<button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>))}</div>
       </div>
       <div className="bk-card" style={{marginBottom:16}}>
         <div className="card-hl">{lang==="fr"?"Heures de travail":"Working Hours"}</div>
-        <div className="card-sub">{lang==="fr"?"Sélectionnez vos créneaux horaires":"Select the time slots you offer"}</div>
-        <div className="time-avail-grid">
-          {ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}
-        </div>
+        <div className="card-sub">{lang==="fr"?"Sélectionnez vos créneaux":"Select your time slots"}</div>
+        <div className="time-avail-grid">{ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}</div>
       </div>
-      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
-        {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Availability"}
-      </button>
+      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>{saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Availability"}</button>
     </div>
   )
 }
@@ -909,7 +775,7 @@ function GalleryView({gallery,onAdd,onDelete,lang}){
         <div className="card-sub">{lang==="fr"?"Montrez votre travail aux clients":"Show your work to clients"}</div>
         <div className="upload-box" onClick={()=>document.getElementById("gallery-upload").click()}>
           <div style={{fontSize:32,marginBottom:8}}>📸</div>
-          <div style={{fontSize:13,color:"var(--muted)"}}>{lang==="fr"?"Appuyez pour ajouter une photo":"Tap to add a photo"}</div>
+          <div style={{fontSize:13,color:"var(--muted)"}}>{lang==="fr"?"Appuyez pour ajouter":"Tap to add a photo"}</div>
         </div>
         <input id="gallery-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>{if(e.target.files[0])onAdd(e.target.files[0])}}/>
       </div>
@@ -932,13 +798,9 @@ function GalleryView({gallery,onAdd,onDelete,lang}){
 
 function ProfileView({profile,onSave,lang}){
   const [form,setForm]=useState({
-    business_name:profile.business_name||"",
-    bio:profile.bio||"",
-    phone:profile.phone||"",
-    whatsapp:profile.whatsapp||"",
-    instagram:profile.instagram||"",
-    tiktok:profile.tiktok||"",
-    email:profile.email||""
+    business_name:profile.business_name||"",bio:profile.bio||"",
+    phone:profile.phone||"",whatsapp:profile.whatsapp||"",
+    instagram:profile.instagram||"",tiktok:profile.tiktok||"",email:profile.email||""
   })
   const [saved,setSaved]=useState(false)
   const ff=k=>e=>setForm(p=>({...p,[k]:e.target.value}))
@@ -947,7 +809,7 @@ function ProfileView({profile,onSave,lang}){
     <div className="bk-card">
       <div className="card-hl">{lang==="fr"?"Mon Profil":"My Profile"}</div>
       <div className="card-sub">{lang==="fr"?"Ces infos apparaîtront sur votre site":"This info will appear on your website"}</div>
-      <div className="profile-form">
+      <div style={{display:"flex",flexDirection:"column",gap:14}}>
         <div className="f-group"><label className="f-label">{lang==="fr"?"Nom du salon":"Business Name"}</label><input className="f-input" value={form.business_name} onChange={ff("business_name")} placeholder="Elixir Beauty"/></div>
         <div className="f-group"><label className="f-label">Bio</label><textarea className="f-textarea" value={form.bio} onChange={ff("bio")} placeholder={lang==="fr"?"Décrivez votre salon...":"Describe your salon..."} style={{minHeight:72}}/></div>
         <div className="f-group"><label className="f-label">Instagram</label><input className="f-input" value={form.instagram} onChange={ff("instagram")} placeholder="@elixirbeauty"/></div>
@@ -955,9 +817,7 @@ function ProfileView({profile,onSave,lang}){
         <div className="f-group"><label className="f-label">{lang==="fr"?"Téléphone":"Phone"}</label><input className="f-input" value={form.phone} onChange={ff("phone")} placeholder="+1 514 000 0000"/></div>
         <div className="f-group"><label className="f-label">WhatsApp</label><input className="f-input" value={form.whatsapp} onChange={ff("whatsapp")} placeholder="+1 514 000 0000"/></div>
         <div className="f-group"><label className="f-label">Email</label><input className="f-input" value={form.email} onChange={ff("email")} placeholder="elixir@email.com"/></div>
-        <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
-          {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Profile"}
-        </button>
+        <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>{saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Profile"}</button>
       </div>
     </div>
   )
