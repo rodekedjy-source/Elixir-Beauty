@@ -595,10 +595,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         {menuOpen&&(
           <div className="hero-menu" onClick={()=>setMenuOpen(false)}>
             <div className="hero-menu-panel" onClick={e=>e.stopPropagation()}>
-              <button className="hero-menu-item" onClick={()=>{setShowGallery(true);setMenuOpen(false)}}>
-                <span>🖼️</span>{t.ourWork}
-              </button>
-              <div style={{borderTop:"1px solid #FFFFFF15",margin:"4px 0"}}/>
+            
               <button className="hero-menu-item" onClick={()=>{onOwnerClick();setMenuOpen(false)}} style={{color:"var(--gold-lt)"}}>
                 <span>🔑</span>{t.login}
               </button>
@@ -612,6 +609,10 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         <div className="hero-title a2">Elixir <em>Beauty</em></div>
         <div className="hero-line a3"/>
         <div className="hero-sub a3">{profile.bio||t.heroSub}</div>
+        <div style={{marginTop:20,position:"relative"}}>
+  <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>{t.viewWork}</button>
+</div>
+
       </div>
 
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-end",padding:"20px 20px 48px",flex:1}}>
