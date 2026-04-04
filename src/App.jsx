@@ -397,7 +397,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         {step<5&&<div className="steps-bar">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>}
         {step===1&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.chooseStyle}</div><div className="card-sub">{t.chooseStyleSub}</div><div className="svc-grid">{t.services.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}</div></div><div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>{t.continue}</button></div></div>}
         {step===2&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.pickDate}</div><div className="card-sub">{t.pickDateSub}</div>
-<div className="cal-nav-row"><div className="cal-month">{MONTHS[cal.m]} {cal.y}</div><div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div></div><div className="cal-grid">{DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}{Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}{Array(daysInMonth).fill(null).map((_,i)=>{const iso=toISO(cal.y,cal.m,i+1);const past=iso<todISO;const dow=new Date(cal.y,cal.m,i+1).getDay();const unavail=!safeAvail.days.map(Number).includes(dow);return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)})}</div>{date&&dayAvail&&<><div style={{fontSize:13,color:"var(--muted)",marginBottom:10}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div><div className="time-grid">{ALL_TIMES.map(t2=>{const booked=bookedTimes.includes(t2);const unavailTime=!safeAvail.times.includes(t2);return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)})}</div></>}{date&&!dayAvail&&<div style={{textAlign:"center",padding:"16px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}</div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div></div>}
+<div className="cal-nav-row"><div className="cal-month">{MONTHS[cal.m]} {cal.y}</div><div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div></div><div className="cal-grid">{DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}{Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}{Array(daysInMonth).fill(null).map((_,i)=>{const iso=toISO(cal.y,cal.m,i+1);const past=iso<todISO;const dow=new Date(cal.y,cal.m,i+1).getDay();const unavail=!safeAvail.days.map(Number).includes(dow)||(safeAvail.blockedDates||[]).includes(iso);return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)})}</div>{date&&dayAvail&&<><div style={{fontSize:13,color:"var(--muted)",marginBottom:10}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div><div className="time-grid">{ALL_TIMES.map(t2=>{const booked=bookedTimes.includes(t2);const unavailTime=!safeAvail.times.includes(t2);return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)})}</div></>}{date&&!dayAvail&&<div style={{textAlign:"center",padding:"16px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}</div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div></div>}
         {step===3&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.yourInfo}</div><div className="card-sub">{t.yourInfoSub}</div><div className="f-grid"><div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div><div className="f-group"><label className="f-label">{t.phone}</label><div style={{display:"flex",gap:6,alignItems:"center"}}><div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:10,padding:"11px 12px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div><input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/></div></div></div><div className="f-grid"><div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div></div><div className="f-grid" style={{gridTemplateColumns:"1fr"}}><div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div></div><div className="f-group" style={{marginTop:4}}><label className="f-label">{t.photoLabel}</label><div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>{form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:150,objectFit:"cover",borderRadius:9}} alt="inspiration"/>:<><div style={{fontSize:28,marginBottom:6}}>📸</div><div style={{fontSize:12,color:"var(--muted)"}}>{t.photoTap}</div></>}</div><input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/></div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||!form.phone.trim()} onClick={()=>setStep(4)}>{t.review}</button></div></div>}
         {step===4&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.confirm}</div><div className="card-sub">{t.confirmSub}</div>{[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}{form.photo&&<div style={{marginTop:10}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:140,objectFit:"cover",borderRadius:10}} alt="inspiration"/></div>}<div style={{marginTop:16,padding:"12px",background:"#FBF6EE",borderRadius:10,border:"1px solid var(--border)",fontSize:12,color:"var(--muted)",lineHeight:1.6}}>{t.requestNote}</div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div></div>}
         {step===5&&<div className="bk-card a4"><div className="success"><div className="suc-icon">🌿</div><div className="suc-title">{t.received}</div><div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div><button className="btn btn-ink" style={{marginTop:24}} onClick={reset}>{t.bookAnother}</button></div></div>}
@@ -634,26 +634,73 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
 }
 
 function AvailView({avail,onSave,lang}){
-  const [days,setDays]=useState(avail.days||[1,2,3,4,5,6])
   const [times,setTimes]=useState(avail.times||[...ALL_TIMES])
+  const [blockedDates,setBlockedDates]=useState(avail.blockedDates||[])
+  const [cal,setCal]=useState(()=>{const d=new Date();return{y:d.getFullYear(),m:d.getMonth()}})
   const [saved,setSaved]=useState(false)
-  const toggleDay=d=>setDays(prev=>prev.includes(d)?prev.filter(x=>x!==d):[...prev,d].sort())
+  const MONTHS=lang==="fr"?MONTHS_FR:MONTHS_EN
+  const daysInMonth=new Date(cal.y,cal.m+1,0).getDate()
+  const firstDay=new Date(cal.y,cal.m,1).getDay()
+  const todISO=todayISO()
+  const prevMo=()=>setCal(c=>c.m===0?{y:c.y-1,m:11}:{...c,m:c.m-1})
+  const nextMo=()=>setCal(c=>c.m===11?{y:c.y+1,m:0}:{...c,m:c.m+1})
+  const toggleDate=(iso)=>setBlockedDates(prev=>prev.includes(iso)?prev.filter(d=>d!==iso):[...prev,iso])
   const toggleTime=t=>setTimes(prev=>prev.includes(t)?prev.filter(x=>x!==t):[...prev,t].sort())
-  const save=async()=>{await onSave({days,times});setSaved(true);setTimeout(()=>setSaved(false),2000)}
+  const save=async()=>{
+    await onSave({days:[0,1,2,3,4,5,6],times,blockedDates})
+    setSaved(true);setTimeout(()=>setSaved(false),2000)
+  }
   return(
     <div>
-      <div style={{marginBottom:14}}>
-        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:10}}>{lang==="fr"?"Jours de travail":"Working Days"}</div>
-        <div className="avail-grid">{DAYS_SHORT.map((d,i)=>(<button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>))}</div>
+      <div style={{marginBottom:16}}>
+        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:12}}>
+          {lang==="fr"?"Jours non disponibles":"Days off"}
+        </div>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+          <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,fontWeight:600}}>{MONTHS[cal.m]} {cal.y}</div>
+          <div style={{display:"flex",gap:8}}>
+            <button className="cal-arrow" onClick={prevMo}>&#8249;</button>
+            <button className="cal-arrow" onClick={nextMo}>&#8250;</button>
+          </div>
+        </div>
+        <div className="cal-grid">
+          {DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}
+          {Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}
+          {Array(daysInMonth).fill(null).map((_,i)=>{
+            const iso=toISO(cal.y,cal.m,i+1)
+            const past=iso<todISO
+            const blocked=blockedDates.includes(iso)
+            return(
+              <button key={i}
+                className={`cal-d ${blocked?"sel":""}`}
+                style={blocked?{background:"var(--red)",color:"#fff"}:{}}
+                disabled={past}
+                onClick={()=>toggleDate(iso)}
+              >{i+1}</button>
+            )
+          })}
+        </div>
+        {blockedDates.length>0&&(
+          <div style={{marginTop:8,fontSize:11,color:"var(--muted)"}}>
+            {lang==="fr"?"Jours bloqués:":"Blocked:"} {blockedDates.sort().map(d=>d.slice(5)).join(", ")}
+          </div>
+        )}
       </div>
-      <div style={{marginBottom:14}}>
-        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:10}}>{lang==="fr"?"Heures de travail":"Working Hours"}</div>
-        <div className="time-avail-grid">{ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}</div>
+      <div style={{marginBottom:16}}>
+        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:10}}>
+          {lang==="fr"?"Heures de travail":"Working Hours"}
+        </div>
+        <div className="time-avail-grid">
+          {ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}
+        </div>
       </div>
-      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>{saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Availability"}</button>
+      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
+        {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save"}
+      </button>
     </div>
   )
 }
+
 
 function ProfileView({profile,onSave,lang}){
   const [form,setForm]=useState({business_name:profile.business_name||"",bio:profile.bio||"",phone:profile.phone||"",whatsapp:profile.whatsapp||"",instagram:profile.instagram||"",tiktok:profile.tiktok||"",email:profile.email||""})
