@@ -490,7 +490,9 @@ function CustomerView({onBook,bookings,avail,gallery,onOwnerClick}){
         </div>
       </div>
     </div>
-    function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg}){
+  )
+}
+function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg}){
   const [view,setView]=useState("home")
 
   const pending=bookings.filter(b=>b.status==="pending")
@@ -702,7 +704,5 @@ function GalleryView({gallery,onAdd,onDelete}){
         </div>
       )}
     </div>
-  )
-}
   )
 }
