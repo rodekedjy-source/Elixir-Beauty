@@ -407,7 +407,7 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         <div className="hero-title a2">Elixir <em>Beauty</em></div>
         <div className="hero-line a3"/>
         <div className="hero-sub a3">{profile.bio||t.heroSub}</div>
-        <div style={{marginTop:20}}><button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>{t.viewWork}</button></div>
+        <div style={{marginTop:20,position:"relative",zIndex:5}}><button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative",zIndex:5}}>{t.viewWork}</button></div>
       </div>
       <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-end",padding:"20px 20px 48px"}}>
         <button className="book-now-btn" onClick={()=>setBooking(true)}>✨ {t.bookNow}</button>
