@@ -4,6 +4,7 @@ import { supabase } from "./supabase.js"
 const FR = {
   eyebrow: "Réservation en ligne",
   heroSub: "Tresses, twists, locs et plus — réservez votre rendez-vous en quelques minutes.",
+  bookNow: "Réserver maintenant",
   viewWork: "Voir nos créations ✨",
   chooseStyle: "Choisissez votre style",
   chooseStyleSub: "Pour quoi venez-vous ?",
@@ -39,6 +40,8 @@ const FR = {
   receivedSub: "Vous recevrez un message WhatsApp une fois confirmé.",
   bookAnother: "Réserver un autre rendez-vous",
   ownerAccess: "accès propriétaire",
+  followUs: "Suivez-nous",
+  contactUs: "Contactez-nous",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"À partir de 180$"},
@@ -54,6 +57,7 @@ const FR = {
 const EN = {
   eyebrow: "Book online",
   heroSub: "Braids, twists, locs and more — book your appointment in minutes.",
+  bookNow: "Book Now",
   viewWork: "View Our Work ✨",
   chooseStyle: "Choose your style",
   chooseStyleSub: "What are you coming in for?",
@@ -89,6 +93,8 @@ const EN = {
   receivedSub: "You will receive a WhatsApp message once confirmed.",
   bookAnother: "Book another appointment",
   ownerAccess: "owner access",
+  followUs: "Follow us",
+  contactUs: "Contact us",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
@@ -119,6 +125,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 @keyframes dot{0%,80%,100%{transform:scale(.55);opacity:.35}40%{transform:scale(1);opacity:1}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 #C8973A40}70%{box-shadow:0 0 0 8px transparent}}
+@keyframes glow{0%,100%{box-shadow:0 0 12px #C8973A60,0 0 24px #C8973A30}50%{box-shadow:0 0 24px #C8973A90,0 0 48px #C8973A50,0 0 72px #C8973A20}}
 .a1{animation:fadeUp .55s .00s both}.a2{animation:fadeUp .55s .10s both}
 .a3{animation:fadeUp .55s .20s both}.a4{animation:fadeUp .55s .30s both}
 .hero{background:var(--plum);padding:70px 24px 100px;text-align:center;position:relative;overflow:hidden;}
@@ -129,10 +136,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .hero-title em{font-style:italic;color:var(--gold-lt);}
 .hero-line{width:40px;height:1px;background:var(--gold);margin:18px auto;position:relative;}
 .hero-sub{font-size:14px;font-weight:300;color:#C8B4D8;max-width:380px;margin:0 auto;line-height:1.7;position:relative;}
+.book-now-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:#fff;border:none;
+  padding:16px 36px;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;
+  cursor:pointer;position:relative;margin-top:28px;
+  letter-spacing:.5px;
+  animation:glow 2.5s ease-in-out infinite;
+  transition:transform .2s;
+}
+.book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
 .lang-toggle{position:absolute;top:20px;right:20px;display:flex;gap:4px;z-index:10;}
 .lang-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:20px;padding:5px 12px;color:#FDF8F2;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;transition:all .18s;}
-.lang-btn.active{background:#C8973A;border-color:#C8973A;}
-.lang-btn:hover:not(.active){background:#FFFFFF28;}
+.lang-btn.active{background:var(--gold);border-color:var(--gold);}
 .bk-body{max-width:740px;margin:-40px auto 0;padding:0 20px 80px;}
 .steps-bar{display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:60px;border:1px solid var(--border);padding:6px;width:fit-content;margin:0 auto 36px;box-shadow:0 2px 16px #1C0F2E0A;}
 .step-node{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;transition:all .3s;}
@@ -187,6 +204,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .suc-icon{font-size:60px;margin-bottom:20px;animation:fadeIn .5s ease;}
 .suc-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:10px;}
 .suc-sub{font-size:14px;color:var(--muted);max-width:380px;margin:0 auto;line-height:1.65;}
+.footer{background:var(--plum);padding:40px 24px;text-align:center;margin-top:40px;}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:#FDF8F2;margin-bottom:8px;}
+.footer-bio{font-size:13px;color:#C8B4D8;max-width:320px;margin:0 auto 24px;line-height:1.6;}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
+.footer-link{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:20px;background:#FFFFFF14;border:1px solid #FFFFFF20;color:#FDF8F2;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;transition:all .2s;cursor:pointer;}
+.footer-link:hover{background:#FFFFFF24;border-color:#C8973A;color:var(--gold-lt);}
+.footer-copy{font-size:10px;color:#9688A4;margin-top:16px;letter-spacing:1px;}
 .o-shell{min-height:100vh;background:#F0EAE2;}
 .o-header{background:var(--plum);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .o-header-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#FDF8F2;}
@@ -240,7 +264,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .gallery-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--border);}
 .upload-box{border:2px dashed var(--border);border-radius:14px;padding:32px;text-align:center;cursor:pointer;transition:all .2s;}
 .upload-box:hover{border-color:var(--gold);background:var(--gold-pale);}
-.login-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--plum);}
+.profile-form{display:flex;flex-direction:column;gap:14px;}
 .login-card{background:var(--cream);border-radius:20px;padding:44px 36px;width:360px;text-align:center;box-shadow:0 20px 60px #1C0F2E50;}
 .login-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .login-sub{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
@@ -268,19 +292,15 @@ const showDate=(iso,lang)=>{
   const months=lang==="fr"?MONTHS_FR:MONTHS_EN
   return`${months[+m-1]} ${+d}, ${y}`
 }
-const buildMsg=(dec,name,service,date,time,lang)=>{
+const buildMsg=(dec,name,service,date,time)=>{
   const d=showDate(date,"en")
-  if(lang==="fr"){
-    return dec==="confirm"
-      ?`Bonjour ${name}! Votre rendez-vous pour ${service} le ${showDate(date,"fr")} à ${time} est confirmé. Au plaisir de vous recevoir chez Elixir Beauty. À bientôt!`
-      :`Bonjour ${name}, malheureusement le créneau du ${showDate(date,"fr")} à ${time} n'est pas disponible. Nous nous en excusons. Veuillez visiter notre page pour choisir un autre horaire. Elixir Beauty`
-  }
   return dec==="confirm"
     ?`Hi ${name}! Your booking for ${service} on ${d} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
     :`Hi ${name}, unfortunately the time slot on ${d} at ${time} is not available. We apologize. Please visit our booking page to choose another time. Elixir Beauty`
 }
 
 const DEFAULT_AVAIL={days:[1,2,3,4,5,6],times:[...ALL_TIMES]}
+const DEFAULT_PROFILE={business_name:"Elixir Beauty",bio:"",phone:"",whatsapp:"",instagram:"",tiktok:"",email:""}
 
 export default function App(){
   const [lang,setLang]=useState("en")
@@ -288,6 +308,7 @@ export default function App(){
   const [bookings,setBookings]=useState([])
   const [avail,setAvail]=useState(DEFAULT_AVAIL)
   const [gallery,setGallery]=useState([])
+  const [profile,setProfile]=useState(DEFAULT_PROFILE)
   const [ready,setReady]=useState(false)
   const [toast,setToast]=useState(null)
   const [user,setUser]=useState(null)
@@ -297,6 +318,7 @@ export default function App(){
   const [loginErr,setLoginErr]=useState("")
   const [loginBusy,setLoginBusy]=useState(false)
   const [showLogin,setShowLogin]=useState(false)
+  const [booking,setBooking]=useState(false)
 
   useEffect(()=>{
     supabase.auth.getSession().then(({data:{session}})=>{setUser(session?.user||null);setAuthReady(true)})
@@ -305,14 +327,16 @@ export default function App(){
   },[])
 
   const fetchAll=useCallback(async()=>{
-    const[{data:b},{data:s},{data:g}]=await Promise.all([
+    const[{data:b},{data:s},{data:g},{data:p}]=await Promise.all([
       supabase.from("bookings").select("*").order("created_at",{ascending:false}),
       supabase.from("app_settings").select("*").eq("key","availability").single(),
-      supabase.from("gallery").select("*").order("created_at",{ascending:false})
+      supabase.from("gallery").select("*").order("created_at",{ascending:false}),
+      supabase.from("profile").select("*").eq("id",1).single()
     ])
     if(b)setBookings(b)
     if(s?.value)setAvail(s.value)
     if(g)setGallery(g)
+    if(p)setProfile(p)
     setReady(true)
   },[])
 
@@ -353,12 +377,12 @@ export default function App(){
   }
 
   const respond=(id,dec)=>{
-    const booking=bookings.find(b=>b.id===id)
-    if(!booking)return
-    const msg=buildMsg(dec,booking.name,booking.service,booking.date,booking.time,"en")
-    let phone=booking.phone?.replace(/\D/g,"")
+    const bk=bookings.find(b=>b.id===id)
+    if(!bk)return
+    const msg=buildMsg(dec,bk.name,bk.service,bk.date,bk.time)
+    let phone=bk.phone?.replace(/\D/g,"")
     if(phone&&phone.length===10)phone="1"+phone
-    const email=booking.email
+    const email=bk.email
     supabase.from("bookings").update({status:dec==="confirm"?"confirmed":"declined",ai_message:msg}).eq("id",id).then(()=>fetchAll())
     if(phone)window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`,"_blank")
     else if(email)window.open(`mailto:${email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
@@ -367,6 +391,11 @@ export default function App(){
   const saveAvail=async(newAvail)=>{
     setAvail(newAvail)
     await supabase.from("app_settings").upsert({key:"availability",value:newAvail})
+  }
+
+  const saveProfile=async(newProfile)=>{
+    setProfile(newProfile)
+    await supabase.from("profile").upsert({id:1,...newProfile})
   }
 
   const addGalleryImg=async(file)=>{
@@ -390,7 +419,7 @@ export default function App(){
       <>
         <style>{FONT+CSS}</style>
         {toast&&<div className="toast">{toast}</div>}
-        <OwnerView bookings={bookings} onRespond={respond} onLogout={logout} userEmail={user.email} avail={avail} onSaveAvail={saveAvail} gallery={gallery} onAddImg={addGalleryImg} onDeleteImg={deleteGalleryImg}/>
+        <OwnerView bookings={bookings} onRespond={respond} onLogout={logout} userEmail={user.email} avail={avail} onSaveAvail={saveAvail} gallery={gallery} onAddImg={addGalleryImg} onDeleteImg={deleteGalleryImg} profile={profile} onSaveProfile={saveProfile}/>
       </>
     )
   }
@@ -419,14 +448,14 @@ export default function App(){
           </div>
         </div>
       )}
-      <CustomerView lang={lang} setLang={setLang} t={t} onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} onOwnerClick={()=>setShowLogin(true)}/>
+      <CustomerView lang={lang} setLang={setLang} t={t} onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} profile={profile} onOwnerClick={()=>setShowLogin(true)} booking={booking} setBooking={setBooking}/>
     </>
   )
 }
-function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick}){
+function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOwnerClick,booking,setBooking}){
   const [step,setStep]=useState(1)
   const [svc,setSvc]=useState(null)
-  const [cal,setCal]=useState(()=>{const t=new Date();return{y:t.getFullYear(),m:t.getMonth()}})
+  const [cal,setCal]=useState(()=>{const d=new Date();return{y:d.getFullYear(),m:d.getMonth()}})
   const [date,setDate]=useState("")
   const [time,setTime]=useState("")
   const [form,setForm]=useState({name:"",phone:"",email:"",notes:"",photo:null})
@@ -451,7 +480,8 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick
     setBusy(false)
     if(ok)setStep(5)
   }
-  const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null})}
+  const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null});setBooking(false)}
+  const startBooking=()=>{setBooking(true);setStep(1)}
 
   if(showGallery){
     return(
@@ -463,30 +493,96 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick
         <div style={{padding:"24px 20px",maxWidth:740,margin:"0 auto"}}>
           {gallery.length===0
             ?(<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>)
-            :(<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="Elixir Beauty work" className="gallery-img"/>))}</div>)
+            :(<div className="gallery-grid">{gallery.map(g=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img"/>))}</div>)
           }
         </div>
       </div>
     )
   }
 
+  if(!booking){
+    return(
+      <div style={{minHeight:"100vh",background:"var(--cream)",display:"flex",flexDirection:"column"}}>
+        <div className="hero" style={{paddingBottom:120}}>
+          <div className="lang-toggle">
+            <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
+            <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
+          </div>
+          <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
+          <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
+          <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
+          <div className="hero-eyebrow a1">{t.eyebrow}</div>
+          <div className="hero-title a2">{profile.business_name||"Elixir"} <em>Beauty</em></div>
+          <div className="hero-line a3"/>
+          {profile.bio&&<div className="hero-sub a3">{profile.bio}</div>}
+          {!profile.bio&&<div className="hero-sub a3">{t.heroSub}</div>}
+          <button className="book-now-btn a4" onClick={startBooking}>
+            ✨ {t.bookNow}
+          </button>
+          <div style={{marginTop:20,position:"relative"}}>
+            <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1}}>
+              {t.viewWork}
+            </button>
+          </div>
+        </div>
+
+        {(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
+          <div className="footer">
+            <div className="footer-name">{profile.business_name||"Elixir Beauty"}</div>
+            {profile.bio&&<div className="footer-bio">{profile.bio}</div>}
+            <div className="footer-social">
+              {profile.instagram&&(
+                <a className="footer-link" href={`https://instagram.com/${profile.instagram.replace("@","")}`} target="_blank" rel="noreferrer">
+                  <span>📸</span> {profile.instagram.startsWith("@")?profile.instagram:"@"+profile.instagram}
+                </a>
+              )}
+              {profile.tiktok&&(
+                <a className="footer-link" href={`https://tiktok.com/@${profile.tiktok.replace("@","")}`} target="_blank" rel="noreferrer">
+                  <span>🎵</span> {profile.tiktok.startsWith("@")?profile.tiktok:"@"+profile.tiktok}
+                </a>
+              )}
+              {profile.phone&&(
+                <a className="footer-link" href={`tel:${profile.phone}`}>
+                  <span>📞</span> {profile.phone}
+                </a>
+              )}
+              {profile.whatsapp&&(
+                <a className="footer-link" href={`https://wa.me/${profile.whatsapp.replace(/\D/g,"")}`} target="_blank" rel="noreferrer">
+                  <span>💬</span> WhatsApp
+                </a>
+              )}
+              {profile.email&&(
+                <a className="footer-link" href={`mailto:${profile.email}`}>
+                  <span>✉️</span> {profile.email}
+                </a>
+              )}
+            </div>
+            <div style={{textAlign:"center",marginTop:16}}>
+              <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"#FFFFFF18",fontSize:10,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+            </div>
+            <div className="footer-copy">© {new Date().getFullYear()} {profile.business_name||"Elixir Beauty"}</div>
+          </div>
+        )}
+
+        {!(profile.instagram||profile.tiktok||profile.phone||profile.whatsapp||profile.email)&&(
+          <div style={{textAlign:"center",padding:"40px 20px"}}>
+            <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
-      <div className="hero">
-        <div className="lang-toggle">
+      <div style={{background:"var(--plum)",padding:"16px 20px",display:"flex",alignItems:"center",gap:12}}>
+        <button onClick={()=>setBooking(false)} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:9,padding:"7px 14px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13}}>← {t.back}</button>
+        <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"#FDF8F2"}}>{profile.business_name||"Elixir Beauty"}</span>
+        <div style={{marginLeft:"auto",display:"flex",gap:4}}>
           <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
           <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
         </div>
-        <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
-        <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
-        <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
-        <div className="hero-eyebrow a1">{t.eyebrow}</div>
-        <div className="hero-title a2">Elixir <em>Beauty</em></div>
-        <div className="hero-line a3"/>
-        <div className="hero-sub a3">{t.heroSub}</div>
-        <button onClick={()=>setShowGallery(true)} style={{marginTop:20,background:"#FFFFFF18",border:"1px solid #FFFFFF30",borderRadius:20,padding:"8px 20px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative"}}>{t.viewWork}</button>
       </div>
-
       <div className="bk-body">
         {step<5&&(<div className="steps-bar a4">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>)}
 
@@ -597,21 +693,19 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,onOwnerClick
             </div>
           </div>
         )}
-
-        <div style={{textAlign:"center",marginTop:40,paddingBottom:20}}>
-          <button onClick={onOwnerClick} style={{background:"none",border:"none",color:"var(--border)",fontSize:11,cursor:"pointer",fontFamily:"DM Sans,sans-serif",letterSpacing:1}}>{t.ownerAccess}</button>
-        </div>
       </div>
     </div>
   )
 }
-function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg}){
+function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gallery,onAddImg,onDeleteImg,profile,onSaveProfile}){
   const [view,setView]=useState("home")
   const [menuOpen,setMenuOpen]=useState(false)
-const [oLang,setOLang]=useState("en")
+  const [oLang,setOLang]=useState("en")
+
   const pending=bookings.filter(b=>b.status==="pending")
   const confirmed=bookings.filter(b=>b.status==="confirmed")
   const declined=bookings.filter(b=>b.status==="declined")
+
   const getList=()=>{
     if(view==="pending")return pending
     if(view==="confirmed")return confirmed
@@ -619,16 +713,19 @@ const [oLang,setOLang]=useState("en")
     if(view==="all")return bookings
     return[]
   }
+
   const getTitle=()=>{
-    if(view==="pending")return"Pending Requests"
-    if(view==="confirmed")return"Confirmed"
-    if(view==="declined")return"Declined"
-    if(view==="all")return"All Reservations"
-    if(view==="availability")return"My Availability"
-    if(view==="gallery")return"My Gallery"
+    if(view==="pending")return oLang==="fr"?"En attente":"Pending Requests"
+    if(view==="confirmed")return oLang==="fr"?"Confirmés":"Confirmed"
+    if(view==="declined")return oLang==="fr"?"Déclinés":"Declined"
+    if(view==="all")return oLang==="fr"?"Toutes les réservations":"All Reservations"
+    if(view==="availability")return oLang==="fr"?"Disponibilité":"My Availability"
+    if(view==="gallery")return oLang==="fr"?"Galerie":"My Gallery"
+    if(view==="profile")return oLang==="fr"?"Mon Profil":"My Profile"
     return"Dashboard"
   }
- return(
+
+  return(
     <div className="o-shell">
       <div className="o-header">
         <div>
@@ -640,22 +737,25 @@ const [oLang,setOLang]=useState("en")
             <button onClick={()=>setOLang("en")} style={{background:oLang==="en"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>EN</button>
             <button onClick={()=>setOLang("fr")} style={{background:oLang==="fr"?"var(--gold)":"#FFFFFF18",border:"none",borderRadius:20,padding:"5px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600}}>FR</button>
           </div>
-          <button onClick={()=>setMenuOpen(m=>!m)} style={{background:"#FFFFFF18",border:"none",color:"#FDF8F2",padding:"8px 14px",borderRadius:9,cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:18,lineHeight:1}}>☰</button>
+          <button onClick={()=>setMenuOpen(m=>!m)} style={{background:"#FFFFFF18",border:"none",color:"#FDF8F2",padding:"8px 14px",borderRadius:9,cursor:"pointer",fontSize:18,lineHeight:1}}>☰</button>
         </div>
       </div>
+
       {menuOpen&&(
         <div style={{position:"fixed",inset:0,zIndex:200}} onClick={()=>setMenuOpen(false)}>
-          <div style={{position:"absolute",top:64,right:0,background:"var(--plum)",width:220,borderRadius:"0 0 0 16px",padding:"12px 0",boxShadow:"0 8px 32px #1C0F2E40"}} onClick={e=>e.stopPropagation()}>
+          <div style={{position:"absolute",top:64,right:0,background:"var(--plum)",width:240,borderRadius:"0 0 0 16px",padding:"12px 0",boxShadow:"0 8px 32px #1C0F2E40"}} onClick={e=>e.stopPropagation()}>
             {[
-              {id:"pending",icon:"🔔",label:oLang==="fr"?"En attente":"Pending"},
-              {id:"confirmed",icon:"✅",label:oLang==="fr"?"Confirmés":"Confirmed"},
-              {id:"declined",icon:"✕",label:oLang==="fr"?"Déclinés":"Declined"},
-              {id:"all",icon:"📋",label:oLang==="fr"?"Tous":"All"},
-              {id:"availability",icon:"📅",label:oLang==="fr"?"Disponibilité":"Availability"},
-              {id:"gallery",icon:"🖼️",label:oLang==="fr"?"Galerie":"Gallery"},
+              {id:"pending",icon:"🔔",labelEn:"Pending",labelFr:"En attente"},
+              {id:"confirmed",icon:"✅",labelEn:"Confirmed",labelFr:"Confirmés"},
+              {id:"declined",icon:"✕",labelEn:"Declined",labelFr:"Déclinés"},
+              {id:"all",icon:"📋",labelEn:"All",labelFr:"Tous"},
+              {id:"availability",icon:"📅",labelEn:"Availability",labelFr:"Disponibilité"},
+              {id:"gallery",icon:"🖼️",labelEn:"Gallery",labelFr:"Galerie"},
+              {id:"profile",icon:"👤",labelEn:"My Profile",labelFr:"Mon Profil"},
             ].map(n=>(
               <button key={n.id} onClick={()=>{setView(n.id);setMenuOpen(false)}} style={{display:"flex",alignItems:"center",gap:12,width:"100%",padding:"12px 20px",background:"none",border:"none",color:view===n.id?"var(--gold-lt)":"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,textAlign:"left"}}>
-                <span>{n.icon}</span>{n.label}
+                <span>{n.icon}</span>{oLang==="fr"?n.labelFr:n.labelEn}
+                {n.id==="pending"&&pending.length>0&&<span style={{marginLeft:"auto",background:"var(--gold)",color:"#fff",borderRadius:20,padding:"1px 8px",fontSize:10,fontWeight:700}}>{pending.length}</span>}
               </button>
             ))}
             <div style={{borderTop:"1px solid #FFFFFF12",margin:"8px 0"}}/>
@@ -665,21 +765,23 @@ const [oLang,setOLang]=useState("en")
           </div>
         </div>
       )}
+
       {view!=="home"&&(
         <div className="detail-header">
-          <button className="detail-back" onClick={()=>setView("home")}>← Home</button>
+          <button className="detail-back" onClick={()=>setView("home")}>← {oLang==="fr"?"Accueil":"Home"}</button>
           <div className="detail-title">{getTitle()}</div>
         </div>
       )}
+
       <div className="o-main">
         {view==="home"&&(
           <>
             <div className="o-stats-grid">
               {[
-  {l:oLang==="fr"?"En attente":"Pending",v:pending.length,cls:"gold",id:"pending"},
-  {l:oLang==="fr"?"Confirmés":"Confirmed",v:confirmed.length,cls:"",id:"confirmed"},
-  {l:oLang==="fr"?"Déclinés":"Declined",v:declined.length,cls:"",id:"declined"},
-  {l:oLang==="fr"?"Tous":"All",v:bookings.length,cls:"",id:"all"},
+                {l:oLang==="fr"?"En attente":"Pending",v:pending.length,cls:"gold",id:"pending"},
+                {l:oLang==="fr"?"Confirmés":"Confirmed",v:confirmed.length,cls:"",id:"confirmed"},
+                {l:oLang==="fr"?"Déclinés":"Declined",v:declined.length,cls:"",id:"declined"},
+                {l:oLang==="fr"?"Tous":"All",v:bookings.length,cls:"",id:"all"},
               ].map(s=>(
                 <div key={s.l} className="o-stat" onClick={()=>setView(s.id)}>
                   <div className="o-stat-lbl">{s.l}</div>
@@ -690,37 +792,42 @@ const [oLang,setOLang]=useState("en")
             <div className="o-nav-grid">
               <button className="o-nav-btn" onClick={()=>setView("availability")}>
                 <span className="o-nav-icon">📅</span>
-               <div className="o-nav-label">{oLang==="fr"?"Disponibilité":"My Availability"}</div>
+                <div className="o-nav-label">{oLang==="fr"?"Disponibilité":"My Availability"}</div>
               </button>
               <button className="o-nav-btn" onClick={()=>setView("gallery")}>
                 <span className="o-nav-icon">🖼️</span>
-               <div className="o-nav-label">{oLang==="fr"?"Galerie":"My Gallery"}</div>
+                <div className="o-nav-label">{oLang==="fr"?"Galerie":"My Gallery"}</div>
+              </button>
+              <button className="o-nav-btn" onClick={()=>setView("profile")}>
+                <span className="o-nav-icon">👤</span>
+                <div className="o-nav-label">{oLang==="fr"?"Mon Profil":"My Profile"}</div>
               </button>
             </div>
             {pending.length>0&&(
               <div>
-                <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:14}}>Pending Requests</div>
+                <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:14}}>
+                  {oLang==="fr"?"Demandes en attente":"Pending Requests"}
+                </div>
                 <BookingList bookings={pending} onRespond={onRespond}/>
               </div>
             )}
             {pending.length===0&&(
               <div className="empty-state">
                 <div className="empty-icon">✅</div>
-                <div className="empty-title">All clear!</div>
-                <div className="empty-sub">No pending requests right now</div>
+                <div className="empty-title">{oLang==="fr"?"Tout est à jour!":"All clear!"}</div>
+                <div className="empty-sub">{oLang==="fr"?"Aucune demande en attente":"No pending requests right now"}</div>
               </div>
             )}
           </>
         )}
+
         {["pending","confirmed","declined","all"].includes(view)&&(
           <BookingList bookings={getList()} onRespond={onRespond}/>
         )}
-        {view==="availability"&&(
-          <AvailView avail={avail} onSave={onSaveAvail}/>
-        )}
-        {view==="gallery"&&(
-          <GalleryView gallery={gallery} onAdd={onAddImg} onDelete={onDeleteImg}/>
-        )}
+
+        {view==="availability"&&<AvailView avail={avail} onSave={onSaveAvail} lang={oLang}/>}
+        {view==="gallery"&&<GalleryView gallery={gallery} onAdd={onAddImg} onDelete={onDeleteImg} lang={oLang}/>}
+        {view==="profile"&&<ProfileView profile={profile} onSave={onSaveProfile} lang={oLang}/>}
       </div>
     </div>
   )
@@ -771,59 +878,51 @@ function BookingList({bookings,onRespond}){
   )
 }
 
-function AvailView({avail,onSave}){
+function AvailView({avail,onSave,lang}){
   const [days,setDays]=useState(avail.days||[1,2,3,4,5,6])
   const [times,setTimes]=useState(avail.times||[...ALL_TIMES])
   const [saved,setSaved]=useState(false)
   const toggleDay=d=>setDays(prev=>prev.includes(d)?prev.filter(x=>x!==d):[...prev,d].sort())
   const toggleTime=t=>setTimes(prev=>prev.includes(t)?prev.filter(x=>x!==t):[...prev,t].sort())
-  const save=async()=>{
-    await onSave({days,times})
-    setSaved(true)
-    setTimeout(()=>setSaved(false),2000)
-  }
+  const save=async()=>{await onSave({days,times});setSaved(true);setTimeout(()=>setSaved(false),2000)}
   return(
     <div>
       <div className="bk-card" style={{marginBottom:16}}>
-        <div className="card-hl">Working Days</div>
-        <div className="card-sub">Select the days you are available</div>
+        <div className="card-hl">{lang==="fr"?"Jours de travail":"Working Days"}</div>
+        <div className="card-sub">{lang==="fr"?"Sélectionnez vos jours disponibles":"Select the days you are available"}</div>
         <div className="avail-grid">
-          {DAYS_SHORT.map((d,i)=>(
-            <button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>
-          ))}
+          {DAYS_SHORT.map((d,i)=>(<button key={i} className={`avail-day ${days.map(Number).includes(i)?"on":""}`} onClick={()=>toggleDay(i)}>{d}</button>))}
         </div>
       </div>
       <div className="bk-card" style={{marginBottom:16}}>
-        <div className="card-hl">Working Hours</div>
-        <div className="card-sub">Select the time slots you offer</div>
+        <div className="card-hl">{lang==="fr"?"Heures de travail":"Working Hours"}</div>
+        <div className="card-sub">{lang==="fr"?"Sélectionnez vos créneaux horaires":"Select the time slots you offer"}</div>
         <div className="time-avail-grid">
-          {ALL_TIMES.map(t=>(
-            <button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>
-          ))}
+          {ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}
         </div>
       </div>
       <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
-        {saved?"✓ Saved!":"Save Availability"}
+        {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Availability"}
       </button>
     </div>
   )
 }
 
-function GalleryView({gallery,onAdd,onDelete}){
+function GalleryView({gallery,onAdd,onDelete,lang}){
   return(
     <div>
       <div className="bk-card" style={{marginBottom:16}}>
-        <div className="card-hl">Add Photos</div>
-        <div className="card-sub">Show your work to clients</div>
+        <div className="card-hl">{lang==="fr"?"Ajouter des photos":"Add Photos"}</div>
+        <div className="card-sub">{lang==="fr"?"Montrez votre travail aux clients":"Show your work to clients"}</div>
         <div className="upload-box" onClick={()=>document.getElementById("gallery-upload").click()}>
           <div style={{fontSize:32,marginBottom:8}}>📸</div>
-          <div style={{fontSize:13,color:"var(--muted)"}}>Tap to add a photo</div>
+          <div style={{fontSize:13,color:"var(--muted)"}}>{lang==="fr"?"Appuyez pour ajouter une photo":"Tap to add a photo"}</div>
         </div>
         <input id="gallery-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>{if(e.target.files[0])onAdd(e.target.files[0])}}/>
       </div>
       {gallery.length>0&&(
         <div className="bk-card">
-          <div className="card-hl">Your Gallery</div>
+          <div className="card-hl">{lang==="fr"?"Ma Galerie":"Your Gallery"}</div>
           <div className="gallery-grid">
             {gallery.map(g=>(
               <div key={g.id} style={{position:"relative"}}>
@@ -834,6 +933,39 @@ function GalleryView({gallery,onAdd,onDelete}){
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+function ProfileView({profile,onSave,lang}){
+  const [form,setForm]=useState({
+    business_name:profile.business_name||"",
+    bio:profile.bio||"",
+    phone:profile.phone||"",
+    whatsapp:profile.whatsapp||"",
+    instagram:profile.instagram||"",
+    tiktok:profile.tiktok||"",
+    email:profile.email||""
+  })
+  const [saved,setSaved]=useState(false)
+  const ff=k=>e=>setForm(p=>({...p,[k]:e.target.value}))
+  const save=async()=>{await onSave(form);setSaved(true);setTimeout(()=>setSaved(false),2000)}
+  return(
+    <div className="bk-card">
+      <div className="card-hl">{lang==="fr"?"Mon Profil":"My Profile"}</div>
+      <div className="card-sub">{lang==="fr"?"Ces infos apparaîtront sur votre site":"This info will appear on your website"}</div>
+      <div className="profile-form">
+        <div className="f-group"><label className="f-label">{lang==="fr"?"Nom du salon":"Business Name"}</label><input className="f-input" value={form.business_name} onChange={ff("business_name")} placeholder="Elixir Beauty"/></div>
+        <div className="f-group"><label className="f-label">Bio</label><textarea className="f-textarea" value={form.bio} onChange={ff("bio")} placeholder={lang==="fr"?"Décrivez votre salon...":"Describe your salon..."} style={{minHeight:72}}/></div>
+        <div className="f-group"><label className="f-label">Instagram</label><input className="f-input" value={form.instagram} onChange={ff("instagram")} placeholder="@elixirbeauty"/></div>
+        <div className="f-group"><label className="f-label">TikTok</label><input className="f-input" value={form.tiktok} onChange={ff("tiktok")} placeholder="@elixirbeauty"/></div>
+        <div className="f-group"><label className="f-label">{lang==="fr"?"Téléphone":"Phone"}</label><input className="f-input" value={form.phone} onChange={ff("phone")} placeholder="+1 514 000 0000"/></div>
+        <div className="f-group"><label className="f-label">WhatsApp</label><input className="f-input" value={form.whatsapp} onChange={ff("whatsapp")} placeholder="+1 514 000 0000"/></div>
+        <div className="f-group"><label className="f-label">Email</label><input className="f-input" value={form.email} onChange={ff("email")} placeholder="elixir@email.com"/></div>
+        <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
+          {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save Profile"}
+        </button>
+      </div>
     </div>
   )
 }
