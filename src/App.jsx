@@ -8,17 +8,24 @@ const FR = {
   chooseStyle: "Choisissez votre style", chooseStyleSub: "Pour quoi venez-vous ?",
   pickDate: "Choisissez une date et heure", pickDateSub: "Fermé le dimanche",
   availTimes: "Heures disponibles pour", notAvail: "Pas disponible ce jour — choisissez une autre date",
-  yourInfo: "Vos informations", yourInfoSub: "Pour vous contacter avec votre confirmation",
-  fullName: "Nom complet *", phone: "Téléphone / WhatsApp *", email: "Courriel (optionnel)",
+  yourInfo: "Vos informations", yourInfoSub: "Pour nous contacter pour votre confirmation",
+  fullName: "Nom complet *", phone: "Téléphone / WhatsApp", email: "Courriel",
+  phoneOrEmail: "Téléphone ou Courriel *",
   notes: "Notes / Demandes spéciales", notesPlaceholder: "Longueur des cheveux, allergies, inspiration...",
   photoLabel: "Photo d'inspiration (optionnel)", photoTap: "Appuyez pour ajouter une photo",
   confirm: "Confirmez votre réservation", confirmSub: "Tout est correct ?",
   service: "Service", estimate: "Estimation", duration: "Durée",
   date: "Date", time: "Heure", name: "Nom", emailLabel: "Courriel", notesLabel: "Notes",
-  requestNote: "Votre demande sera envoyée à Elixir Beauty. Vous recevrez une confirmation WhatsApp une fois approuvée.",
+  requestNote: "Votre demande sera envoyée à Elixir Beauty. Vous recevrez une confirmation une fois approuvée.",
   sendRequest: "Envoyer la demande", back: "Retour", continue: "Continuer", review: "Vérifier",
-  received: "Demande reçue !", receivedSub: "Vous recevrez un message WhatsApp une fois confirmé.",
+  received: "Demande reçue !", receivedSub: "Vous recevrez une confirmation une fois approuvée.",
   bookAnother: "Réserver un autre rendez-vous", login: "Se connecter", ourWork: "Nos créations",
+  help: "Aide", cancelBooking: "Annuler ma réservation", contactSalon: "Contacter le salon",
+  cancelReason: "Raison de l'annulation *", cancelReasonPlaceholder: "Expliquez pourquoi vous souhaitez annuler...",
+  cancelNote: "Les annulations moins d'1h avant le rendez-vous ne sont pas possibles en ligne. Veuillez appeler le salon.",
+  cancelSuccess: "Votre annulation a été envoyée.", cancelBtn: "Annuler ma réservation",
+  findBooking: "Retrouvez votre réservation", findByPhone: "Entrez votre numéro ou courriel",
+  contactVia: "Nous contacter via",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"À partir de 180$"},
@@ -39,16 +46,23 @@ const EN = {
   pickDate: "Pick a date and time", pickDateSub: "Sundays closed",
   availTimes: "Available times for", notAvail: "Not available this day — please choose another date",
   yourInfo: "Your information", yourInfoSub: "So we can reach you with your confirmation",
-  fullName: "Full Name *", phone: "Phone / WhatsApp *", email: "Email (optional)",
+  fullName: "Full Name *", phone: "Phone / WhatsApp", email: "Email",
+  phoneOrEmail: "Phone or Email *",
   notes: "Hair notes / Special requests", notesPlaceholder: "Hair length, allergies, inspiration...",
   photoLabel: "Inspiration photo (optional)", photoTap: "Tap to upload an inspiration photo",
   confirm: "Confirm your booking", confirmSub: "Everything look good?",
   service: "Service", estimate: "Estimate", duration: "Duration",
   date: "Date", time: "Time", name: "Name", emailLabel: "Email", notesLabel: "Notes",
-  requestNote: "Your request will be sent to Elixir Beauty. You will receive a WhatsApp confirmation once approved.",
+  requestNote: "Your request will be sent to Elixir Beauty. You will receive a confirmation once approved.",
   sendRequest: "Send Request", back: "Back", continue: "Continue", review: "Review",
-  received: "Request received!", receivedSub: "You will receive a WhatsApp message once confirmed.",
+  received: "Request received!", receivedSub: "You will receive a confirmation once approved.",
   bookAnother: "Book another appointment", login: "Login", ourWork: "Our Work",
+  help: "Help", cancelBooking: "Cancel my booking", contactSalon: "Contact the salon",
+  cancelReason: "Reason for cancellation *", cancelReasonPlaceholder: "Please explain why you want to cancel...",
+  cancelNote: "Cancellations less than 1 hour before your appointment cannot be done online. Please call the salon.",
+  cancelSuccess: "Your cancellation request has been sent.", cancelBtn: "Cancel my booking",
+  findBooking: "Find your booking", findByPhone: "Enter your phone or email",
+  contactVia: "Contact us via",
   services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
     {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
@@ -90,8 +104,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .lang-btn.active{color:#C8973A;}
 .hero-menu-btn{background:#FFFFFF18;border:1px solid #FFFFFF30;border-radius:9px;padding:7px 12px;color:#FDF8F2;cursor:pointer;font-size:16px;line-height:1;}
 .hero-menu{position:fixed;inset:0;z-index:200;}
-.hero-menu-panel{position:absolute;top:52px;right:16px;background:var(--plum);border:1px solid #FFFFFF20;width:200px;border-radius:14px;padding:8px 0;box-shadow:0 8px 32px #1C0F2E50;}
-.hero-menu-item{display:flex;align-items:center;gap:10px;width:100%;padding:12px 18px;background:none;border:none;color:#C8B4D8;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;text-align:left;}
+.hero-menu-panel{position:absolute;top:52px;right:16px;background:var(--plum);border:1px solid #FFFFFF20;width:210px;border-radius:14px;padding:8px 0;box-shadow:0 8px 32px #1C0F2E50;}
+.hero-menu-item{display:flex;align-items:center;gap:10px;width:100%;padding:13px 18px;background:none;border:none;color:#C8B4D8;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;text-align:left;transition:all .18s;}
 .hero-menu-item:hover{color:#FDF8F2;background:#FFFFFF0A;}
 .book-now-btn{background:var(--plum);color:#C8973A;border:2.5px solid #C8973A;padding:18px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:1px;animation:glow 2.5s ease-in-out infinite;transition:transform .2s;display:inline-block;}
 .book-now-btn:hover{transform:translateY(-2px) scale(1.03);}
@@ -138,12 +152,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .btn-gold{background:var(--gold);color:#fff;}.btn-gold:hover{background:var(--gold-lt);transform:translateY(-1px);}
 .btn-gold:disabled{opacity:.35;cursor:not-allowed;transform:none;}
 .btn-out{background:transparent;border:1.5px solid var(--border);color:var(--ink);}.btn-out:hover{border-color:var(--ink);}
+.btn-red-out{background:transparent;border:1.5px solid var(--red);color:var(--red);border-radius:12px;padding:12px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+.btn-red-out:hover{background:var(--red);color:#fff;}
 .sum-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);font-size:14px;}
 .sum-row:last-child{border-bottom:none;}.sum-label{color:var(--muted);}.sum-val{font-weight:500;}
 .success{text-align:center;padding:40px 20px;}
 .suc-icon{font-size:56px;margin-bottom:18px;animation:fadeIn .5s ease;}
 .suc-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:10px;}
 .suc-sub{font-size:14px;color:var(--muted);max-width:380px;margin:0 auto;line-height:1.65;}
+.help-card{background:var(--card);border-radius:18px;border:1px solid var(--border);overflow:hidden;margin-bottom:14px;}
+.help-section{padding:20px 24px;border-bottom:1px solid var(--border);}
+.help-section:last-child{border-bottom:none;}
+.help-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);margin-bottom:4px;}
+.help-sub{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5;}
+.contact-btns{display:flex;gap:10px;flex-wrap:wrap;}
 .o-shell{min-height:100vh;background:#F0EAE2;}
 .o-header{background:var(--plum);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .o-header-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#FDF8F2;}
@@ -157,10 +179,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .accordion-arrow.open{transform:rotate(180deg);}
 .accordion-body{padding:0 16px 16px;animation:slideDown .2s ease;}
 .acc-scroll{max-height:320px;overflow-y:auto;padding-right:4px;}
-.acc-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:10px;cursor:pointer;transition:background .18s;margin-bottom:4px;}
-.acc-row:hover{background:var(--gold-pale);}
-.acc-row-label{font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;}
-.acc-row-count{font-size:11px;color:var(--muted);}
 .res-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:16px 18px;margin-bottom:10px;box-shadow:0 2px 8px #1C0F2E06;}
 .res-top{display:flex;align-items:flex-start;gap:12px;}
 .res-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:var(--gold-pale);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);}
@@ -171,6 +189,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .chip-pending{background:var(--pending-lt);color:var(--pending-c);border:1px solid #8B620020;}
 .chip-confirmed{background:var(--green-lt);color:var(--green);border:1px solid #2E7D5A20;}
 .chip-declined{background:var(--red-lt);color:var(--red);border:1px solid #B8323220;}
+.chip-cancelled{background:#F0E6FF;color:#6B21A8;border:1px solid #6B21A820;}
 .res-actions{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
 .btn-confirm{flex:1;padding:11px;border-radius:10px;border:1.5px solid var(--green);background:var(--green-lt);color:var(--green);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;}
 .btn-confirm:hover{background:var(--green);color:#fff;}
@@ -210,6 +229,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .confirm-box-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);margin-bottom:8px;}
 .confirm-box-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
 .confirm-box-btns{display:flex;gap:10px;}
+.cancel-warning{background:#FFF7ED;border:1px solid #FED7AA;border-radius:12px;padding:14px 16px;font-size:12px;color:#92400E;line-height:1.6;margin-bottom:16px;}
 @media(max-width:600px){.f-grid{grid-template-columns:1fr;}.time-grid{grid-template-columns:repeat(3,1fr);}}
 `
 
@@ -224,7 +244,7 @@ const showDate=(iso,lang)=>{if(!iso)return"";const[y,m,d]=iso.split("-");return`
 const buildMsg=(dec,name,service,date,time)=>dec==="confirm"
   ?`Hi ${name}! Your booking for ${service} on ${showDate(date,"en")} at ${time} has been confirmed. We look forward to seeing you at Elixir Beauty. See you soon!`
   :`Hi ${name}, unfortunately the time slot on ${showDate(date,"en")} at ${time} is not available. We apologize. Please visit our booking page to choose another time. Elixir Beauty`
-const DEFAULT_AVAIL={days:[1,2,3,4,5,6],times:[...ALL_TIMES]}
+const DEFAULT_AVAIL={days:[0,1,2,3,4,5,6],times:[...ALL_TIMES],blockedDates:[]}
 const DEFAULT_PROFILE={business_name:"Elixir Beauty",bio:"",phone:"",whatsapp:"",instagram:"",tiktok:"",email:""}
 
 const IGIcon=()=>(<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>)
@@ -248,7 +268,7 @@ export default function App(){
   const [loginPass,setLoginPass]=useState("")
   const [loginErr,setLoginErr]=useState("")
   const [loginBusy,setLoginBusy]=useState(false)
- const [showLogin,setShowLogin]=useState(()=>window.location.search.includes("owner=true"))
+  const [showLogin,setShowLogin]=useState(()=>window.location.search.includes("owner=true"))
   const [booking,setBooking]=useState(false)
 
   useEffect(()=>{
@@ -287,14 +307,20 @@ export default function App(){
     else{setShowLogin(false);setLoginBusy(false)}
   }
   const logout=async()=>await supabase.auth.signOut()
+
   const addBooking=async(b)=>{
     const{error}=await supabase.from("bookings").insert([{name:b.name,phone:b.phone,email:b.email,notes:b.notes,service:b.service,service_id:b.serviceId,date:b.date,time:b.time,status:"pending",ai_message:""}])
     if(!error){fetchAll();try{await fetch("/api/notify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:b.name,phone:b.phone,email:b.email,notes:b.notes,service:b.service,date:b.date,time:b.time})})}catch(_){}}
     return!error
   }
+
   const respond=(id,dec)=>{
     const bk=bookings.find(b=>b.id===id)
     if(!bk)return
+    if(dec==="cancel"){
+      supabase.from("bookings").update({status:"cancelled",ai_message:"",cancelled_by:"owner"}).eq("id",id).then(()=>fetchAll())
+      return
+    }
     const msg=buildMsg(dec,bk.name,bk.service,bk.date,bk.time)
     let phone=bk.phone?.replace(/\D/g,"")
     if(phone&&phone.length===10)phone="1"+phone
@@ -302,6 +328,24 @@ export default function App(){
     if(phone)window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`,"_blank")
     else if(bk.email)window.open(`mailto:${bk.email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(msg)}`,"_blank")
   }
+
+  const cancelByClient=async(contact,reason)=>{
+    const bk=bookings.find(b=>(b.phone===contact||b.email===contact)&&b.status==="confirmed")
+    if(!bk)return{error:"not_found"}
+    const apptTime=new Date(`${bk.date}T${bk.time.padStart(5,"0")}:00`)
+    const now=new Date()
+    const diff=(apptTime-now)/60000
+    if(diff<60)return{error:"too_late"}
+    await supabase.from("bookings").update({status:"cancelled",cancelled_by:"client",cancellation_reason:reason}).eq("id",bk.id)
+    await fetchAll()
+    const ownerMsg=`Cancellation request from ${bk.name} for ${bk.service} on ${bk.date} at ${bk.time}. Reason: ${reason}`
+    if(profile.whatsapp){
+      const phone=profile.whatsapp.replace(/\D/g,"")
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(ownerMsg)}`,"_blank")
+    }
+    return{ok:true,booking:bk}
+  }
+
   const saveAvail=async(a)=>{setAvail(a);await supabase.from("app_settings").upsert({key:"availability",value:a})}
   const saveProfile=async(p)=>{setProfile(p);await supabase.from("profile").upsert({id:1,...p})}
   const addGalleryImg=async(file)=>{const r=new FileReader();r.onload=async(e)=>{await supabase.from("gallery").insert([{image_data:e.target.result,caption:""}]);fetchAll()};r.readAsDataURL(file)}
@@ -327,12 +371,11 @@ export default function App(){
           </div>
         </div>
       )}
-      <CustomerView lang={lang} setLang={setLang} t={t} onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} profile={profile} onOwnerClick={()=>setShowLogin(true)} booking={booking} setBooking={setBooking}/>
+      <CustomerView lang={lang} setLang={setLang} t={t} onBook={addBooking} bookings={bookings} avail={avail} gallery={gallery} profile={profile} onOwnerClick={()=>setShowLogin(true)} booking={booking} setBooking={setBooking} onCancelByClient={cancelByClient}/>
     </>
   )
 }
-
-function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOwnerClick,booking,setBooking}){
+function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOwnerClick,booking,setBooking,onCancelByClient}){
   const [step,setStep]=useState(1)
   const [svc,setSvc]=useState(null)
   const [cal,setCal]=useState(()=>{const d=new Date();return{y:d.getFullYear(),m:d.getMonth()}})
@@ -341,13 +384,19 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const [form,setForm]=useState({name:"",phone:"",email:"",notes:"",photo:null})
   const [busy,setBusy]=useState(false)
   const [showGallery,setShowGallery]=useState(false)
+  const [showHelp,setShowHelp]=useState(false)
   const [menuOpen,setMenuOpen]=useState(false)
   const [lightbox,setLightbox]=useState(null)
+  const [cancelContact,setCancelContact]=useState("")
+  const [cancelReason,setCancelReason]=useState("")
+  const [cancelResult,setCancelResult]=useState(null)
+  const [cancelBusy,setCancelBusy]=useState(false)
+
   const MONTHS=lang==="fr"?MONTHS_FR:MONTHS_EN
-  const bookedTimes=bookings.filter(b=>b.date===date&&b.status!=="declined").map(b=>b.time)
-  const safeAvail={days:avail?.days||[1,2,3,4,5,6],times:avail?.times||ALL_TIMES}
+  const bookedTimes=bookings.filter(b=>b.date===date&&b.status!=="declined"&&b.status!=="cancelled").map(b=>b.time)
+  const safeAvail={days:avail?.days||[0,1,2,3,4,5,6],times:avail?.times||ALL_TIMES,blockedDates:avail?.blockedDates||[]}
   const dayOfWeek=date?new Date(date+"T00:00:00").getDay():-1
-  const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek):true
+  const dayAvail=date?safeAvail.days.map(Number).includes(dayOfWeek)&&!safeAvail.blockedDates.includes(date):true
   const daysInMonth=new Date(cal.y,cal.m+1,0).getDate()
   const firstDay=new Date(cal.y,cal.m,1).getDay()
   const todISO=todayISO()
@@ -357,16 +406,21 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
   const submit=async()=>{setBusy(true);const ok=await onBook({...form,phone:form.phone?"+1"+form.phone:"",service:svc.name,serviceId:svc.id,date,time});setBusy(false);if(ok)setStep(5)}
   const reset=()=>{setStep(1);setSvc(null);setDate("");setTime("");setForm({name:"",phone:"",email:"",notes:"",photo:null});setBooking(false)}
 
-  if(showGallery){
-  const prev=()=>setLightbox(i=>(i-1+gallery.length)%gallery.length)
-  const next=()=>setLightbox(i=>(i+1)%gallery.length)
-  return(
+  const handleCancel=async()=>{
+    if(!cancelContact.trim()||!cancelReason.trim())return
+    setCancelBusy(true)
+    const result=await onCancelByClient(cancelContact.trim(),cancelReason.trim())
+    setCancelResult(result)
+    setCancelBusy(false)
+  }
+
+  if(showGallery)return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
       {lightbox!==null&&(
         <div style={{position:"fixed",inset:0,background:"#000000EE",zIndex:500,display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setLightbox(null)}>
-          <button onClick={e=>{e.stopPropagation();prev()}} style={{position:"absolute",left:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>‹</button>
+          <button onClick={e=>{e.stopPropagation();setLightbox(i=>(i-1+gallery.length)%gallery.length)}} style={{position:"absolute",left:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>‹</button>
           <img src={gallery[lightbox]?.image_data} alt="work" style={{maxWidth:"90vw",maxHeight:"85vh",objectFit:"contain",borderRadius:12}} onClick={e=>e.stopPropagation()}/>
-          <button onClick={e=>{e.stopPropagation();next()}} style={{position:"absolute",right:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>›</button>
+          <button onClick={e=>{e.stopPropagation();setLightbox(i=>(i+1)%gallery.length)}} style={{position:"absolute",right:16,background:"#FFFFFF20",border:"none",color:"#fff",width:44,height:44,borderRadius:"50%",fontSize:22,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>›</button>
           <button onClick={()=>setLightbox(null)} style={{position:"absolute",top:16,right:16,background:"#FFFFFF20",border:"none",color:"#fff",width:36,height:36,borderRadius:"50%",fontSize:18,cursor:"pointer"}}>✕</button>
           <div style={{position:"absolute",bottom:16,color:"#FFFFFF80",fontSize:12}}>{lightbox+1} / {gallery.length}</div>
         </div>
@@ -376,19 +430,84 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         <span onClick={()=>setShowGallery(false)} style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2",cursor:"pointer"}}>{t.ourWork}</span>
       </div>
       <div style={{padding:"20px 16px",maxWidth:740,margin:"0 auto"}}>
-        {gallery.length===0?<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>
-        :<div className="gallery-grid">{gallery.map((g,i)=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img" style={{cursor:"pointer"}} onClick={()=>setLightbox(i)}/>))}</div>}
+        {gallery.length===0
+          ?<div className="empty-state"><div className="empty-icon">🌿</div><div className="empty-title">{lang==="fr"?"Bientôt disponible":"Coming soon"}</div></div>
+          :<div className="gallery-grid">{gallery.map((g,i)=>(<img key={g.id} src={g.image_data} alt="work" className="gallery-img" style={{cursor:"pointer"}} onClick={()=>setLightbox(i)}/>))}</div>
+        }
       </div>
     </div>
   )
-}
 
+  if(showHelp)return(
+    <div style={{minHeight:"100vh",background:"var(--cream)"}}>
+      <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,position:"sticky",top:0,zIndex:100}}>
+        <button onClick={()=>{setShowHelp(false);setCancelResult(null);setCancelContact("");setCancelReason("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:8,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
+        <span style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2"}}>{t.help}</span>
+      </div>
+      <div style={{padding:"24px 16px",maxWidth:560,margin:"0 auto"}}>
+
+        <div className="help-card">
+          <div className="help-section">
+            <div className="help-title">🗓 {t.cancelBooking}</div>
+            <div className="help-sub">{t.cancelNote}</div>
+            {cancelResult?.error==="not_found"&&<div style={{background:"var(--red-lt)",border:"1px solid var(--red)",borderRadius:10,padding:"12px 14px",fontSize:13,color:"var(--red)",marginBottom:14}}>{lang==="fr"?"Aucune réservation confirmée trouvée avec ce contact.":"No confirmed booking found with this contact."}</div>}
+            {cancelResult?.error==="too_late"&&<div className="cancel-warning">⚠️ {lang==="fr"?"Annulation impossible — moins d'1h avant le rendez-vous. Appelez le salon directement.":"Cancellation not possible — less than 1 hour before your appointment. Please call the salon directly."}</div>}
+            {cancelResult?.ok?(
+              <div style={{textAlign:"center",padding:"20px 0"}}>
+                <div style={{fontSize:40,marginBottom:12}}>✅</div>
+                <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:20,color:"var(--ink)",marginBottom:8}}>{lang==="fr"?"Annulation envoyée":"Cancellation sent"}</div>
+                <div style={{fontSize:13,color:"var(--muted)",lineHeight:1.6}}>{t.cancelSuccess}</div>
+              </div>
+            ):(
+              <>
+                <div className="f-group" style={{marginBottom:12}}>
+                  <label className="f-label">{t.findByPhone}</label>
+                  <input className="f-input" value={cancelContact} onChange={e=>setCancelContact(e.target.value)} placeholder={lang==="fr"?"514 000 0000 ou email@email.com":"514 000 0000 or email@email.com"}/>
+                </div>
+                <div className="f-group" style={{marginBottom:16}}>
+                  <label className="f-label">{t.cancelReason}</label>
+                  <textarea className="f-textarea" value={cancelReason} onChange={e=>setCancelReason(e.target.value)} placeholder={t.cancelReasonPlaceholder} style={{minHeight:80}}/>
+                </div>
+                <button className="btn-red-out" style={{width:"100%",justifyContent:"center",display:"flex"}} onClick={handleCancel} disabled={cancelBusy||!cancelContact.trim()||!cancelReason.trim()}>
+                  {cancelBusy?<span className="dots"><span/><span/><span/></span>:t.cancelBtn}
+                </button>
+              </>
+            )}
+          </div>
+
+          {(profile.whatsapp||profile.phone||profile.email)&&(
+            <div className="help-section">
+              <div className="help-title">💬 {t.contactSalon}</div>
+              <div className="help-sub">{lang==="fr"?"Une question? Contactez-nous directement.":"Have a question? Reach us directly."}</div>
+              <div className="contact-btns">
+                {profile.whatsapp&&(
+                  <a className="btn-wa" href={`https://wa.me/${profile.whatsapp.replace(/\D/g,"")}`} target="_blank" rel="noreferrer" style={{padding:"10px 18px",fontSize:13}}>
+                    <WAIcon/> WhatsApp
+                  </a>
+                )}
+                {profile.phone&&(
+                  <a href={`tel:${profile.phone}`} style={{display:"inline-flex",alignItems:"center",gap:7,padding:"10px 18px",background:"var(--gold-pale)",border:"1.5px solid var(--gold)",borderRadius:9,color:"var(--gold)",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:700,textDecoration:"none"}}>
+                    <PhoneIcon/>{lang==="fr"?"Appeler":"Call"}
+                  </a>
+                )}
+                {profile.email&&(
+                  <a href={`mailto:${profile.email}`} className="btn-em" style={{padding:"10px 18px",fontSize:13}}>
+                    <MailIcon/> Email
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 
   if(booking)return(
     <div style={{minHeight:"100vh",background:"var(--cream)"}}>
       <div style={{background:"var(--plum)",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,position:"sticky",top:0,zIndex:100}}>
         <button onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{background:"none",border:"1px solid #FFFFFF40",borderRadius:8,padding:"6px 12px",color:"#FDF8F2",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12}}>← {t.back}</button>
-      <span onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2",cursor:"pointer"}}>Elixir Beauty</span>
+        <span onClick={()=>{setBooking(false);setStep(1);setSvc(null);setDate("");setTime("")}} style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,color:"#FDF8F2",cursor:"pointer"}}>Elixir Beauty</span>
         <div style={{marginLeft:"auto",display:"flex",gap:2}}>
           <button className={`lang-btn ${lang==="en"?"active":""}`} onClick={()=>setLang("en")}>EN</button>
           <button className={`lang-btn ${lang==="fr"?"active":""}`} onClick={()=>setLang("fr")}>FR</button>
@@ -397,11 +516,98 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
       <div className="bk-body">
         {step<5&&<div className="steps-bar">{[1,2,3,4].map((s,i)=>(<span key={s} style={{display:"contents"}}><div className={`step-node ${step===s?"active":step>s?"done":"idle"}`}>{step>s?"✓":s}</div>{i<3&&<div className="step-line"/>}</span>))}</div>}
         {step===1&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.chooseStyle}</div><div className="card-sub">{t.chooseStyleSub}</div><div className="svc-grid">{t.services.map(s=>(<button key={s.id} className={`svc-btn ${svc?.id===s.id?"sel":""}`} onClick={()=>setSvc(s)}><span className="svc-icon">{s.icon}</span><span className="svc-name">{s.name}</span><span className="svc-dur">{s.dur}</span><span className="svc-price">{s.price}</span></button>))}</div></div><div style={{display:"flex",justifyContent:"flex-end"}}><button className="btn btn-ink" disabled={!svc} onClick={()=>setStep(2)}>{t.continue}</button></div></div>}
-        {step===2&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.pickDate}</div><div className="card-sub">{t.pickDateSub}</div>
-<div className="cal-nav-row"><div className="cal-month">{MONTHS[cal.m]} {cal.y}</div><div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div></div><div className="cal-grid">{DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}{Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}{Array(daysInMonth).fill(null).map((_,i)=>{const iso=toISO(cal.y,cal.m,i+1);const past=iso<todISO;const dow=new Date(cal.y,cal.m,i+1).getDay();const unavail=!safeAvail.days.map(Number).includes(dow)||(safeAvail.blockedDates||[]).includes(iso);return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||unavail} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)})}</div>{date&&dayAvail&&<><div style={{fontSize:13,color:"var(--muted)",marginBottom:10}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div><div className="time-grid">{ALL_TIMES.map(t2=>{const booked=bookedTimes.includes(t2);const unavailTime=!safeAvail.times.includes(t2);return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)})}</div></>}{date&&!dayAvail&&<div style={{textAlign:"center",padding:"16px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}</div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div></div>}
-        {step===3&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.yourInfo}</div><div className="card-sub">{t.yourInfoSub}</div><div className="f-grid"><div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div><div className="f-group"><label className="f-label">{lang==="fr"?"Téléphone ou Email *":"Phone or Email *"}</label><div style={{display:"flex",gap:6,alignItems:"center"}}><div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:10,padding:"11px 12px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div><input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/></div></div></div><div className="f-grid"><div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div></div><div className="f-grid" style={{gridTemplateColumns:"1fr"}}><div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div></div><div className="f-group" style={{marginTop:4}}><label className="f-label">{t.photoLabel}</label><div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>{form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:150,objectFit:"cover",borderRadius:9}} alt="inspiration"/>:<><div style={{fontSize:28,marginBottom:6}}>📸</div><div style={{fontSize:12,color:"var(--muted)"}}>{t.photoTap}</div></>}</div><input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/></div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||(!form.phone.trim()&&!form.email.trim())} onClick={()=>setStep(4)}>{t.review}</button></div></div>}
-        {step===4&&<div className="a4"><div className="bk-card"><div className="card-hl">{t.confirm}</div><div className="card-sub">{t.confirmSub}</div>{[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}{form.photo&&<div style={{marginTop:10}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:140,objectFit:"cover",borderRadius:10}} alt="inspiration"/></div>}<div style={{marginTop:16,padding:"12px",background:"#FBF6EE",borderRadius:10,border:"1px solid var(--border)",fontSize:12,color:"var(--muted)",lineHeight:1.6}}>{t.requestNote}</div></div><div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div></div>}
-        {step===5&&<div className="bk-card a4"><div className="success"><div className="suc-icon">🌿</div><div className="suc-title">{t.received}</div><div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div><button className="btn btn-ink" style={{marginTop:24}} onClick={reset}>{t.bookAnother}</button></div></div>}
+        {step===2&&(
+          <div className="a4">
+            <div className="bk-card">
+              <div className="card-hl">{t.pickDate}</div>
+              <div className="card-sub">{t.pickDateSub}</div>
+              <div className="cal-nav-row">
+                <div className="cal-month">{MONTHS[cal.m]} {cal.y}</div>
+                <div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div>
+              </div>
+              <div className="cal-grid">
+                {DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}
+                {Array(firstDay).fill(null).map((_,i)=><div key={`e${i}`}/>)}
+                {Array(daysInMonth).fill(null).map((_,i)=>{
+                  const iso=toISO(cal.y,cal.m,i+1)
+                  const past=iso<todISO
+                  const dow=new Date(cal.y,cal.m,i+1).getDay()
+                  const blocked=safeAvail.blockedDates.includes(iso)||!safeAvail.days.map(Number).includes(dow)
+                  return(<button key={i} className={`cal-d ${date===iso?"sel":""} ${iso===todISO?"tod":""}`} disabled={past||blocked} onClick={()=>{setDate(iso);setTime("")}}>{i+1}</button>)
+                })}
+              </div>
+              {date&&dayAvail&&(
+                <>
+                  <div style={{fontSize:13,color:"var(--muted)",marginBottom:10}}>{t.availTimes} <strong style={{color:"var(--ink)"}}>{showDate(date,lang)}</strong></div>
+                  <div className="time-grid">
+                    {ALL_TIMES.map(t2=>{
+                      const booked=bookedTimes.includes(t2)
+                      const unavailTime=!safeAvail.times.includes(t2)
+                      return(<button key={t2} className={`time-btn ${time===t2?"sel":""} ${booked?"booked":""} ${unavailTime?"unavail":""}`} disabled={booked||unavailTime} onClick={()=>setTime(t2)}>{t2}</button>)
+                    })}
+                  </div>
+                </>
+              )}
+              {date&&!dayAvail&&<div style={{textAlign:"center",padding:"16px",color:"var(--muted)",fontSize:13}}>{t.notAvail}</div>}
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(1)}>{t.back}</button><button className="btn btn-ink" disabled={!date||!time} onClick={()=>setStep(3)}>{t.continue}</button></div>
+          </div>
+        )}
+        {step===3&&(
+          <div className="a4">
+            <div className="bk-card">
+              <div className="card-hl">{t.yourInfo}</div>
+              <div className="card-sub">{t.yourInfoSub}</div>
+              <div className="f-grid">
+                <div className="f-group"><label className="f-label">{t.fullName}</label><input className="f-input" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} placeholder="Jane Doe"/></div>
+                <div className="f-group">
+                  <label className="f-label">{t.phone}</label>
+                  <div style={{display:"flex",gap:6,alignItems:"center"}}>
+                    <div style={{background:"var(--cream)",border:"1.5px solid var(--border)",borderRadius:10,padding:"11px 12px",fontSize:14,color:"var(--ink)",whiteSpace:"nowrap",fontWeight:600}}>+1</div>
+                    <input className="f-input" value={form.phone} onChange={e=>setPhone(e.target.value)} placeholder="5141234567" maxLength={10}/>
+                  </div>
+                </div>
+              </div>
+              <div className="f-grid">
+                <div className="f-group"><label className="f-label">{t.email}</label><input className="f-input" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} placeholder="jane@email.com"/></div>
+              </div>
+              <div style={{fontSize:11,color:"var(--muted)",marginBottom:12,marginTop:-6}}>* {t.phoneOrEmail}</div>
+              <div className="f-grid" style={{gridTemplateColumns:"1fr"}}>
+                <div className="f-group"><label className="f-label">{t.notes}</label><textarea className="f-textarea" value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder={t.notesPlaceholder}/></div>
+              </div>
+              <div className="f-group" style={{marginTop:4}}>
+                <label className="f-label">{t.photoLabel}</label>
+                <div className="upload-box" onClick={()=>document.getElementById("photo-upload").click()}>
+                  {form.photo?<img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:150,objectFit:"cover",borderRadius:9}} alt="inspiration"/>:<><div style={{fontSize:28,marginBottom:6}}>📸</div><div style={{fontSize:12,color:"var(--muted)"}}>{t.photoTap}</div></>}
+                </div>
+                <input id="photo-upload" type="file" accept="image/*" style={{display:"none"}} onChange={e=>setForm(p=>({...p,photo:e.target.files[0]||null}))}/>
+              </div>
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(2)}>{t.back}</button><button className="btn btn-ink" disabled={!form.name.trim()||(!form.phone.trim()&&!form.email.trim())} onClick={()=>setStep(4)}>{t.review}</button></div>
+          </div>
+        )}
+        {step===4&&(
+          <div className="a4">
+            <div className="bk-card">
+              <div className="card-hl">{t.confirm}</div>
+              <div className="card-sub">{t.confirmSub}</div>
+              {[{l:t.service,v:svc?.name},{l:t.estimate,v:svc?.price},{l:t.duration,v:svc?.dur},{l:t.date,v:showDate(date,lang)},{l:t.time,v:time},{l:t.name,v:form.name},form.phone&&{l:t.phone,v:"+1"+form.phone},form.email&&{l:t.emailLabel,v:form.email},form.notes&&{l:t.notesLabel,v:form.notes}].filter(Boolean).map(r=>(<div className="sum-row" key={r.l}><span className="sum-label">{r.l}</span><span className="sum-val">{r.v}</span></div>))}
+              {form.photo&&<div style={{marginTop:10}}><img src={URL.createObjectURL(form.photo)} style={{width:"100%",maxHeight:140,objectFit:"cover",borderRadius:10}} alt="inspiration"/></div>}
+              <div style={{marginTop:16,padding:"12px",background:"#FBF6EE",borderRadius:10,border:"1px solid var(--border)",fontSize:12,color:"var(--muted)",lineHeight:1.6}}>{t.requestNote}</div>
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between"}}><button className="btn btn-out" onClick={()=>setStep(3)}>{t.back}</button><button className="btn btn-gold" disabled={busy} onClick={submit}>{busy?<span className="dots"><span/><span/><span/></span>:t.sendRequest}</button></div>
+          </div>
+        )}
+        {step===5&&(
+          <div className="bk-card a4">
+            <div className="success">
+              <div className="suc-icon">🌿</div>
+              <div className="suc-title">{t.received}</div>
+              <div className="suc-sub">{lang==="fr"?`Merci ${form.name}! Votre demande pour ${svc?.name} le ${showDate(date,lang)} à ${time} a été envoyée.`:`Thank you ${form.name}! Your request for ${svc?.name} on ${showDate(date,lang)} at ${time} has been sent.`} {t.receivedSub}</div>
+              <button className="btn btn-ink" style={{marginTop:24}} onClick={reset}>{t.bookAnother}</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -416,7 +622,19 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
           </div>
           <button className="hero-menu-btn" onClick={()=>setMenuOpen(m=>!m)}>☰</button>
         </div>
-        {menuOpen&&<div className="hero-menu" onClick={()=>setMenuOpen(false)}><div className="hero-menu-panel" onClick={e=>e.stopPropagation()}><button className="hero-menu-item" onClick={()=>{onOwnerClick();setMenuOpen(false)}} style={{color:"var(--gold-lt)"}}><span>🔑</span>{t.login}</button></div></div>}
+        {menuOpen&&(
+          <div className="hero-menu" onClick={()=>setMenuOpen(false)}>
+            <div className="hero-menu-panel" onClick={e=>e.stopPropagation()}>
+              <button className="hero-menu-item" onClick={()=>{setShowHelp(true);setMenuOpen(false)}}>
+                <span>💬</span>{t.help}
+              </button>
+              <div style={{borderTop:"1px solid #FFFFFF15",margin:"4px 0"}}/>
+              <button className="hero-menu-item" onClick={()=>{onOwnerClick();setMenuOpen(false)}} style={{color:"var(--gold-lt)"}}>
+                <span>🔑</span>{t.login}
+              </button>
+            </div>
+          </div>
+        )}
         <span className="hero-spark" style={{top:"18%",left:"12%",animationDelay:"0s"}}>✦</span>
         <span className="hero-spark" style={{top:"30%",right:"10%",animationDelay:"1.5s"}}>✧</span>
         <span className="hero-spark" style={{bottom:"20%",left:"22%",animationDelay:"0.8s"}}>✦</span>
@@ -424,7 +642,9 @@ function CustomerView({lang,setLang,t,onBook,bookings,avail,gallery,profile,onOw
         <div className="hero-title a2">Elixir <em>Beauty</em></div>
         <div className="hero-line a3"/>
         <div className="hero-sub a3">{profile.bio||t.heroSub}</div>
-        <div style={{marginTop:20,position:"relative",zIndex:5}}><button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative",zIndex:5}}>{t.viewWork}</button></div>
+        <div style={{marginTop:20,position:"relative",zIndex:5}}>
+          <button onClick={()=>setShowGallery(true)} style={{background:"#FFFFFF14",border:"1px solid #FFFFFF25",borderRadius:20,padding:"8px 20px",color:"#C8B4D8",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:12,letterSpacing:1,position:"relative",zIndex:5}}>{t.viewWork}</button>
+        </div>
       </div>
       <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-end",padding:"20px 20px 48px"}}>
         <button className="book-now-btn" onClick={()=>setBooking(true)}>✨ {t.bookNow}</button>
@@ -448,10 +668,7 @@ function Accordion({title,badge,children,defaultOpen=false}){
   return(
     <div className="accordion">
       <div className="accordion-header" onClick={()=>setOpen(o=>!o)}>
-        <div className="accordion-title">
-          {title}
-          {badge>0&&<span style={{background:"var(--gold)",color:"#fff",borderRadius:20,padding:"1px 9px",fontSize:11,fontWeight:700}}>{badge}</span>}
-        </div>
+        <div className="accordion-title">{title}{badge>0&&<span style={{background:"var(--gold)",color:"#fff",borderRadius:20,padding:"1px 9px",fontSize:11,fontWeight:700}}>{badge}</span>}</div>
         <span className={`accordion-arrow ${open?"open":""}`}>▼</span>
       </div>
       {open&&<div className="accordion-body">{children}</div>}
@@ -464,13 +681,12 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
   const [oLang,setOLang]=useState("en")
   const [showProfile,setShowProfile]=useState(false)
   const [deleteTarget,setDeleteTarget]=useState(null)
+  const [cancelTarget,setCancelTarget]=useState(null)
 
   const pending=bookings.filter(b=>b.status==="pending")
   const confirmed=bookings.filter(b=>b.status==="confirmed")
   const declined=bookings.filter(b=>b.status==="declined")
-
-  const confirmDelete=(id)=>setDeleteTarget(id)
-  const doDelete=()=>{if(deleteTarget){onDeleteImg(deleteTarget);setDeleteTarget(null)}}
+  const cancelled=bookings.filter(b=>b.status==="cancelled")
 
   if(showProfile)return(
     <div className="o-shell">
@@ -487,11 +703,23 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
       {deleteTarget&&(
         <div className="confirm-overlay">
           <div className="confirm-box">
-            <div className="confirm-box-title">{oLang==="fr"?"Supprimer la photo":"Delete photo?"}</div>
-            <div className="confirm-box-sub">{oLang==="fr"?"Cette action est irréversible.":"This action cannot be undone."}</div>
+            <div className="confirm-box-title">{oLang==="fr"?"Supprimer la photo?":"Delete photo?"}</div>
+            <div className="confirm-box-sub">{oLang==="fr"?"Cette action est irréversible.":"This cannot be undone."}</div>
             <div className="confirm-box-btns">
               <button onClick={()=>setDeleteTarget(null)} style={{flex:1,padding:"10px",borderRadius:10,border:"1.5px solid var(--border)",background:"transparent",color:"var(--muted)",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:600}}>{oLang==="fr"?"Annuler":"Cancel"}</button>
-              <button onClick={doDelete} style={{flex:1,padding:"10px",borderRadius:10,border:"none",background:"var(--red)",color:"#fff",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:600}}>{oLang==="fr"?"Supprimer":"Delete"}</button>
+              <button onClick={()=>{onDeleteImg(deleteTarget);setDeleteTarget(null)}} style={{flex:1,padding:"10px",borderRadius:10,border:"none",background:"var(--red)",color:"#fff",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:600}}>{oLang==="fr"?"Supprimer":"Delete"}</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {cancelTarget&&(
+        <div className="confirm-overlay">
+          <div className="confirm-box">
+            <div className="confirm-box-title">{oLang==="fr"?"Annuler cette réservation?":"Cancel this booking?"}</div>
+            <div className="confirm-box-sub">{oLang==="fr"?`${cancelTarget.name} — ${cancelTarget.service} ${cancelTarget.date} à ${cancelTarget.time}`:`${cancelTarget.name} — ${cancelTarget.service} ${cancelTarget.date} at ${cancelTarget.time}`}</div>
+            <div className="confirm-box-btns">
+              <button onClick={()=>setCancelTarget(null)} style={{flex:1,padding:"10px",borderRadius:10,border:"1.5px solid var(--border)",background:"transparent",color:"var(--muted)",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:600}}>{oLang==="fr"?"Non":"No"}</button>
+              <button onClick={()=>{onRespond(cancelTarget.id,"cancel");setCancelTarget(null)}} style={{flex:1,padding:"10px",borderRadius:10,border:"none",background:"var(--red)",color:"#fff",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontSize:13,fontWeight:600}}>{oLang==="fr"?"Oui, annuler":"Yes, cancel"}</button>
             </div>
           </div>
         </div>
@@ -559,52 +787,70 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
             ))}
           </div>
         ):(
-          <div style={{background:"var(--card)",borderRadius:14,border:"1px solid var(--border)",padding:"20px",textAlign:"center",marginBottom:16}}>
+          <div style={{background:"var(--card)",borderRadius:14,border:"1px solid var(--border)",padding:"16px 20px",textAlign:"center",marginBottom:16}}>
             <div style={{fontSize:13,color:"var(--muted)"}}>{oLang==="fr"?"Aucune demande en attente":"No pending requests right now"}</div>
           </div>
         )}
 
-       <Accordion title={oLang==="fr"?"Mes Réservations":"My Bookings"} badge={0}>
-  <Accordion title={oLang==="fr"?`Confirmées (${confirmed.length})`:`Confirmed (${confirmed.length})`} badge={0}>
-   {confirmed.length===0
-      ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
-      :<div className="acc-scroll">{confirmed.map(b=>(
-        <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <div>
-              <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
-              <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
-              {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
-            </div>
-
-          </div>
-          {b.ai_message&&<div style={{marginTop:8,display:"flex",gap:6}}>
-            {b.phone&&<a className="btn-wa" style={{fontSize:10,padding:"4px 10px"}} href={`https://api.whatsapp.com/send?phone=${b.phone.replace(/\D/g,"")}&text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">WhatsApp</a>}
-            <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
-          </div>}
-        </div>
-          ))}
-    </div>}
-  </Accordion>
-  <Accordion title={oLang==="fr"?`Déclinées (${declined.length})`:`Declined (${declined.length})`} badge={0}>
-   {declined.length===0
-      ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
-      :<div className="acc-scroll">{declined.map(b=>(
-        <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <div>
-              <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
-              <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
-              {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
-            </div>
-           
-          </div>
-        </div>
-           ))}
-    </div>}
-  </Accordion>
-</Accordion>
-
+        <Accordion title={oLang==="fr"?"Mes Réservations":"My Bookings"} badge={0}>
+          <Accordion title={oLang==="fr"?`Confirmées (${confirmed.length})`:`Confirmed (${confirmed.length})`} badge={0}>
+            {confirmed.length===0
+              ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
+              :<div className="acc-scroll">{confirmed.map(b=>(
+                <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                    <div>
+                      <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
+                      <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
+                      {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
+                    </div>
+                    <button onClick={()=>setCancelTarget(b)} style={{fontSize:10,color:"var(--red)",background:"none",border:"1px solid #B8323240",borderRadius:6,padding:"4px 10px",cursor:"pointer",fontFamily:"DM Sans,sans-serif",fontWeight:600,whiteSpace:"nowrap"}}>
+                      {oLang==="fr"?"Annuler":"Cancel"}
+                    </button>
+                  </div>
+                  {b.ai_message&&<div style={{marginTop:8,display:"flex",gap:6}}>
+                    {b.phone&&<a className="btn-wa" style={{fontSize:10,padding:"4px 10px"}} href={`https://api.whatsapp.com/send?phone=${b.phone.replace(/\D/g,"")}&text=${encodeURIComponent(b.ai_message)}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+                    <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
+                  </div>}
+                </div>
+              ))}</div>
+            }
+          </Accordion>
+          <Accordion title={oLang==="fr"?`Déclinées (${declined.length})`:`Declined (${declined.length})`} badge={0}>
+            {declined.length===0
+              ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
+              :<div className="acc-scroll">{declined.map(b=>(
+                <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <div>
+                      <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
+                      <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
+                      {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
+                    </div>
+                    <span className="chip chip-declined">✕</span>
+                  </div>
+                </div>
+              ))}</div>
+            }
+          </Accordion>
+          {cancelled.length>0&&(
+            <Accordion title={oLang==="fr"?`Annulées (${cancelled.length})`:`Cancelled (${cancelled.length})`} badge={0}>
+              <div className="acc-scroll">{cancelled.map(b=>(
+                <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                    <div>
+                      <div style={{fontSize:13,fontWeight:600,color:"var(--ink)"}}>{b.name}</div>
+                      <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
+                      {b.cancellation_reason&&<div style={{fontSize:11,color:"var(--red)",marginTop:4}}>📝 {b.cancellation_reason}</div>}
+                      {b.cancelled_by&&<div style={{fontSize:10,color:"var(--muted)",marginTop:2}}>{oLang==="fr"?`Annulé par: ${b.cancelled_by}`:`Cancelled by: ${b.cancelled_by}`}</div>}
+                    </div>
+                    <span className="chip chip-cancelled">annulé</span>
+                  </div>
+                </div>
+              ))}</div>
+            </Accordion>
+          )}
+        </Accordion>
 
         <Accordion title={oLang==="fr"?"Disponibilité":"Availability"} badge={0}>
           <AvailView avail={avail} onSave={onSaveAvail} lang={oLang}/>
@@ -622,7 +868,7 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
                 {gallery.map(g=>(
                   <div key={g.id} style={{position:"relative"}}>
                     <img src={g.image_data} alt="work" className="gallery-img"/>
-                    <button onClick={()=>confirmDelete(g.id)} style={{position:"absolute",top:6,right:6,background:"#B83232CC",border:"none",color:"#fff",borderRadius:"50%",width:26,height:26,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+                    <button onClick={()=>setDeleteTarget(g.id)} style={{position:"absolute",top:6,right:6,background:"#B83232CC",border:"none",color:"#fff",borderRadius:"50%",width:26,height:26,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
                   </div>
                 ))}
               </div>
@@ -645,24 +891,16 @@ function AvailView({avail,onSave,lang}){
   const todISO=todayISO()
   const prevMo=()=>setCal(c=>c.m===0?{y:c.y-1,m:11}:{...c,m:c.m-1})
   const nextMo=()=>setCal(c=>c.m===11?{y:c.y+1,m:0}:{...c,m:c.m+1})
-  const toggleDate=(iso)=>setBlockedDates(prev=>prev.includes(iso)?prev.filter(d=>d!==iso):[...prev,iso])
+  const toggleDate=iso=>setBlockedDates(prev=>prev.includes(iso)?prev.filter(d=>d!==iso):[...prev,iso])
   const toggleTime=t=>setTimes(prev=>prev.includes(t)?prev.filter(x=>x!==t):[...prev,t].sort())
-  const save=async()=>{
-    await onSave({days:[0,1,2,3,4,5,6],times,blockedDates})
-    setSaved(true);setTimeout(()=>setSaved(false),2000)
-  }
+  const save=async()=>{await onSave({days:[0,1,2,3,4,5,6],times,blockedDates});setSaved(true);setTimeout(()=>setSaved(false),2000)}
   return(
     <div>
       <div style={{marginBottom:16}}>
-        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:12}}>
-          {lang==="fr"?"Jours non disponibles":"Days off"}
-        </div>
+        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:12}}>{lang==="fr"?"Jours non disponibles":"Days off"}</div>
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
           <div style={{fontFamily:"Cormorant Garamond,serif",fontSize:18,fontWeight:600}}>{MONTHS[cal.m]} {cal.y}</div>
-          <div style={{display:"flex",gap:8}}>
-            <button className="cal-arrow" onClick={prevMo}>&#8249;</button>
-            <button className="cal-arrow" onClick={nextMo}>&#8250;</button>
-          </div>
+          <div style={{display:"flex",gap:8}}><button className="cal-arrow" onClick={prevMo}>&#8249;</button><button className="cal-arrow" onClick={nextMo}>&#8250;</button></div>
         </div>
         <div className="cal-grid">
           {DAYS.map(d=><div key={d} className="cal-dl">{d[0]}</div>)}
@@ -671,37 +909,19 @@ function AvailView({avail,onSave,lang}){
             const iso=toISO(cal.y,cal.m,i+1)
             const past=iso<todISO
             const blocked=blockedDates.includes(iso)
-            return(
-              <button key={i}
-                className={`cal-d ${blocked?"sel":""}`}
-                style={blocked?{background:"var(--red)",color:"#fff"}:{}}
-                disabled={past}
-                onClick={()=>toggleDate(iso)}
-              >{i+1}</button>
-            )
+            return(<button key={i} className={`cal-d ${blocked?"sel":""}`} style={blocked?{background:"var(--red)",color:"#fff"}:{}} disabled={past} onClick={()=>toggleDate(iso)}>{i+1}</button>)
           })}
         </div>
-        {blockedDates.length>0&&(
-          <div style={{marginTop:8,fontSize:11,color:"var(--muted)"}}>
-            {lang==="fr"?"Jours bloqués:":"Blocked:"} {blockedDates.sort().map(d=>d.slice(5)).join(", ")}
-          </div>
-        )}
+        {blockedDates.length>0&&<div style={{fontSize:11,color:"var(--muted)",marginTop:4}}>{lang==="fr"?"Bloqués:":"Blocked:"} {blockedDates.sort().map(d=>d.slice(5)).join(", ")}</div>}
       </div>
       <div style={{marginBottom:16}}>
-        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:10}}>
-          {lang==="fr"?"Heures de travail":"Working Hours"}
-        </div>
-        <div className="time-avail-grid">
-          {ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}
-        </div>
+        <div style={{fontSize:12,fontWeight:700,color:"var(--muted)",letterSpacing:1,textTransform:"uppercase",marginBottom:10}}>{lang==="fr"?"Heures de travail":"Working Hours"}</div>
+        <div className="time-avail-grid">{ALL_TIMES.map(t=>(<button key={t} className={`time-avail-btn ${times.includes(t)?"on":""}`} onClick={()=>toggleTime(t)}>{t}</button>))}</div>
       </div>
-      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>
-        {saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save"}
-      </button>
+      <button className="btn btn-ink" onClick={save} style={{width:"100%",justifyContent:"center"}}>{saved?"✓ Saved!":lang==="fr"?"Sauvegarder":"Save"}</button>
     </div>
   )
 }
-
 
 function ProfileView({profile,onSave,lang}){
   const [form,setForm]=useState({business_name:profile.business_name||"",bio:profile.bio||"",phone:profile.phone||"",whatsapp:profile.whatsapp||"",instagram:profile.instagram||"",tiktok:profile.tiktok||"",email:profile.email||""})
