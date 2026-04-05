@@ -268,7 +268,11 @@ export default function App(){
   const [loginPass,setLoginPass]=useState("")
   const [loginErr,setLoginErr]=useState("")
   const [loginBusy,setLoginBusy]=useState(false)
-  const [showLogin,setShowLogin]=useState(()=>window.location.search.includes("owner=true"))
+  const [showLogin,setShowLogin]=useState(()=>{
+  const has=window.location.search.includes("owner=true")
+  if(has)window.history.replaceState({},"",window.location.pathname)
+  return has
+})
   const [booking,setBooking]=useState(false)
 
   useEffect(()=>{
@@ -317,8 +321,13 @@ export default function App(){
   const respond=(id,dec)=>{
     const bk=bookings.find(b=>b.id===id)
     if(!bk)return
-    if(dec==="cancel"){
+   if(dec==="cancel"){
       supabase.from("bookings").update({status:"cancelled",ai_message:"",cancelled_by:"owner"}).eq("id",id).then(()=>fetchAll())
+      const cancelMsg=`Hi ${bk.name}, unfortunately we need to cancel your appointment for ${bk.service} on ${showDate(bk.date,"en")} at ${bk.time}. We apologize for the inconvenience. Please visit our booking page to reschedule. Elixir Beauty`
+      let phone=bk.phone?.replace(/\D/g,"")
+      if(phone&&phone.length===10)phone="1"+phone
+      if(phone)window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(cancelMsg)}`,"_blank")
+      else if(bk.email)window.open(`mailto:${bk.email}?subject=${encodeURIComponent("Your Elixir Beauty Appointment")}&body=${encodeURIComponent(cancelMsg)}`,"_blank")
       return
     }
     const msg=buildMsg(dec,bk.name,bk.service,bk.date,bk.time)
@@ -827,7 +836,7 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
                       <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{b.service} · {b.date} · {b.time}</div>
                       {b.phone&&<div style={{fontSize:11,color:"var(--muted)"}}>{b.phone}</div>}
                     </div>
-                    <span className="chip chip-declined">✕</span>
+                  
                   </div>
                 </div>
               ))}</div>
