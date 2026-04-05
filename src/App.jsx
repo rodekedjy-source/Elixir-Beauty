@@ -63,15 +63,15 @@ const EN = {
   cancelSuccess: "Your cancellation request has been sent.", cancelBtn: "Cancel my booking",
   findBooking: "Find your booking", findByPhone: "Enter your phone or email",
   contactVia: "Contact us via",
-  services: [
-    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
-    {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
-    {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"Starting $140"},
-    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"Starting $200"},
-    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"Starting $80"},
-    {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"Starting $90"},
-    {id:"natural",icon:"🌸",name:"Natural Hair Styling",dur:"1-3 hrs",price:"Starting $75"},
-    {id:"custom",icon:"💫",name:"Custom Style",dur:"Varies",price:"On quote"},
+  services: services: [
+    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
+    {id:"knotless",icon:"✨",name:"Tresses Knotless",dur:"5-7 hrs",price:"À partir de 180$"},
+    {id:"twist",icon:"🌀",name:"Twist Sénégalais",dur:"4-5 hrs",price:"À partir de 140$"},
+    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"À partir de 200$"},
+    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"À partir de 80$"},
+    {id:"wig",icon:"👑",name:"Installation Wig",dur:"1-2 hrs",price:"À partir de 90$"},
+    {id:"natural",icon:"🌸",name:"Coiffure Naturelle",dur:"1-3 hrs",price:"À partir de 75$"},
+    {id:"custom",icon:"💫",name:"Style Personnalisé",dur:"Variable",price:"Sur devis"},
   ]
 }
 
