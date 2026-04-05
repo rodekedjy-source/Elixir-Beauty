@@ -247,7 +247,7 @@ export default function App(){
   const [loginPass,setLoginPass]=useState("")
   const [loginErr,setLoginErr]=useState("")
   const [loginBusy,setLoginBusy]=useState(false)
-  const [showLogin,setShowLogin]=useState(false)
+ const [showLogin,setShowLogin]=useState(()=>window.location.search.includes("owner=true"))
   const [booking,setBooking]=useState(false)
 
   useEffect(()=>{
