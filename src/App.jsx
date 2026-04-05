@@ -27,15 +27,16 @@ const FR = {
   findBooking: "Retrouvez votre réservation", findByPhone: "Entrez votre numéro ou courriel",
   contactVia: "Nous contacter via",
   services: [
-    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
-    {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"À partir de 180$"},
-    {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"À partir de 140$"},
-    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"À partir de 200$"},
-    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"À partir de 80$"},
-    {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"À partir de 90$"},
-    {id:"natural",icon:"🌸",name:"Coiffure Naturelle",dur:"1-3 hrs",price:"À partir de 75$"},
+    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 h",price:"À partir de 150$"},
+    {id:"knotless",icon:"✨",name:"Tresses Knotless",dur:"5-7 h",price:"À partir de 180$"},
+    {id:"twist",icon:"🌀",name:"Twist Sénégalais",dur:"4-5 h",price:"À partir de 140$"},
+    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 h",price:"À partir de 200$"},
+    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 h",price:"À partir de 80$"},
+    {id:"wig",icon:"👑",name:"Installation Wig",dur:"1-2 h",price:"À partir de 90$"},
+    {id:"natural",icon:"🌸",name:"Coiffure Naturelle",dur:"1-3 h",price:"À partir de 75$"},
     {id:"custom",icon:"💫",name:"Style Personnalisé",dur:"Variable",price:"Sur devis"},
   ]
+
 }
 
 const EN = {
@@ -64,15 +65,16 @@ const EN = {
   findBooking: "Find your booking", findByPhone: "Enter your phone or email",
   contactVia: "Contact us via",
   services: [
-    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
-    {id:"knotless",icon:"✨",name:"Tresses Knotless",dur:"5-7 hrs",price:"À partir de 180$"},
-    {id:"twist",icon:"🌀",name:"Twist Sénégalais",dur:"4-5 hrs",price:"À partir de 140$"},
-    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"À partir de 200$"},
-    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"À partir de 80$"},
-    {id:"wig",icon:"👑",name:"Installation Wig",dur:"1-2 hrs",price:"À partir de 90$"},
-    {id:"natural",icon:"🌸",name:"Coiffure Naturelle",dur:"1-3 hrs",price:"À partir de 75$"},
-    {id:"custom",icon:"💫",name:"Style Personnalisé",dur:"Variable",price:"Sur devis"},
+    {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"Starting $150"},
+    {id:"knotless",icon:"✨",name:"Knotless Braids",dur:"5-7 hrs",price:"Starting $180"},
+    {id:"twist",icon:"🌀",name:"Senegalese Twist",dur:"4-5 hrs",price:"Starting $140"},
+    {id:"locs",icon:"🌿",name:"Locs / Faux Locs",dur:"5-8 hrs",price:"Starting $200"},
+    {id:"cornrows",icon:"〰️",name:"Cornrows",dur:"1-3 hrs",price:"Starting $80"},
+    {id:"wig",icon:"👑",name:"Wig Install",dur:"1-2 hrs",price:"Starting $90"},
+    {id:"natural",icon:"🌸",name:"Natural Hair Styling",dur:"1-3 hrs",price:"Starting $75"},
+    {id:"custom",icon:"💫",name:"Custom Style",dur:"Varies",price:"On quote"},
   ]
+
 }
 
 const FONT=`@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');`
