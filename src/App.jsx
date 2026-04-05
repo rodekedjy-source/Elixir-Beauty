@@ -63,7 +63,7 @@ const EN = {
   cancelSuccess: "Your cancellation request has been sent.", cancelBtn: "Cancel my booking",
   findBooking: "Find your booking", findByPhone: "Enter your phone or email",
   contactVia: "Contact us via",
-  services: services: [
+  services: [
     {id:"box",icon:"🫧",name:"Box Braids",dur:"4-6 hrs",price:"À partir de 150$"},
     {id:"knotless",icon:"✨",name:"Tresses Knotless",dur:"5-7 hrs",price:"À partir de 180$"},
     {id:"twist",icon:"🌀",name:"Twist Sénégalais",dur:"4-5 hrs",price:"À partir de 140$"},
