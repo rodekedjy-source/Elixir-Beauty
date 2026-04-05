@@ -156,6 +156,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .accordion-arrow{font-size:12px;color:var(--muted);transition:transform .25s;}
 .accordion-arrow.open{transform:rotate(180deg);}
 .accordion-body{padding:0 16px 16px;animation:slideDown .2s ease;}
+.acc-scroll{max-height:320px;overflow-y:auto;padding-right:4px;}
 .acc-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:10px;cursor:pointer;transition:background .18s;margin-bottom:4px;}
 .acc-row:hover{background:var(--gold-pale);}
 .acc-row-label{font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;}
@@ -565,9 +566,9 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
 
        <Accordion title={oLang==="fr"?"Mes Réservations":"My Bookings"} badge={0}>
   <Accordion title={oLang==="fr"?`Confirmées (${confirmed.length})`:`Confirmed (${confirmed.length})`} badge={0}>
-    {confirmed.length===0
+   {confirmed.length===0
       ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
-      :confirmed.map(b=>(
+      :<div className="acc-scroll">{confirmed.map(b=>(
         <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
             <div>
@@ -582,13 +583,13 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
             <button className="btn-copy" onClick={()=>navigator.clipboard?.writeText(b.ai_message)}>Copy</button>
           </div>}
         </div>
-      ))
-    }
+          ))}
+    </div>}
   </Accordion>
   <Accordion title={oLang==="fr"?`Déclinées (${declined.length})`:`Declined (${declined.length})`} badge={0}>
-    {declined.length===0
+   {declined.length===0
       ?<div style={{fontSize:12,color:"var(--muted)",padding:"8px 4px",fontStyle:"italic"}}>{oLang==="fr"?"Aucune":"None"}</div>
-      :declined.map(b=>(
+      :<div className="acc-scroll">{declined.map(b=>(
         <div key={b.id} style={{borderBottom:"1px solid var(--border)",padding:"12px 4px"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
             <div>
@@ -599,8 +600,8 @@ function OwnerView({bookings,onRespond,onLogout,userEmail,avail,onSaveAvail,gall
            
           </div>
         </div>
-      ))
-    }
+           ))}
+    </div>}
   </Accordion>
 </Accordion>
 
